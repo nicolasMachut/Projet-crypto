@@ -10,12 +10,13 @@ public abstract class Crypting{
 
     protected String m_cryptedString;
     protected String m_readableString;
-    protected Alphabet m_alphabet = new Alphabet();
+    protected Alphabet m_alphabet;
 
     protected Crypting()
     {
         this.m_cryptedString = "";
         this.m_readableString = "";
+        this.m_alphabet = new Alphabet();
     }
 
 

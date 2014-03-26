@@ -1,7 +1,9 @@
+import Library.Alphabet;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Caesar;
+import static org.junit.Assert.*;
 
 /**
  * Created by nicolas on 26/03/14.
@@ -17,9 +19,23 @@ public class CaesarTest {
     }
 
     @Test
-    public void Test()
+    public void TestCryptingCaesar()
     {
-        Assert.assertTrue(true);
+        int cryptingKey = 2;
+        String textToCrypt = "CESTUNTEST";
+        String CryptedString = "EGUVWPVGUV";
+        this.caesar.Crypting(textToCrypt, cryptingKey);
+        assertEquals(CryptedString, this.caesar.GetEncryptedString());
+    }
+
+    @Test
+    public void TestUncryptingCaesarWhenEIsTheMostUsedLetter()
+    {
+        int cryptingKey = 2;
+        String textToDecrypt = "EGUVWPVGUVGGG";
+        String decryptedText = "CESTUNTESTEEE";
+        this.caesar.Uncrypting(textToDecrypt);
+        assertEquals(decryptedText, this.caesar.GetUncryptedString());
     }
 
 }
