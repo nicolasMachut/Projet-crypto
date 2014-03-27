@@ -64,7 +64,4 @@ public class Permutation extends Crypting{
         }
         return letter;
     }
-
-
-
 }

@@ -102,7 +102,7 @@ public class FrequencyAnalyse {
 
         for (String key : frequency.keySet())
         {
-            System.out.println("key: " + key + " value: " + frequency.get(key) +" times so : "+frequency.get(key)/totalChars+" % ");
+            //System.out.println("key: " + key + " value: " + frequency.get(key) +" times so : "+frequency.get(key)/totalChars+" % ");
         }
 
         return frequency;

@@ -26,11 +26,9 @@ public abstract class Crypting{
      * @param p_modulo : divisor
      * @return positive congruence
      */
-    protected static int ModuloPositive(int p_number, int p_modulo)
+    public static int ModuloPositive(int p_number, int p_modulo)
     {
-
         int result = p_number%p_modulo;
-        System.out.println("#################################################modulo : "+result);
         if(result < 0)
         {
             result += p_modulo;

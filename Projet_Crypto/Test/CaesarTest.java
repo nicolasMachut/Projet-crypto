@@ -1,8 +1,7 @@
-import Library.Alphabet;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Caesar;
+
 import static org.junit.Assert.*;
 
 /**
@@ -37,5 +36,4 @@ public class CaesarTest {
         this.caesar.Uncrypting(textToDecrypt);
         assertEquals(decryptedText, this.caesar.GetUncryptedString());
     }
-
 }
