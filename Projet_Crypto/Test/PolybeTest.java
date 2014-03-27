@@ -38,4 +38,16 @@ public class PolybeTest {
         this.polybe.Uncrypting(textToUncrypt);
         assertEquals(uncryptedText, this.polybe.GetUncryptedString());
     }
+
+    @Test
+    public void TestPutEachNumbersInArrayString()
+    {
+        this.polybe.Crypting("BCDE");
+        String numbersToTest = "12131415";
+        String result[] = {"12", "13", "14", "15"};
+        for(int i = 0; i < result.length; i++)
+        {
+            assertEquals(result[i], this.polybe.PutEachNumbersInArrayStrings()[i]);
+        }
+    }
 }

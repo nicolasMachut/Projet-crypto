@@ -28,8 +28,9 @@ public abstract class Crypting{
      */
     protected static int ModuloPositive(int p_number, int p_modulo)
     {
-        int result = p_number%p_modulo;
 
+        int result = p_number%p_modulo;
+        System.out.println("#################################################modulo : "+result);
         if(result < 0)
         {
             result += p_modulo;

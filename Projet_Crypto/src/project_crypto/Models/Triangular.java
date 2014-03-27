@@ -262,7 +262,7 @@ public class Triangular extends Crypting
      * @param p_text : text we want to deal with
      * @return text without duplicated letters
      */
-    private String RemoveDuplicatedLetters(String p_text) {
+    public String RemoveDuplicatedLetters(String p_text) {
         String data = "";
         for (int iText = 0; iText < p_text.length(); iText++) {
             if (!data.contains(String.valueOf(p_text.charAt(iText)))) {
@@ -277,7 +277,7 @@ public class Triangular extends Crypting
      * @param p_text : text we want to deal with
      * @return array of letters in the alphabetic order
      */
-    private String SortAlphaBetaOrder(String p_text)
+    public String SortAlphaBetaOrder(String p_text)
     {
         char[] chars = p_text.toCharArray();
         Arrays.sort(chars);
