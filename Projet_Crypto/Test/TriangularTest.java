@@ -17,7 +17,7 @@ public class TriangularTest {
     }
 
     @Test
-    public void testSortAlphebetaOrder()
+    public void TestSortAlphebetaOrder()
     {
         String textToSort = "NICOLAS";
         String sortedText = "ACILNOS";
@@ -25,11 +25,31 @@ public class TriangularTest {
     }
 
     @Test
-    public void testDuplicatedLetters()
+    public void TestDuplicatedLetters()
     {
         String textToTest = "BONJOUR";
         String result = "BONJUR";
         assertEquals(result, this.triangular.RemoveDuplicatedLetters(textToTest));
+    }
+
+
+    @Test
+    public void TestCalculateNbLine()
+    {
+        int nbLetters = 10;
+        int result = 4;
+        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
+    }
+
+
+    @Test
+    public void TestCalculateNbColumns()
+    {
+        int nbLines = 10;
+        int nbLetters = 30;
+        int result = 18;
+        assertEquals(result, this.triangular.CalculateNbColumns(nbLines, nbLetters));
+
     }
 
 

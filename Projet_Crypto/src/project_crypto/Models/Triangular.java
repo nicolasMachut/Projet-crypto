@@ -308,7 +308,7 @@ public class Triangular extends Crypting
      * @param p_nbLetters : How many letters are there in the text ?
      * @return number of lines needed for the triangle
      */
-    private int CalculateNbLines(int p_nbLetters)
+    public int CalculateNbLines(int p_nbLetters)
     {
         int nbLine = 1;
 
@@ -326,7 +326,7 @@ public class Triangular extends Crypting
      * @param p_nbLines : How many lines are there in the triangle ?
      * @return number of rows needed for the triangle
      */
-    private int CalculateNbColumns(int p_nbLines, int p_nbLettres)
+    public int CalculateNbColumns(int p_nbLines, int p_nbLettres)
     {
         if((p_nbLines * p_nbLines + p_nbLines)/2 == p_nbLettres)
             return (2 * p_nbLines) - 1;
