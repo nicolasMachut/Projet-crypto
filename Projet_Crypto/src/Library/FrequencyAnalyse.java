@@ -145,4 +145,31 @@ public class FrequencyAnalyse {
         return this.bigrammeTable.get(p_keyLanguage);
     }
 
+    /**
+     *
+     * @return boolean if there is 3 same letters aside in the text, return true
+     */
+    public boolean CheckIfThereIsThreeSameLetterAside()
+    {
+        int countSameLettersAside = 0;
+        for(int i = 0; i < this.m_text.length(); i++)
+        {
+            if(i > 0)
+            {
+                if(String.valueOf(this.m_text.charAt(i-1)).equals(String.valueOf(this.m_text.charAt(i))))
+                {
+                    countSameLettersAside += 1;
+                }
+                else
+                {
+                    countSameLettersAside = 0;
+                }
+                if(countSameLettersAside == 2)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
