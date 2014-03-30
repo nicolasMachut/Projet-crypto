@@ -300,6 +300,13 @@ public class Triangular extends Crypting
         return new String(chars);
     }
 
+    //This method return a letter in alphabet's tab which is not in this.association
+    private String GetVacantRandomLetter()
+    {
+        int random = GetRandom();
+        return this.m_alphabet.GetLatin()[random];
+    }
+
      /* ===============================================================================================================
      * Calculate
      * ============================================================================================================ */
