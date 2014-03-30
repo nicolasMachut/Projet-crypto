@@ -53,7 +53,7 @@ public class Triangular extends Crypting
         // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
         while ( m_nbLetters < ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) )
         {
-            m_readableString += "X";
+            m_readableString += GetRandomLetter();
             // Update infos
             FindInfo(this.m_readableString);
         }
@@ -300,8 +300,10 @@ public class Triangular extends Crypting
         return new String(chars);
     }
 
-    //This method return a letter in alphabet's tab which is not in this.association
-    private String GetVacantRandomLetter()
+    /**
+     * This method returns a letter from the alphabet's tab
+     */
+    private String GetRandomLetter()
     {
         int random = GetRandom();
         return this.m_alphabet.GetLatin()[random];
