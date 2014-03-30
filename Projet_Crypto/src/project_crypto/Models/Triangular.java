@@ -53,7 +53,7 @@ public class Triangular extends Crypting
         // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
         while ( m_nbLetters < ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) )
         {
-            m_readableString += "X";
+            m_readableString += GetRandomLetter();
             // Update infos
             FindInfo(this.m_readableString);
         }
@@ -298,6 +298,15 @@ public class Triangular extends Crypting
         char[] chars = p_text.toCharArray();
         Arrays.sort(chars);
         return new String(chars);
+    }
+
+    /**
+     * Return a random letter from the alphabet
+     */
+    private String GetRandomLetter()
+    {
+        int random = GetRandom();
+        return this.m_alphabet.GetLatin()[random];
     }
 
      /* ===============================================================================================================
