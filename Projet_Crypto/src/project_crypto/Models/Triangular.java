@@ -1,5 +1,7 @@
 package project_crypto.Models;
 
+import Library.WordToNormalize;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,6 +48,16 @@ public class Triangular extends Crypting
         // Need nb letters lines and columns
         FindInfo(this.m_readableString);
 
+        // Complete the string with random letters
+        // if the last line is not full
+        // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
+        while ( m_nbLetters < ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) )
+        {
+            m_readableString += "X";
+            // Update infos
+            FindInfo(this.m_readableString);
+        }
+
         // Fill the triangle
         String[][] triangle = BuildTriangleToEncrypt();
 
@@ -60,6 +72,9 @@ public class Triangular extends Crypting
                 this.m_cryptedString += triangle[iLig][columnOrder.get(iCol)];
             }
         }
+
+        System.out.println("crypter : "+m_readableString);
+        ShowTriangle(triangle);
     }
 
     /**
@@ -123,9 +138,10 @@ public class Triangular extends Crypting
         int base = m_nbLines - 1; // column of the higher/first letter of the pyramid
         int iLig = 0; // first line's index
         int iCol = base; // begin with the base's column obviously
+
         for (int iLetter = 0; iLetter < m_nbLetters; iLetter++)
         {
-            triangle[iLig][iCol] = String.valueOf(this.m_readableString.charAt(iLetter));
+            triangle[iLig][iCol] = triangle[iLig][iCol] = String.valueOf(this.m_readableString.charAt(iLetter));
             // Do we have to change the line ?
             // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
             if (iLetter + 1 == ((iLig + 1) * (iLig + 1) + (iLig + 1)) / 2)
@@ -328,10 +344,10 @@ public class Triangular extends Crypting
      */
     public int CalculateNbColumns(int p_nbLines, int p_nbLettres)
     {
-        if((p_nbLines * p_nbLines + p_nbLines)/2 == p_nbLettres)
+        //if((p_nbLines * p_nbLines + p_nbLines)/2 == p_nbLettres)
             return (2 * p_nbLines) - 1;
-        else
-            return (2 * p_nbLines) - 2;
+        //else
+        //    return (2 * p_nbLines) - 2;
     }
 
     /* ===============================================================================================================
@@ -357,15 +373,15 @@ public class Triangular extends Crypting
         }
     }
 
-    /* Please do not erase
-    TEST (wait for Controller and interface)
+    // Please do not erase
+    // TEST (wait for Controller and interface)
     public static void main(String[] args)
     {
-    Triangular triangle = new Triangular("Le codage par transposition triangulaire");
-    triangle.Crypting(new WordToNormalize().normalize("codage"));
+    Triangular triangle = new Triangular();
+    triangle.Crypting(new WordToNormalize().normalize("Le codage par transposition triangulaire"),new WordToNormalize().normalize("codage"));
     System.out.println("");
     System.out.println("");
-    triangle.Uncrypting(new WordToNormalize().normalize("codage"));
+    //triangle.Uncrypting(new WordToNormalize().normalize("codage"));
     }
-    */
+    //
 }
