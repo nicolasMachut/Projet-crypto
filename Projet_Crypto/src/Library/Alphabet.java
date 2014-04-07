@@ -19,7 +19,8 @@ public class Alphabet
     private static String[] m_latin;
     private static HashMap<String, Double> m_frenchFrequency;
     private static HashMap<String, Double> m_englishFrequency;
-    private static int[] frenchMostUsedLetter = {5, 19, 1, 9};
+    private static int[] frenchMostUsedLetterIndex = {5, 19, 1, 9};
+    private static int[] englishMostUsedLetterIndex = {};
 
     public Alphabet()
     {
@@ -39,7 +40,7 @@ public class Alphabet
 
     public int[] getFrenchMostUsedLetter()
     {
-        return frenchMostUsedLetter;
+        return frenchMostUsedLetterIndex;
     }
 
     /**

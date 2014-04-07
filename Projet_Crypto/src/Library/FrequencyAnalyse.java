@@ -1,7 +1,6 @@
 package Library;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by edouard on 11/03/14.
@@ -21,7 +20,7 @@ public class FrequencyAnalyse {
      * How many times each char is present in the text ?
      * @return HashMap<String, nbTimes>
      */
-    private HashMap<String, Double>  CharPresence()
+    public HashMap<String, Double>  CharPresence()
     {
         HashMap<String, Double> presence = new HashMap<String, Double>();
         String[] alphabet = new Alphabet().GetLatin();
@@ -75,16 +74,17 @@ public class FrequencyAnalyse {
      * Punctuation and empty space are not counted
      * @return total of characters
      */
-    private int CountCharacters(HashMap<String, Double> charPresence)
+    public int CountCharacters(HashMap<String, Double> charPresence)
     {
-        int total = 0;
+       /* int total = 0;
 
         for(Map.Entry<String, Double> entry : charPresence.entrySet())
         {
             total += entry.getValue();
         }
-
-        return total;
+*/
+        //J'ai modifié ta fonction, faudra qu'on en parle je comprends pas pk ta fait comme ca !!
+        return this.m_text.length();
     }
 
     /**
@@ -94,17 +94,18 @@ public class FrequencyAnalyse {
      */
     public HashMap<String, Double>  CalculCharFrequency()
     {
-        HashMap<String, Double> frequency = CharPresence();
+        HashMap<String, Double> frequency = this.CharPresence();
         int totalChars = CountCharacters(frequency);
 
         // Test = MUST BE DELETED/ERASE
-        System.out.println(" CalculCharFrequency Total : "+totalChars);
+        //System.out.println(" CalculCharFrequency Total : "+totalChars);
 
         for (String key : frequency.keySet())
         {
             //System.out.println("key: " + key + " value: " + frequency.get(key) +" times so : "+frequency.get(key)/totalChars+" % ");
-        }
+            frequency.put(key, frequency.get(key)/totalChars*100);
 
+        }
         return frequency;
     }
 

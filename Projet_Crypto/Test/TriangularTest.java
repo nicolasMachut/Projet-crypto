@@ -49,8 +49,24 @@ public class TriangularTest {
         int nbLetters = 30;
         int result = 18;
         assertEquals(result, this.triangular.CalculateNbColumns(nbLines, nbLetters));
-
     }
 
+    @Test
+    public void TestCrypting()
+    {
+        String textToCrypt = "BONJOUR";
+        String cryptedText = "JUORBON";
+        this.triangular.Crypting(textToCrypt, "test");
+        assertEquals(cryptedText, this.triangular.GetEncryptedString());
+    }
+
+    @Test
+    public void TestUncrypting()
+    {
+        String textToUncrypt = "JUORBON";
+        String uncryptedText = "BONJOUR";
+        this.triangular.Uncrypting(textToUncrypt, "test");
+        assertEquals(uncryptedText, this.triangular.GetUncryptedString());
+    }
 
 }
