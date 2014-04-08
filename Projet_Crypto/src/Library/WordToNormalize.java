@@ -1,9 +1,6 @@
 package Library;
 
-import Library.Alphabet;
-
 import java.text.Normalizer;
-import java.util.Vector;
 
 /**
  * @author Edouard SOUAN-MARCELON
@@ -22,25 +19,14 @@ public class WordToNormalize
     * Functions and Methods
     * ============================================================================================================ */
 
-    /*
-    *
-    * New method to erase accent and/or special chars
-    * */
-    private static String eraseSpecialChars(String strToNormalize)
+     public String normalize(String p_text)
     {
-        String strNormalized =strToNormalize.toUpperCase();
+        // no accent, no space, all in upper case
+        String strNormalized =p_text.toUpperCase();
         strNormalized = Normalizer.normalize(strNormalized,Normalizer.Form.NFD).replaceAll("\\p{InCOMBINING_DIACRITICAL_MARKS}+","");
         strNormalized = strNormalized.replaceAll("\\W","");
         strNormalized = strNormalized.replaceAll("\\d","");
         strNormalized = strNormalized.replaceAll("_","");
-
         return strNormalized;
-    }
-
-     public String normalize(String p_text)
-    {
-        // no accent, no space, all in upper case
-        String text = eraseSpecialChars(p_text);
-        return text;
     }
 }

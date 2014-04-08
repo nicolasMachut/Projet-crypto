@@ -44,7 +44,7 @@ public class Permutation extends Crypting{
 
 
     //This method return a letter in alphabet's tab which is not in this.association
-    private String GetVacantRandomLetter()
+    public String GetVacantRandomLetter()
     {
         String letter = "";
         Boolean find = false;
@@ -63,5 +63,10 @@ public class Permutation extends Crypting{
             }
         }
         return letter;
+    }
+
+    public HashMap<String, String> getAssociation()
+    {
+        return this.association;
     }
 }
