@@ -173,4 +173,24 @@ public class FrequencyAnalyse {
         }
         return false;
     }
+
+    public HashMap<String,Double> GetBigrammeScore(String p_UncryptedText)
+    {
+        HashMap score = new HashMap<String,Double>();
+        // TODO Déclaration d'un Alpĥabet pour obtenir le bigramme
+
+
+        for(int i =0; i <p_UncryptedText.length(); i++ )
+        {
+            if(i > 0)
+            {
+                String myBigramme = String.valueOf(p_UncryptedText.charAt(i-1)+p_UncryptedText.charAt(i));
+                Double occurence = 0.00;
+                score.put(myBigramme,occurence);
+            }
+        }
+
+
+        return score;
+    }
 }
