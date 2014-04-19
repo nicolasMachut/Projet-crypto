@@ -39,7 +39,7 @@ public class FrequencyAnalyseTest {
     @Test
     public void TestCountCharacters()
     {
-        assertEquals(37, this.analyse.CountCharacters(this.analyse.CalculCharFrequency()));
+        assertEquals(37, this.analyse.CountCharacters());
     }
 
     @Test
