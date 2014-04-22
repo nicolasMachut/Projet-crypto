@@ -54,8 +54,8 @@ public class TriangularTest {
     @Test
     public void TestCrypting()
     {
-        String textToCrypt = "BONJOUR";
-        String cryptedText = "JUORBON";
+        String textToCrypt = "MARTIN";
+        String cryptedText = "AMITRN";
         this.triangular.Crypting(textToCrypt, "test");
         assertEquals(cryptedText, this.triangular.GetEncryptedString());
     }

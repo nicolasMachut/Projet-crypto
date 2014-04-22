@@ -353,10 +353,14 @@ public class Triangular extends Crypting
      */
     public int CalculateNbColumns(int p_nbLines, int p_nbLettres)
     {
-        //if((p_nbLines * p_nbLines + p_nbLines)/2 == p_nbLettres)
+        if((p_nbLines * p_nbLines + p_nbLines)/2 == p_nbLettres)
+        {
             return (2 * p_nbLines) - 1;
-        //else
-        //    return (2 * p_nbLines) - 2;
+        }
+            else
+        {
+            return (2 * p_nbLines) - 2;
+        }
     }
 
     /* ===============================================================================================================
