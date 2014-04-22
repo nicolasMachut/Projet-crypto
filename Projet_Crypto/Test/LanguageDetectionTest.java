@@ -20,7 +20,7 @@ public class LanguageDetectionTest {
     @Test
     public void SumFrequencyAnalyseChar()
     {
-        assertEquals(29.74, this.spoken.SumFrequenceMostUsedCharInEnglish("THECAPTAINWISHYOUAGREATFLIGHT"));
+        assertEquals(29.74, this.spoken.SumFrequenceMostUsedCharInEnglish("GTKNIXGIMLCMHTOZRIUQKIGYJMUTG"));
     }
 
 

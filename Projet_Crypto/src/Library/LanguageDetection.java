@@ -18,8 +18,8 @@ public class LanguageDetection {
         - Cas perticulier : 3 lettres d'affilé en francais, si ca existe alors la lettre en question est un e !
         - IMPORTANT : voir les trigrammes qui existent
 
-
-        Phrase de test : Le capitaine vous souhaite un bon vol
+        Phrases de test : Le capitaine vous souhaite un bon vol
+                        : The captain wish you a great flighth
 
      */
 
@@ -34,20 +34,46 @@ public class LanguageDetection {
         Double totalEn = 0.00d,
                totalFr = 0.00d;
 
-        HashMap<String,Double> nbAppearaceChar = new HashMap<String, Double>();
-
+        HashMap<String,Double> nbAppearanceChar = new HashMap<String, Double>();
+        HashMap<String,String> charCorrespondance = new HashMap<String, String>();;
 
         FrequencyAnalyse Text = new FrequencyAnalyse(p_Text);
-        nbAppearaceChar = Text.CharPresence();
+        nbAppearanceChar = Text.CharPresence();/*
 
-        for(String key: nbAppearaceChar.keySet())
+        for(String key: charCorrespondance.keySet())
         {
-            if(nbAppearaceChar.get(key)>2)
+            for(String letter: myAlphaFr.keySet())
             {
-                totalEn += myAlphaEn.get(key);
-                totalFr += myAlphaFr.get(key);
+                charCorrespondance.put(key,letter);
             }
         }
+*/
+
+/*
+
+        for(String key: charCorrespondance.keySet())
+        {
+            for(String letter: myAlphaFr.keySet())
+            {
+                charCorrespondance.put(key,letter);
+            }
+        }
+*/
+
+        for(String key: nbAppearanceChar.keySet())
+        {
+          
+        }
+
+        System.out.println(charCorrespondance);
+
+        for(String key: charCorrespondance.keySet())
+        {
+            totalEn += myAlphaEn.get(charCorrespondance.get(key))*nbAppearanceChar.get(key);
+            totalFr += 0;//myAlphaFr.get(charCorrespondance.get(key))*nbAppearanceChar.get(key);
+        }
+
+        System.out.println("total En :"+totalEn);
 
          if(totalEn > totalFr)
          {
