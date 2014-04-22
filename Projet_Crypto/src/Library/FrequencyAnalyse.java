@@ -74,16 +74,8 @@ public class FrequencyAnalyse {
      * Punctuation and empty space are not counted
      * @return total of characters
      */
-    public int CountCharacters(HashMap<String, Double> charPresence)
+    public int CountCharacters()
     {
-       /* int total = 0;
-
-        for(Map.Entry<String, Double> entry : charPresence.entrySet())
-        {
-            total += entry.getValue();
-        }
-*/
-        //J'ai modifié ta fonction, faudra qu'on en parle je comprends pas pk ta fait comme ca !!
         return this.m_text.length();
     }
 
@@ -95,7 +87,7 @@ public class FrequencyAnalyse {
     public HashMap<String, Double>  CalculCharFrequency()
     {
         HashMap<String, Double> frequency = this.CharPresence();
-        int totalChars = CountCharacters(frequency);
+        int totalChars = CountCharacters();
 
         // Test = MUST BE DELETED/ERASE
         //System.out.println(" CalculCharFrequency Total : "+totalChars);
@@ -172,5 +164,25 @@ public class FrequencyAnalyse {
             }
         }
         return false;
+    }
+
+    public HashMap<String,Double> GetBigrammeScore(String p_UncryptedText)
+    {
+        HashMap score = new HashMap<String,Double>();
+        // TODO Déclaration d'un Alpĥabet pour obtenir le bigramme
+
+
+        for(int i =0; i <p_UncryptedText.length(); i++ )
+        {
+            if(i > 0)
+            {
+                String myBigramme = String.valueOf(p_UncryptedText.charAt(i-1)+p_UncryptedText.charAt(i));
+                Double occurence = 0.00;
+                score.put(myBigramme,occurence);
+            }
+        }
+
+
+        return score;
     }
 }

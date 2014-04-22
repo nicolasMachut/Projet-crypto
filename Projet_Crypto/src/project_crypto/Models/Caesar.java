@@ -1,7 +1,6 @@
 package project_crypto.Models;
 
 import Library.FrequencyAnalyse;
-import Library.TextFileManager;
 
 import java.util.HashMap;
 
@@ -50,10 +49,10 @@ public class Caesar extends Crypting
     {
         FrequencyAnalyse fileGiven = new FrequencyAnalyse(p_textToUncrypt);
         this.m_cryptedString = p_textToUncrypt;
-
         HashMap<String, Double> frequency = fileGiven.CalculCharFrequency();
+        this.m_alphabet.SetLanguage("fr");
         int key = 0;
-        for(int j = 0; j < m_alphabet.getFrenchMostUsedLetter().length; j++)
+        for(String KeyH : this.m_alphabet.GetFrequencySortedDesc().keySet())
         {
             for(int i = 0; i < m_alphabet.GetLatin().length; i++)
             {
@@ -61,17 +60,18 @@ public class Caesar extends Crypting
                 {
                     // Compare with most used letter in the alphabet, not in the text
                     // NOTE : how do we deal with language ?
-                    if((i+1) >  m_alphabet.getFrenchMostUsedLetter()[j])
+                    if((i+1) >  this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH))
                     {
-                        key = (i+1) - m_alphabet.getFrenchMostUsedLetter()[j];
+                        key = (i+1) - this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH);
                     }
                     else
                     {
-                        key = m_alphabet.getFrenchMostUsedLetter()[j] - (i+1);
+                        key = this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH) - (i+1);
                     }
                 }
             }
         }
+
         return key;
     }
 

@@ -69,4 +69,9 @@ public class Permutation extends Crypting{
     {
         return this.association;
     }
+
+  /*  public HashMap<String,String> tryToUncrypt(String p_letterToUncrypt)
+    {
+        this.association.put(p_letterToUncrypt,GetVacantRandomLetter(p_letterToUncrypt))
+    }*/
 }
