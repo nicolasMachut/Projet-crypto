@@ -121,6 +121,16 @@ public class Alphabet
         return MapManager.sortByComparator(m_frequency, MapManager.DESC);
     }
 
+    public Map<String, Double> GetFrSortedDesc()
+    {
+        return MapManager.sortByComparator(m_frenchFrequency, MapManager.DESC);
+    }
+
+    public Map<String, Double> GetEnSortedDesc()
+    {
+        return MapManager.sortByComparator(m_englishFrequency, MapManager.DESC);
+    }
+
     public int GetIndexOfALetterInAlphabet(String letter)
     {
         int result = 0;
