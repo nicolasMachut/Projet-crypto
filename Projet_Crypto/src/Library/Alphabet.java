@@ -123,11 +123,25 @@ public class Alphabet
 
     public Map<String, Double> GetFrSortedDesc()
     {
+        // Début tempo : test pour analyse freq
+        // A discuter avec Nicolas
+        Alphabet v_alpha = new Alphabet();
+        v_alpha.InitFr();
+        HashMap<String, Double> m_frenchFrequency = v_alpha.GetFrequency();
+        // Fin tempo
+
         return MapManager.sortByComparator(m_frenchFrequency, MapManager.DESC);
     }
 
     public Map<String, Double> GetEnSortedDesc()
     {
+        // Début tempo : test pour analyse freq
+        // A discuter avec Nicolas
+        Alphabet v_alpha = new Alphabet();
+        v_alpha.InitEn();
+        HashMap<String, Double> m_englishFrequency = v_alpha.GetFrequency();
+        // Fin tempo
+
         return MapManager.sortByComparator(m_englishFrequency, MapManager.DESC);
     }
 
