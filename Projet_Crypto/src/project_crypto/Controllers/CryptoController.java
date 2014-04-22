@@ -1,7 +1,10 @@
 package project_crypto.Controllers;
 
 import Library.TextFileManager;
-import project_crypto.Models.*;
+import project_crypto.Models.Caesar;
+import project_crypto.Models.Permutation;
+import project_crypto.Models.Polybe;
+import project_crypto.Models.Triangular;
 import project_crypto.Views.MainView;
 import project_crypto.Views.Window;
 
@@ -37,7 +40,6 @@ public class CryptoController
         m_window = new Window(m_mainView);
         // Show it to the user
         m_window.setVisible(true);
-
     }
 
     /* ===============================================================================================================

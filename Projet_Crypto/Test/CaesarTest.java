@@ -36,4 +36,10 @@ public class CaesarTest {
         this.caesar.Uncrypting(textToDecrypt);
         assertEquals(decryptedText, this.caesar.GetUncryptedString());
     }
+
+    @Test
+    public void TestGetCryptingKey()
+    {
+        assertEquals(2, this.caesar.GetCryptingKey("EGUVWPVGUV"));
+    }
 }
