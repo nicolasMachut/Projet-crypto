@@ -49,4 +49,12 @@ public class PermutationTest {
         assertEquals("A", this.permutation.GetVacantRandomLetter());
     }
 
+    @Test
+    public void testPermuter()
+    {
+        Permutation permut = new Permutation();
+        permut.Crypting("THECAPTAINWISHYOUAGREATFLIGHT");
+        System.out.println(permut.GetEncryptedString());
+    }
+
 }
