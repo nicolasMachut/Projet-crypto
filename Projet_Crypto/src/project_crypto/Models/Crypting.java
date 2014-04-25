@@ -1,7 +1,6 @@
 package project_crypto.Models;
 
 import Library.Alphabet;
-import Library.WordToNormalize;
 
 /**
  * Created by nicolas on 10/03/14.
@@ -54,4 +53,7 @@ public abstract class Crypting{
         return this.m_readableString;
     }
 
+    public void setCryptedString(String crypted) {
+        this.m_cryptedString = crypted;
+    }
 }

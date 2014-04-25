@@ -1,7 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Permutation;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by nicolas on 26/03/14.
@@ -53,8 +54,17 @@ public class PermutationTest {
     public void testPermuter()
     {
         Permutation permut = new Permutation();
-        permut.Crypting("THECAPTAINWISHYOUAGREATFLIGHT");
+        permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
         System.out.println(permut.GetEncryptedString());
+    }
+
+   @Test
+    public void FirstTryWthFreqAnaRespected()
+    {
+       String crypted = "KDFFDKSDVBXBYBFDODSEJDKDOOEBSDZCLSYDOEKFBCJOEWDJBSKESLJKYBDJFJDOFZEOFCLPCLSOUEWCSEXYDELKTEJQDMDJF";
+        this.permutation.setCryptedString(crypted);
+
+       assertEquals("KEFFEKSEVBXBYBFEOESAJEKEOOABSEZCLSYEOAKFBCJOAWEJBSKASLJKYBEJFJEOFZAOFCLPCLSOUAWCSAXYEALKTAJQEMEJF", this.permutation.lol());
     }
 
 }

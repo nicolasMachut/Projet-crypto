@@ -70,6 +70,15 @@ public class Permutation extends Crypting{
         return this.association;
     }
 
+    public String lol() {
+        String uncryptedString = this.m_cryptedString;
+        String tried = uncryptedString.replace("D","e");
+        tried = tried.replace("E","a");
+
+
+        return tried.toUpperCase();
+    }
+
   /*  public HashMap<String,String> tryToUncrypt(String p_letterToUncrypt)
     {
         this.association.put(p_letterToUncrypt,GetVacantRandomLetter(p_letterToUncrypt))
