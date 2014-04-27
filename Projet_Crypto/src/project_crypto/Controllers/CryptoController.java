@@ -11,6 +11,8 @@ import project_crypto.Views.Window;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -82,13 +84,17 @@ public class CryptoController
 
             if(m_mainView.GetEncryptType().equals("Triangular permutation"))
             {
+                String key;
+                do {
+                    key = this.GetCryptingKeyChoosenByUserAsString();
+                } while(!this.isAGoodTriangularKey(key));
                 Triangular triangular = new Triangular();
                 triangular.Crypting(m_textFileManager.getText(), "cle");
                 m_textFileManager.SetText(triangular.GetEncryptedString());
             }
 
             m_textFileManager.WriteFile(m_mainView.GetOutputFile());
-            JOptionPane.showMessageDialog(null, "A file has just been created in : "+m_mainView.GetOutputFile());
+            JOptionPane.showMessageDialog(null, "A file has just been created in : " + m_mainView.GetOutputFile());
         }
 
         //Uncrypting text file
@@ -124,6 +130,24 @@ public class CryptoController
             }
             if(!resultat)
                 JOptionPane.showMessageDialog(null, "Please, choose a numeric key between 1 and 26.");
+
+            return resultat;
+        }
+
+        private boolean isAGoodTriangularKey(String keyToTest)
+        {
+            Pattern pattern = Pattern.compile("[a-zA-Z]");
+            Matcher matcher = pattern.matcher(keyToTest);
+            Boolean resultat = false;
+            if(! keyToTest.isEmpty())
+            {
+                if(matcher.find())
+                {
+                    resultat = true;
+                }
+            }
+            if(!resultat)
+                JOptionPane.showMessageDialog(null, "Please, choose a key with only chars.");
 
             return resultat;
         }

@@ -10,21 +10,6 @@ import java.util.Map;
  */
 public class LanguageDetection {
 
-    /*
-        A faire :
-        Passer en parametre au constructeur d'alphabet (fr ou en) pour qu'il initialise les tablaeaux brigrammes et monogrammes dans la bonne langue
-        Ensuite on fait Alphabet alphabet = new Alphabet("fr") et on a tout en francais
-
-
-        Decryptage permutation :
-        - Cas perticulier : 3 lettres d'affilé en francais, si ca existe alors la lettre en question est un e !
-        - IMPORTANT : voir les trigrammes qui existent
-
-        Phrases de test : Le capitaine vous souhaite un bon vol
-                        : The captain wish you a great flighth
-
-     */
-
 
     Alphabet alpha = new Alphabet();
     Map<String,Double> myAlphaEn = alpha.GetEnSortedDesc();
@@ -33,12 +18,12 @@ public class LanguageDetection {
 
     public Double SumFrequenceMostUsedCharInEnglish(String p_Text)
     {
-        Double total = 0.00d;
+        Double total;
         Double totalEn = 0.00d,
                totalFr = 0.00d;
 
-        HashMap<String,Double> nbAppearanceCharFr = new HashMap<String, Double>();
-        HashMap<String,Double> nbAppearanceCharEn = new HashMap<String, Double>();
+        HashMap<String,Double> nbAppearanceCharFr;
+        HashMap<String,Double> nbAppearanceCharEn;
         HashMap<String,String> charCorrespondance = new HashMap<String, String>();;
 
         FrequencyAnalyse Text = new FrequencyAnalyse(p_Text);

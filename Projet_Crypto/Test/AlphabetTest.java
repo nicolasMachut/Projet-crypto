@@ -19,7 +19,7 @@ public class AlphabetTest {
     @Test
     public void TestGetIndexOfLetter()
     {
-        this.alphabet.SetLanguage("fr");
+        //this.alphabet.SetLanguage("fr");
         assertEquals(4, this.alphabet.GetIndexOfALetterInAlphabet("E"));
         assertEquals(0, this.alphabet.GetIndexOfALetterInAlphabet("A"));
     }
