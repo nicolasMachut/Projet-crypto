@@ -56,4 +56,5 @@ public abstract class Crypting{
     public void setCryptedString(String crypted) {
         this.m_cryptedString = crypted;
     }
+
 }

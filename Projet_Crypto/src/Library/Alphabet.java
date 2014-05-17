@@ -22,6 +22,11 @@ public class Alphabet
     private static HashMap<String, HashMap<String, Double>> m_trigramme;
 
 
+    // Tempo
+    HashMap<String, Double> monogrammeTempo = new HashMap<String, Double>();
+
+
+
     public Alphabet()
     {
         m_latin = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T" ,"U", "V", "W", "X", "Y", "Z"};
@@ -39,7 +44,7 @@ public class Alphabet
         HashMap<String, Double> trigrammeFr = new HashMap<String, Double>();
         HashMap<String, Double> trigrammeEn = new HashMap<String, Double>();
 
-        List<String> impossibleBigramme
+        List<String> impossibleBigramme;
 
         monogrammeFr.put("A", 8.40);
         monogrammeFr.put("B", 1.06);
@@ -199,10 +204,11 @@ public class Alphabet
         return m_latin;
     }
 
-
     public Map<String, Double> GetFrequencySortedDesc()
     {
-        return MapManager.sortByComparator(m_frequency, MapManager.DESC);
+        // return MapManager.sortByComparator(m_frequency, MapManager.DESC);
+        // TEMPO
+        return MapManager.sortByComparator(monogrammeTempo, MapManager.DESC);
     }
 
     public Map<String, Double> GetFrSortedDesc()
@@ -240,5 +246,21 @@ public class Alphabet
             }
         }
         return result;
+    }
+
+    // TEMPO
+    private void InitFr()
+    {
+
+    }
+
+    private void InitEn()
+    {
+
+    }
+
+    private HashMap<String,Double> GetFrequency()
+    {
+        return new HashMap<String,Double>();
     }
 }
