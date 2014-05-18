@@ -1,7 +1,10 @@
 package project_crypto.Views;
 
+import sun.org.mozilla.javascript.internal.ast.ArrayComprehensionLoop;
+
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +27,11 @@ public class UncryptingView extends JPanel
                 {"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},
         };
 
-        String[] entetes = {"Prénom", "Nom", "Couleur favorite", "Homme", "Sport"};
+        String data = "abcde";
 
-        alphaTable = new JTable(donnees,entetes);
+        alphaTable = new JTable(donnees,getRowFromEachStringLetters(data));
+
+
         this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
         this.add(alphaTable, BorderLayout.CENTER);
         this.setVisible(true);
@@ -37,6 +42,19 @@ public class UncryptingView extends JPanel
         FOOTBALL,
         NATATION,
         RIEN;
+    }
+
+    public Object[] getRowFromEachStringLetters(String p_string)
+    {
+        List<String> dataRow = new ArrayList<String>();
+        for(int i = 0; i < p_string.length(); i ++)
+        {
+            dataRow.add(String.valueOf(p_string.charAt(i)));
+
+
+        }
+
+        return dataRow.toArray();
     }
 
 }
