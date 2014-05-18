@@ -21,27 +21,10 @@ public class UncryptingView extends JPanel
         String headerDefault = "STRNG";
         alphaTable = new JTable(dataDefault, getRowFromEachStringLetters(headerDefault));
 
-        // Table style
-        setAlphaTableStyle();
-
-        this.setVisible(true);
-    }
-
-    private void setAlphaTableStyle()
-    {
         this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
         this.add(alphaTable, BorderLayout.CENTER);
 
-        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-        dtcr.setHorizontalTextPosition(DefaultTableCellRenderer.CENTER);
-        TableColumn cellCol = alphaTable.getColumnModel().getColumn(0);
-
-        int nb_column = alphaTable.getColumnCount();
-        for(int iColumn = 0; iColumn < nb_column; iColumn++)
-        {
-            cellCol = alphaTable.getColumnModel().getColumn(iColumn);
-            cellCol.setCellRenderer(dtcr);
-        }
+        this.setVisible(true);
     }
 
     public void setHeaderAlphaTable(String p_headerString)
