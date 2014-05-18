@@ -1,34 +1,42 @@
 package project_crypto.Views;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.util.Vector;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kimsavinfo on 17/05/14.
  */
 public class UncryptingView extends JPanel
 {
-    private JTable tableau;
+    private JTable alphaTable;
 
     public UncryptingView()
     {
-        JTable tableau = new JTable();
+        Object[][] donnees = {
+                {"Johnathan", "Sykes", Color.red, true, Sport.TENNIS},
+                {"Nicolas", "Van de Kampf", Color.black, true, Sport.FOOTBALL},
+                {"Damien", "Cuthbert", Color.cyan, true, Sport.RIEN},
+                {"Corinne", "Valance", Color.blue, false, Sport.NATATION},
+                {"Emilie", "Schrödinger", Color.magenta, false, Sport.FOOTBALL},
+                {"Delphine", "Duke", Color.yellow, false, Sport.TENNIS},
+                {"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},
+        };
 
-        this.add(tableau);
+        String[] entetes = {"Prénom", "Nom", "Couleur favorite", "Homme", "Sport"};
 
+        alphaTable = new JTable(donnees,entetes);
+        this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
+        this.add(alphaTable, BorderLayout.CENTER);
         this.setVisible(true);
     }
 
-    public void addRow(String p_string)
-    {
-        DefaultTableModel model = (DefaultTableModel) tableau.getModel();
-
-        Vector row = new Vector();
-        char[] charArray = p_string.toCharArray();
-        row.add(charArray);
-
-        model.addRow(row);
-        tableau.setModel(model);
+    public enum Sport {
+        TENNIS,
+        FOOTBALL,
+        NATATION,
+        RIEN;
     }
+
 }

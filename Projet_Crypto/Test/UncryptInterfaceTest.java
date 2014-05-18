@@ -17,19 +17,14 @@ public class UncryptInterfaceTest
     // Button switch = refresh
 
     private static Alphabet normalAlphabet;
-    private static Caesar caesar;
     private static UncryptingView jpanel;
 
     public static void main(String[] args)
     {
-        // create two alphabets for test
+        // Test datas
         normalAlphabet = new Alphabet();
-        caesar = new Caesar();
-        caesar.Crypting("abcdefghijklmnopqrstuvwxyz", 5);
 
         jpanel = new UncryptingView();
-        jpanel.addRow(normalAlphabet.GetLatin().toString());
-        jpanel.addRow(caesar.GetEncryptedString());
 
         Window m_window = new Window(jpanel);
         m_window.setVisible(true);
