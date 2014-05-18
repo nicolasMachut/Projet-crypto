@@ -26,7 +26,7 @@ public class UncryptInterfaceTest
 
         jpanel = new UncryptingView();
         jpanel.setHeaderAlphaTable("nouve");
-        jpanel.setDataRowAlphaTable("tradn");
+        jpanel.setDataRowAlphaTable("trad");
 
         Window m_window = new Window(jpanel);
         m_window.setVisible(true);
