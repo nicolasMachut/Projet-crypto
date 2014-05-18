@@ -1,10 +1,8 @@
 package project_crypto.Views;
 
-import sun.org.mozilla.javascript.internal.ast.ArrayComprehensionLoop;
-
 import javax.swing.*;
+import javax.swing.table.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,41 +15,68 @@ public class UncryptingView extends JPanel
 
     public UncryptingView()
     {
-        Object[][] donnees = {
-                {"Johnathan", "Sykes", Color.red, true, Sport.TENNIS},
-                {"Nicolas", "Van de Kampf", Color.black, true, Sport.FOOTBALL},
-                {"Damien", "Cuthbert", Color.cyan, true, Sport.RIEN},
-                {"Corinne", "Valance", Color.blue, false, Sport.NATATION},
-                {"Emilie", "Schrödinger", Color.magenta, false, Sport.FOOTBALL},
-                {"Delphine", "Duke", Color.yellow, false, Sport.TENNIS},
-                {"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},
+        Object[][] dataDefault = {
+                {"A", "L", "P", "H", "A"}
         };
+        String headerDefault = "STRNG";
+        alphaTable = new JTable(dataDefault, getRowFromEachStringLetters(headerDefault));
 
-        String data = "abcde";
+        // Table style
+        setAlphaTableStyle();
 
-        alphaTable = new JTable(donnees,getRowFromEachStringLetters(data));
-
-
-        this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
-        this.add(alphaTable, BorderLayout.CENTER);
         this.setVisible(true);
     }
 
-    public enum Sport {
-        TENNIS,
-        FOOTBALL,
-        NATATION,
-        RIEN;
+    private void setAlphaTableStyle()
+    {
+        this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
+        this.add(alphaTable, BorderLayout.CENTER);
+
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalTextPosition(DefaultTableCellRenderer.CENTER);
+        TableColumn cellCol = alphaTable.getColumnModel().getColumn(0);
+
+        int nb_column = alphaTable.getColumnCount();
+        for(int iColumn = 0; iColumn < nb_column; iColumn++)
+        {
+            cellCol = alphaTable.getColumnModel().getColumn(iColumn);
+            cellCol.setCellRenderer(dtcr);
+        }
+    }
+
+    public void setHeaderAlphaTable(String p_headerString)
+    {
+        JTableHeader header = alphaTable.getTableHeader();
+        TableColumnModel columnModel = header.getColumnModel();
+        TableColumn tc;
+
+        for(int iColumn = 0; iColumn < p_headerString.length(); iColumn++)
+        {
+            tc = columnModel.getColumn(iColumn);
+            tc.setHeaderValue( String.valueOf(p_headerString.charAt(iColumn)) );
+        }
+
+        header.repaint();
+    }
+
+    public void setDataRowAlphaTable(String p_dataString)
+    {
+        int nb_column = alphaTable.getColumnCount();
+        for(int iColumn = 0; iColumn < p_dataString.length(); iColumn++)
+        {
+            if(iColumn < nb_column)
+            {
+                alphaTable.setValueAt( String.valueOf(p_dataString.charAt(iColumn)), 0, iColumn);
+            }
+        }
     }
 
     public Object[] getRowFromEachStringLetters(String p_string)
     {
         List<String> dataRow = new ArrayList<String>();
-        for(int i = 0; i < p_string.length(); i ++)
+        for(int iChar = 0; iChar < p_string.length(); iChar++)
         {
-            dataRow.add(String.valueOf(p_string.charAt(i)));
-
-
+            dataRow.add(String.valueOf(p_string.charAt(iChar)));
         }
 
         return dataRow.toArray();
