@@ -5,6 +5,7 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by kimsavinfo on 17/05/14.
@@ -19,16 +20,7 @@ public class UncryptingView extends JPanel
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T" ,"U", "V", "W", "X", "Y", "Z"}
         };
         String headerDefault = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        alphaTable = new JTable(dataDefault, getRowFromEachStringLetters(headerDefault));
-
-        // Alpha Table style
-        this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
-        this.add(alphaTable, BorderLayout.CENTER);
-        TableColumn column = null;
-        for (int iColumn = 0; iColumn < alphaTable.getColumnCount(); iColumn++) {
-            column = alphaTable.getColumnModel().getColumn(iColumn);
-            column.setPreferredWidth(5);
-        }
+        initAlphaTable(dataDefault, headerDefault);
 
         this.setVisible(true);
     }
@@ -100,6 +92,47 @@ public class UncryptingView extends JPanel
                 }
             }
         }
+    }
+
+     /* ===============================================================================================================
+    * JTable
+    * ============================================================================================================ */
+    private void initAlphaTable(Object[][] p_data, String p_header)
+    {
+        alphaTable = new JTable(p_data, getRowFromEachStringLetters(p_header));
+        alphaTable.setCellSelectionEnabled(true);
+
+        // Disable editabled
+        alphaTable.setEnabled(false);
+
+        // Style
+        this.add(alphaTable.getTableHeader(), BorderLayout.NORTH);
+        this.add(alphaTable, BorderLayout.CENTER);
+        TableColumn column = null;
+        for (int iColumn = 0; iColumn < alphaTable.getColumnCount(); iColumn++)
+        {
+            column = alphaTable.getColumnModel().getColumn(iColumn);
+            column.setPreferredWidth(5);
+        }
+
+        // Mouse action
+        // DOING, DO NOT ERASE PLEASE !!!
+        alphaTable.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                //int row = alphaTable.rowAtPoint(evt.getPoint());
+                int col = alphaTable.columnAtPoint(evt.getPoint());
+                alphaTable.cell
+
+
+                //int[] newEntry = new int[]{row,col};//{row,col} = selected cell
+                //Vector selectedCells = new Vector<int[]>();//int[] because every entry are like {cellX,cellY}
+
+                System.out.println("Sans "+selectedCells.toString());
+            }
+        });
     }
 
 }
