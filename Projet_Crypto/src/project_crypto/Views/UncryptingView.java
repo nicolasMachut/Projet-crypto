@@ -3,31 +3,47 @@ package project_crypto.Views;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by kimsavinfo on 17/05/14.
  */
 public class UncryptingView extends JPanel
 {
-    private JTable alphaTable;
+    /*private JTable alphaTable;;
+    List<Component> cellsToSwitch;
     private Color highlightColor;
+    */
+    private AlphabetJTable alphaTable;
+
 
     public UncryptingView()
     {
+        /*
         Object[][] dataDefault = {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T" ,"U", "V", "W", "X", "Y", "Z"}
         };
         String headerDefault = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         initAlphaTable(dataDefault, headerDefault);
 
+        cellsToSwitch = new ArrayList<Component>();
         highlightColor = new Color(103, 242, 255);
+        */
+
+        // Must be in JScrollPane in order to see the header
+        alphaTable = new AlphabetJTable();
+        this.add(new JScrollPane(alphaTable));
 
         this.setVisible(true);
     }
 
+    public AlphabetJTable getAlphaTable()
+    {
+        return alphaTable;
+    }
+
+    /*
     public void setHeaderAlphaTable(String p_headerString)
     {
         clearAlphaTable("header");
@@ -96,11 +112,15 @@ public class UncryptingView extends JPanel
             }
         }
     }
+    */
 
      /* ===============================================================================================================
     * JTable
     * ============================================================================================================ */
+    /*
     private void initAlphaTable(Object[][] p_data, String p_header)
+     */
+    /*
     {
         alphaTable = new JTable(p_data, getRowFromEachStringLetters(p_header));
         alphaTable.setCellSelectionEnabled(true);
@@ -133,6 +153,30 @@ public class UncryptingView extends JPanel
                     @Override
                     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
                     {
+                        if (cellsToSwitch.size() < 2)
+                        {
+                            if( cellsToSwitch.con && cellsToSwitch.get(0) == this)
+                            {
+                                setBackground(Color.WHITE);
+                                cellsToSwitch.remove(0);
+                            }
+                            else if(cellsToSwitch.get(1) == this)
+                            {
+                                setBackground(Color.WHITE);
+                                cellsToSwitch.remove(1);
+                            }
+                            else
+                            {
+                                setBackground(highlightColor);
+                                cellsToSwitch.add(this);
+                            }
+                        }
+
+                        return this;
+
+
+
+                        /*
                         if( getBackground() == highlightColor)
                         {
                             setBackground(Color.WHITE);
@@ -145,6 +189,7 @@ public class UncryptingView extends JPanel
                         }
 
                         return this;
+
                     }
                 };
                 alphaTable.getColumnModel().getColumn(col).setCellRenderer( cellRenderer );
@@ -153,5 +198,6 @@ public class UncryptingView extends JPanel
             }
         });
     }
+    */
 
 }
