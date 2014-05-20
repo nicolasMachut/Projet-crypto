@@ -13,6 +13,7 @@ import java.util.Vector;
 public class UncryptingView extends JPanel
 {
     private JTable alphaTable;
+    private Color highlightColor;
 
     public UncryptingView()
     {
@@ -21,6 +22,8 @@ public class UncryptingView extends JPanel
         };
         String headerDefault = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         initAlphaTable(dataDefault, headerDefault);
+
+        highlightColor = Color.RED;
 
         this.setVisible(true);
     }
@@ -122,15 +125,37 @@ public class UncryptingView extends JPanel
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                //int row = alphaTable.rowAtPoint(evt.getPoint());
+                int row = 1;//alphaTable.rowAtPoint(evt.getPoint());
                 int col = alphaTable.columnAtPoint(evt.getPoint());
-                alphaTable.cell
 
+                DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer()
+                {
+                    @Override
+                    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+                    {
+                        //Cells are by default rendered as a JLabel.
+                        JLabel l = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-                //int[] newEntry = new int[]{row,col};//{row,col} = selected cell
-                //Vector selectedCells = new Vector<int[]>();//int[] because every entry are like {cellX,cellY}
+                        l.setBackground(highlightColor);
 
-                System.out.println("Sans "+selectedCells.toString());
+                        return l;
+                    }
+                };
+                alphaTable.getColumnModel().getColumn(col).setCellRenderer( cellRenderer );
+
+                /*
+                Component selectedCell =  alphaTable.getComponentAt(row, col);
+                Color actualBackground = selectedCell.getBackground();
+                if(actualBackground == highlightColor)
+                {
+                    selectedCell.setBackground( Color.WHITE );
+                }
+                else
+                {
+                    selectedCell.setBackground( highlightColor );
+                }
+                */
+
             }
         });
     }
