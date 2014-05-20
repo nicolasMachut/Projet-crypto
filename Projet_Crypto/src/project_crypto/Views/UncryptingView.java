@@ -141,6 +141,7 @@ public class UncryptingView extends JPanel
                         {
                             setBackground(highlightColor);
                             setText(value.toString());
+                            setFont( new Font(null, Font.PLAIN, 11) );
                         }
 
                         return this;
