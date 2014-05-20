@@ -23,7 +23,7 @@ public class UncryptingView extends JPanel
         String headerDefault = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         initAlphaTable(dataDefault, headerDefault);
 
-        highlightColor = Color.RED;
+        highlightColor = new Color(103, 242, 255);
 
         this.setVisible(true);
     }
@@ -125,7 +125,7 @@ public class UncryptingView extends JPanel
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                int row = 1;//alphaTable.rowAtPoint(evt.getPoint());
+                //int row = //alphaTable.rowAtPoint(evt.getPoint());
                 int col = alphaTable.columnAtPoint(evt.getPoint());
 
                 DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer()
@@ -133,29 +133,22 @@ public class UncryptingView extends JPanel
                     @Override
                     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
                     {
-                        //Cells are by default rendered as a JLabel.
-                        JLabel l = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                        if( getBackground() == highlightColor)
+                        {
+                            setBackground(Color.WHITE);
+                        }
+                        else
+                        {
+                            setBackground(highlightColor);
+                            setText(value.toString());
+                        }
 
-                        l.setBackground(highlightColor);
-
-                        return l;
+                        return this;
                     }
                 };
                 alphaTable.getColumnModel().getColumn(col).setCellRenderer( cellRenderer );
 
-                /*
-                Component selectedCell =  alphaTable.getComponentAt(row, col);
-                Color actualBackground = selectedCell.getBackground();
-                if(actualBackground == highlightColor)
-                {
-                    selectedCell.setBackground( Color.WHITE );
-                }
-                else
-                {
-                    selectedCell.setBackground( highlightColor );
-                }
-                */
-
+                alphaTable.repaint();
             }
         });
     }
