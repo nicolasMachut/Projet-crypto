@@ -15,6 +15,7 @@ public class UncryptingView extends JPanel
     private AlphabetJTable alphaTable;
     private JButton m_cryptButton;
     private JTextArea m_uncryptedTextArea;
+    private JButton m_exportButton;
 
 
     public UncryptingView()
@@ -38,9 +39,8 @@ public class UncryptingView extends JPanel
         m_uncryptedTextArea.setEditable(false);
         this.add(scrollPaneTextArea);
 
-        JButton saveInFileButton = new JButton("SAVE");
-        saveInFileButton.addActionListener(new SaveCryiptingTextInFile());
-        this.add(saveInFileButton);
+        m_exportButton = new JButton("EXPORT");
+        this.add(m_exportButton);
 
 
         this.setVisible(true);
@@ -51,9 +51,14 @@ public class UncryptingView extends JPanel
         return alphaTable;
     }
 
-    public void setM_uncryptedTextArea(String p_text)
+    public void setUncryptedTextArea(String p_text)
     {
         m_uncryptedTextArea.setText(p_text);
+    }
+
+    public String GetUncryptedText()
+    {
+        return m_uncryptedTextArea.getText();
     }
 
     /* ===============================================================================================================
@@ -69,15 +74,13 @@ public class UncryptingView extends JPanel
             {
                 List<String> alphabeTryUser = alphaTable.getAlphabetTryUser();
 
-                // return this to try to uncryot with user choice
                 System.out.println(alphabeTryUser);
             }
         }
     }
 
-    class SaveCryiptingTextInFile implements ActionListener {
-        public void actionPerformed(ActionEvent p_actionEvent) {
-            System.out.println("Sauvegarde du texte : " + m_uncryptedTextArea.getText());
-        }
+    public void AddExportButtonListener(ActionListener p_actionListener)
+    {
+        m_exportButton.addActionListener(p_actionListener);
     }
 }

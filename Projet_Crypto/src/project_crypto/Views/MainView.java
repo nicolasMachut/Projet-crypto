@@ -1,5 +1,6 @@
 package project_crypto.Views;
 
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -59,15 +60,15 @@ public class MainView extends JPanel
         JPanel outputPanel = new JPanel();
         m_outputPath = new JLabel("Input file's path (select a file please) ");
         outputPanel.add(m_outputPath);
-        m_outputFile = new JFormattedTextField();
+        m_outputFile = new JFormattedTextField("Export");
         m_outputFile.setPreferredSize(new Dimension(200, 30));
         outputPanel.add(m_outputFile);
         outputPanel.add(new JLabel(".txt"));
 
         // -- MIDDLE PART --
         // Create buttons and the group
-        m_encryptButton = new JRadioButton("Encrypt"  , true);
-        m_uncryptButton = new JRadioButton("Uncrypt"   , false);
+        m_encryptButton = new JRadioButton(Ressources.Lang.Lang_en.encrypt , true);
+        m_uncryptButton = new JRadioButton(Ressources.Lang.Lang_en.uncrypt , false);
         m_cryptGroup = new ButtonGroup();
         m_cryptGroup.add(m_encryptButton);
         m_cryptGroup.add(m_uncryptButton);
@@ -107,11 +108,24 @@ public class MainView extends JPanel
     }
     public String GetOutputFile()
     {
-        return m_outputPath.getText()+m_outputFile.getText()+".txt";
+        String outputFile = "Export";
+        String outputPath = "Projet_Crypto/src/Test_TextFiles/";
+        if (! m_outputFile.getText().equals(""))
+        {
+            outputFile = m_outputFile.getText();
+        }
+
+        if(! m_outputPath.getText().equals("Input file's path (select a file please) "))
+        {
+            outputPath = m_outputPath.getText();
+        }
+
+
+        return  outputPath+outputFile+".txt";
     }
     public String GetMode()
     {
-        String mode = "";
+        String mode = m_encryptButton.getText();
         for (Enumeration<AbstractButton> buttons = m_cryptGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
 

@@ -10,7 +10,8 @@ package project_crypto.Views;
  *
  * @author kimsavinfo
  */
-public class Global {
+public class Global
+{
     public static int m_widthWindow = 700;
     public static int m_heightWindow = 500;
 }
