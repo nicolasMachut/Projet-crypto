@@ -94,7 +94,7 @@ public class AlphabetJTable extends JTable
         // Update data so you can do whatever we want after
         // So you don't have to do this
         Object value = this.getValueAt(row, column);
-        data[row][column] = getValueFirstLetterUpperCase(value);
+        data[row][column] = dealValueFirstLetterUpperCase(value);
 
         // Cell style
         return new MyRenderer();
@@ -113,13 +113,13 @@ public class AlphabetJTable extends JTable
                 if (value instanceof String)
                 {
                     // Mettre en maj et ne garder que la 1er lettre
-                    setText( getValueFirstLetterUpperCase(value) );
+                    setText( dealValueFirstLetterUpperCase(value) );
                 }
             }
         }
     }
 
-    private String getValueFirstLetterUpperCase( Object p_value )
+    private String dealValueFirstLetterUpperCase(Object p_value)
     {
         String userString = ((String)p_value).toUpperCase();
         userString = String.valueOf(userString.charAt(0));
@@ -156,10 +156,9 @@ public class AlphabetJTable extends JTable
 
         data[0][0] = getRowFromEachStringLetters(p_dataString);
 
-        int nb_column = getColumnCount();
         for(int iColumn = 0; iColumn < p_dataString.length(); iColumn++)
         {
-            if(iColumn < nb_column)
+            if(iColumn < COLUMNS)
             {
                 setValueAt(String.valueOf(wordToNormalizer.normalize(p_dataString).charAt(iColumn)), 0, iColumn);
             }
@@ -168,15 +167,13 @@ public class AlphabetJTable extends JTable
 
     private void clearAlphaTable(String p_part)
     {
-        int nb_column = getColumnCount();
-
         if(p_part.equals("header"))
         {
             JTableHeader header = getTableHeader();
             TableColumnModel columnModel = header.getColumnModel();
             TableColumn tc;
 
-            for(int iColumn = 0; iColumn < nb_column; iColumn++)
+            for(int iColumn = 0; iColumn < COLUMNS; iColumn++)
             {
                 tc = columnModel.getColumn(iColumn);
                 tc.setHeaderValue(" ");
@@ -185,9 +182,9 @@ public class AlphabetJTable extends JTable
         else if(p_part.equals("row"))
         {
 
-            for(int iColumn = 0; iColumn < nb_column; iColumn++)
+            for(int iColumn = 0; iColumn < COLUMNS; iColumn++)
             {
-                if(iColumn < nb_column)
+                if(iColumn < COLUMNS)
                 {
                     setValueAt((" "), 0, iColumn);
                 }
@@ -204,5 +201,24 @@ public class AlphabetJTable extends JTable
         }
 
         return dataRow.toArray();
+    }
+
+     /* ===============================================================================================================
+    * For the UncryptingView
+    * ============================================================================================================ */
+
+    public List<String> getAlphabetTryUser()
+    {
+        List<String> alphaTryUser = new ArrayList<String>();
+
+        for(int iColumn = 0; iColumn < COLUMNS; iColumn++)
+        {
+            if(iColumn < COLUMNS)
+            {
+                alphaTryUser.add( getValueAt(0, iColumn).toString() );
+            }
+        }
+
+        return alphaTryUser;
     }
 }
