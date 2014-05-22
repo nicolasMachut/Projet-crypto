@@ -52,20 +52,29 @@ public class TriangularTest {
     }
 
     @Test
-    public void TestCrypting()
+    public void TestCryptingLigneComplete()
     {
-        String textToCrypt = "MARTIN";
-        String cryptedText = "AMITRN";
+        String textToCrypt = "JAVAEE";
+        String cryptedText = "AJEAVE";
         this.triangular.Crypting(textToCrypt, "test");
         assertEquals(cryptedText, this.triangular.GetEncryptedString());
     }
 
     @Test
+    public void TestCryptingLigneIncomplete()
+    {
+        String textToCrypt = "JAVA";
+        this.triangular.Crypting(textToCrypt, "test");
+        assertEquals(6, this.triangular.GetEncryptedString().length());
+    }
+
+    @Test
     public void TestUncrypting()
     {
-        String textToUncrypt = "JUORBON";
-        String uncryptedText = "BONJOUR";
-        this.triangular.Uncrypting(textToUncrypt, "test");
+        String textToUncrypt = "LECODAGEPARTRANSPOSITIONTRIANGULAIRE";
+        this.triangular.Crypting(textToUncrypt, "codage");
+
+        String uncryptedText = "LECODAGEPARTRANSPOSITIONTRIANGULAIRE";
         assertEquals(uncryptedText, this.triangular.GetUncryptedString());
     }
 

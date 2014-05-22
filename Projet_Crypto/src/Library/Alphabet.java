@@ -211,7 +211,7 @@ public class Alphabet
         // Début tempo : test pour analyse freq
         // A discuter avec Nicolas
         Alphabet v_alpha = new Alphabet();
-        
+
         // K 27/05/14 tempo en attendant dicussion avec les gars
         //v_alpha.InitFr();
         //HashMap<String, Double> m_frenchFrequency = v_alpha.GetFrequency();

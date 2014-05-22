@@ -51,7 +51,7 @@ public class Triangular extends Crypting
         // Complete the string with random letters
         // if the last line is not full
         // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
-        while ( m_nbLetters < ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) )
+        while ( m_nbLetters + 1 < ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) )
         {
             m_readableString += GetRandomLetter();
             // Update infos
@@ -386,15 +386,4 @@ public class Triangular extends Crypting
         }
     }
 
-    // Please do not erase
-    // TEST (wait for Controller and interface)
-    public static void main(String[] args)
-    {
-    Triangular triangle = new Triangular();
-    triangle.Crypting(new WordToNormalize().normalize("Le codage par transposition triangulaire"),new WordToNormalize().normalize("codage"));
-    System.out.println("");
-    System.out.println("");
-    //triangle.Uncrypting(new WordToNormalize().normalize("codage"));
-    }
-    //
 }
