@@ -39,7 +39,7 @@ public class Alphabet
         HashMap<String, Double> trigrammeFr = new HashMap<String, Double>();
         HashMap<String, Double> trigrammeEn = new HashMap<String, Double>();
 
-        List<String> impossibleBigramme
+        List<String> impossibleBigramme;
 
         monogrammeFr.put("A", 8.40);
         monogrammeFr.put("B", 1.06);
@@ -202,7 +202,8 @@ public class Alphabet
 
     public Map<String, Double> GetFrequencySortedDesc()
     {
-        return MapManager.sortByComparator(m_frequency, MapManager.DESC);
+        //return MapManager.sortByComparator(m_frequency, MapManager.DESC);
+        return MapManager.sortByComparator(m_monogramme.get("fr"), MapManager.DESC);
     }
 
     public Map<String, Double> GetFrSortedDesc()
@@ -210,20 +211,27 @@ public class Alphabet
         // Début tempo : test pour analyse freq
         // A discuter avec Nicolas
         Alphabet v_alpha = new Alphabet();
-        v_alpha.InitFr();
-        HashMap<String, Double> m_frenchFrequency = v_alpha.GetFrequency();
+        
+        // K 27/05/14 tempo en attendant dicussion avec les gars
+        //v_alpha.InitFr();
+        //HashMap<String, Double> m_frenchFrequency = v_alpha.GetFrequency();
+        HashMap<String, Double> m_frenchFrequency = m_monogramme.get("fr");
         // Fin tempo
 
         return MapManager.sortByComparator(m_frenchFrequency, MapManager.DESC);
     }
+
 
     public Map<String, Double> GetEnSortedDesc()
     {
         // Début tempo : test pour analyse freq
         // A discuter avec Nicolas
         Alphabet v_alpha = new Alphabet();
-        v_alpha.InitEn();
-        HashMap<String, Double> m_englishFrequency = v_alpha.GetFrequency();
+
+        // K 27/05/14 tempo en attendant dicussion avec les gars
+        //v_alpha.InitEn();
+        //HashMap<String, Double> m_englishFrequency = v_alpha.GetFrequency();
+        HashMap<String, Double> m_englishFrequency = m_monogramme.get("en");
         // Fin tempo
 
         return MapManager.sortByComparator(m_englishFrequency, MapManager.DESC);
@@ -241,4 +249,5 @@ public class Alphabet
         }
         return result;
     }
+
 }
