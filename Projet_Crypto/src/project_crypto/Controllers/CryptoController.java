@@ -56,21 +56,15 @@ public class CryptoController
 
             if(m_mainView.GetEncryptType().equals("Caesar"))
             {
-                Boolean isKeyOK = false;
-                String key;
+                String key = "";
                 do
                 {
                     key = this.GetCryptingKeyChoosenByUserAsString();
+                }while(! this.isAGoodCeasarKey(key));
 
-                    isKeyOK = this.isAGoodCeasarKey(key);
-                }while(!isKeyOK);
-
-                if(isKeyOK)
-                {
-                    Caesar caesar = new Caesar();
-                    caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
-                    m_textFileManager.SetText(caesar.GetEncryptedString());
-                }
+                Caesar caesar = new Caesar();
+                caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
+                m_textFileManager.SetText(caesar.GetEncryptedString());
             }
 
             if(m_mainView.GetEncryptType().equals("Permutation"))
@@ -114,13 +108,19 @@ public class CryptoController
         private String GetCryptingKeyChoosenByUserAsString()
         {
             String value = JOptionPane.showInputDialog("Please, choose a key");
+
+            if(value == null)
+            {
+                value = "-1";
+            }
+
             return value;
         }
 
         private boolean isAGoodCeasarKey(String keyToTest)
         {
             Boolean resultat = false;
-            if(!keyToTest.isEmpty())
+            if(!keyToTest.isEmpty() && keyToTest != null)
             {
                 try
                 {
@@ -130,7 +130,7 @@ public class CryptoController
                 }
                 catch(Exception e)
                 {
-
+                    e.getCause();
                 }
             }
             if(!resultat)
