@@ -5,7 +5,11 @@ import project_crypto.Models.Caesar;
 import static org.junit.Assert.*;
 
 /**
- * Created by nicolas on 26/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ *
+ * Date: 26/03/14.
  */
 public class CaesarTest {
 
@@ -30,7 +34,6 @@ public class CaesarTest {
     @Test
     public void TestUncryptingCaesarWhenEIsTheMostUsedLetter()
     {
-        int cryptingKey = 2;
         String textToDecrypt = "EGUVWPVGUVGGG";
         String decryptedText = "CESTUNTESTEEE";
         this.caesar.Uncrypting(textToDecrypt);
@@ -41,5 +44,15 @@ public class CaesarTest {
     public void TestGetCryptingKey()
     {
         assertEquals(2, this.caesar.GetCryptingKey("EGUVWPVGUV"));
+    }
+
+    @Test
+    public void TestUncryptingCaesarManual()
+    {
+        int cryptingKey = 2;
+        String textToDecrypt = "EGUVWPVGUVGGG";
+        String decryptedText = "CESTUNTESTEEE";
+        this.caesar.Uncrypting(textToDecrypt, cryptingKey);
+        assertEquals(decryptedText, this.caesar.GetUncryptedString());
     }
 }
