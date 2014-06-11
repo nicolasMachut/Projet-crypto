@@ -107,7 +107,14 @@ public class MainView extends JPanel
     }
     public String GetOutputFile()
     {
-        return m_outputPath.getText()+m_outputFile.getText()+".txt";
+        String ouputName = m_outputFile.getText();
+
+        if(ouputName.equals(""))
+        {
+            ouputName = "result";
+        }
+
+        return m_outputPath.getText()+ouputName+".txt";
     }
     public String GetMode()
     {
