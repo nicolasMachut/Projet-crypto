@@ -54,55 +54,88 @@ public class CryptoController
         {
             m_textFileManager.LoadFile(m_mainView.GetInputFile());
 
-            if(m_mainView.GetEncryptType().equals("Caesar"))
+            String mode = m_mainView.GetMode();
+            String type = m_mainView.GetEncryptType();
+            if (mode.equals("Encrypt"))
             {
-                String key = "";
-                do
+                if(type.equals("Caesar"))
                 {
-                    key = this.GetCryptingKeyChoosenByUserAsString();
-                }while(! this.isAGoodCeasarKey(key));
+                    String key = "";
+                    do
+                    {
+                        key = this.GetCryptingKeyChoosenByUserAsString();
+                    }while(! this.isAGoodCeasarKey(key));
 
-                Caesar caesar = new Caesar();
-                caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
-                m_textFileManager.SetText(caesar.GetEncryptedString());
+                    Caesar caesar = new Caesar();
+                    caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
+                    m_textFileManager.SetText(caesar.GetEncryptedString());
+                }
+                else if(type.equals("Permutation"))
+                {
+                    Permutation permutation = new Permutation();
+                    permutation.Crypting(m_textFileManager.getText());
+                    m_textFileManager.SetText(permutation.GetEncryptedString());
+                }
+                else if(type.equals("Polybe's square"))
+                {
+                    Polybe polybe = new Polybe();
+                    polybe.Crypting(m_textFileManager.getText());
+                    m_textFileManager.SetText(polybe.GetEncryptedString());
+                }
+                else if(type.equals("Triangular permutation"))
+                {
+                    String key;
+                    do {
+                        key = this.GetCryptingKeyChoosenByUserAsString();
+                    } while(!this.isAGoodTriangularKey(key));
+                    Triangular triangular = new Triangular();
+                    triangular.Crypting(m_textFileManager.getText(), "cle");
+                    m_textFileManager.SetText(triangular.GetEncryptedString());
+                }
+
             }
-
-            if(m_mainView.GetEncryptType().equals("Permutation"))
+            else if (mode.equals("Uncrypt"))
             {
-                Permutation permutation = new Permutation();
-                permutation.Crypting(m_textFileManager.getText());
-                m_textFileManager.SetText(permutation.GetEncryptedString());
+                String autoFlag = "auto";
+
+                if(type.equals("Caesar"))
+                {
+                    Boolean isKeyOK = false;
+                    String key = "";
+                    do
+                    {
+                        key = this.GetCryptingKeyChoosenByUserAsString();
+
+                        System.out.println(key);
+
+                        if(!key.equals(autoFlag))
+                        {
+                            isKeyOK = this.isAGoodCeasarKey(key);
+                        }
+
+                    }while(!isKeyOK && (!key.equals(autoFlag)));
+
+                    Caesar caesar = new Caesar();
+
+                    if(!key.equals(autoFlag))
+                    {
+                        caesar.Uncrypting(m_textFileManager.getText(), Integer.valueOf(key));
+                    }
+                    else
+                    {
+                        caesar.Uncrypting(m_textFileManager.getText());
+                    }
+
+                    m_textFileManager.SetText(caesar.GetUncryptedString());
+                }
             }
-
-            if(m_mainView.GetEncryptType().equals("Polybe's square"))
+            else
             {
-                Polybe polybe = new Polybe();
-                polybe.Crypting(m_textFileManager.getText());
-                m_textFileManager.SetText(polybe.GetEncryptedString());
-            }
-
-            if(m_mainView.GetEncryptType().equals("Triangular permutation"))
-            {
-                String key;
-                do {
-                    key = this.GetCryptingKeyChoosenByUserAsString();
-                } while(!this.isAGoodTriangularKey(key));
-                Triangular triangular = new Triangular();
-                triangular.Crypting(m_textFileManager.getText(), "cle");
-                m_textFileManager.SetText(triangular.GetEncryptedString());
+                JOptionPane.showMessageDialog(null, "Please, choose a mode (encrypt/uncrypt).");
             }
 
             m_textFileManager.WriteFile(m_mainView.GetOutputFile());
             JOptionPane.showMessageDialog(null, "A file has just been created in : " + m_mainView.GetOutputFile());
-        }
-
-        //Uncrypting text file
-        public void UncryptingTextFile()
-        {
-            Caesar testUncrypting = new Caesar();
-
-            testUncrypting.Uncrypting(m_textFileManager.getText());
-            m_textFileManager.SetText(testUncrypting.GetUncryptedString());
         }
 
         private String GetCryptingKeyChoosenByUserAsString()
@@ -134,7 +167,7 @@ public class CryptoController
                 }
             }
             if(!resultat)
-                JOptionPane.showMessageDialog(null, "Please, choose a numeric key between 1 and 26.");
+                JOptionPane.showMessageDialog(null, "Please, choose a numeric key between 1 and 26 or 'auto' for uncrypting mode.");
 
             return resultat;
         }
