@@ -62,9 +62,9 @@ public class CryptoController
                 {
                     key = this.GetCryptingKeyChoosenByUserAsString();
                 }while(!this.isAGoodCeasarKey(key));
-                System.out.println(key);
+
                 Caesar caesar = new Caesar();
-                caesar.Crypting(m_textFileManager.getText(),2);
+                caesar.Crypting( m_textFileManager.getText(), Integer.valueOf(key) );
                 m_textFileManager.SetText(caesar.GetEncryptedString());
             }
 
