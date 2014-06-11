@@ -29,7 +29,6 @@ public class Caesar extends Crypting
 
     public void Crypting(String p_textToCrypt, int p_crytingKey)
     {
-        System.out.println("String to crypt : "+p_textToCrypt);
         this.m_readableString = p_textToCrypt;
         // Encrypt text letter by letter
         for(int iText = 0; iText < this.m_readableString.length(); iText++)
@@ -42,7 +41,6 @@ public class Caesar extends Crypting
                 }
             }
         }
-        System.out.println("Crypted string : " + this.m_cryptedString);
     }
 
      public int GetCryptingKey(String p_textToUncrypt)
@@ -50,7 +48,7 @@ public class Caesar extends Crypting
         FrequencyAnalyse fileGiven = new FrequencyAnalyse(p_textToUncrypt);
         this.m_cryptedString = p_textToUncrypt;
         HashMap<String, Double> frequency = fileGiven.CalculCharFrequency();
-        //this.m_alphabet.SetLanguage("fr");
+
         int key = 0;
         for(String KeyH : this.m_alphabet.GetFrequencySortedDesc().keySet())
         {
@@ -59,7 +57,6 @@ public class Caesar extends Crypting
                 if(m_alphabet.GetLatin()[i].equals(fileGiven.getMostUsedChar(frequency)))
                 {
                     // Compare with most used letter in the alphabet, not in the text
-                    // NOTE : how do we deal with language ?
                     if((i+1) >  this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH))
                     {
                         key = (i+1) - this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH);
@@ -92,7 +89,5 @@ public class Caesar extends Crypting
                 }
             }
         }
-        System.out.print("Uncrypted string "+this.m_readableString);
-        System.out.println("crypting key : "+UncryptedKey);
     }
 }

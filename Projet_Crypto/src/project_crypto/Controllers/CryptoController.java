@@ -52,20 +52,25 @@ public class CryptoController
     {
         public void actionPerformed(ActionEvent p_actionEvent)
         {
-
             m_textFileManager.LoadFile(m_mainView.GetInputFile());
 
             if(m_mainView.GetEncryptType().equals("Caesar"))
             {
+                Boolean isKeyOK = false;
                 String key;
                 do
                 {
                     key = this.GetCryptingKeyChoosenByUserAsString();
-                }while(!this.isAGoodCeasarKey(key));
 
-                Caesar caesar = new Caesar();
-                caesar.Crypting( m_textFileManager.getText(), Integer.valueOf(key) );
-                m_textFileManager.SetText(caesar.GetEncryptedString());
+                    isKeyOK = this.isAGoodCeasarKey(key);
+                }while(!isKeyOK);
+
+                if(isKeyOK)
+                {
+                    Caesar caesar = new Caesar();
+                    caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
+                    m_textFileManager.SetText(caesar.GetEncryptedString());
+                }
             }
 
             if(m_mainView.GetEncryptType().equals("Permutation"))
