@@ -4,7 +4,10 @@ import project_crypto.Models.Polybe;
 import static org.junit.Assert.*;
 
 /**
- * Created by nicolas on 26/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ * Date : 26/03/14.
  */
 public class PolybeTest {
 
@@ -36,14 +39,14 @@ public class PolybeTest {
         String uncryptedText = "CESTUNTESTEEE";
 
         this.polybe.Uncrypting(textToUncrypt);
-        assertEquals(uncryptedText, this.polybe.GetUncryptedString());
+        assertEquals(uncryptedText, this.polybe.GetReadableString());
     }
 
     @Test
     public void TestPutEachNumbersInArrayString()
     {
         this.polybe.Crypting("BCDE");
-        String numbersToTest = "12131415";
+
         String result[] = {"12", "13", "14", "15"};
         for(int i = 0; i < result.length; i++)
         {

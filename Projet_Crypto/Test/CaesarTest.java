@@ -37,7 +37,7 @@ public class CaesarTest {
         String textToDecrypt = "EGUVWPVGUVGGG";
         String decryptedText = "CESTUNTESTEEE";
         this.caesar.Uncrypting(textToDecrypt);
-        assertEquals(decryptedText, this.caesar.GetUncryptedString());
+        assertEquals(decryptedText, this.caesar.GetReadableString());
     }
 
     @Test
@@ -53,6 +53,6 @@ public class CaesarTest {
         String textToDecrypt = "EGUVWPVGUVGGG";
         String decryptedText = "CESTUNTESTEEE";
         this.caesar.Uncrypting(textToDecrypt, cryptingKey);
-        assertEquals(decryptedText, this.caesar.GetUncryptedString());
+        assertEquals(decryptedText, this.caesar.GetReadableString());
     }
 }

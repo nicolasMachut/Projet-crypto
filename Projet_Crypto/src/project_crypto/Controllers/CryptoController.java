@@ -60,7 +60,7 @@ public class CryptoController
             {
                 if(type.equals("Caesar"))
                 {
-                    String key = "";
+                    String key;
                     do
                     {
                         key = this.GetCryptingKeyChoosenByUserAsString();
@@ -101,7 +101,7 @@ public class CryptoController
                 if(type.equals("Caesar"))
                 {
                     Boolean isKeyOK = false;
-                    String key = "";
+                    String key;
                     do
                     {
                         key = this.GetCryptingKeyChoosenByUserAsString();
@@ -126,7 +126,13 @@ public class CryptoController
                         caesar.Uncrypting(m_textFileManager.getText());
                     }
 
-                    m_textFileManager.SetText(caesar.GetUncryptedString());
+                    m_textFileManager.SetText(caesar.GetReadableString());
+                }
+                else if(type.equals("Polybe's square"))
+                {
+                    Polybe polybe = new Polybe();
+                    polybe.Uncrypting(m_textFileManager.getText());
+                    m_textFileManager.SetText(polybe.GetEncryptedString());
                 }
             }
             else
@@ -153,7 +159,7 @@ public class CryptoController
         private boolean isAGoodCeasarKey(String keyToTest)
         {
             Boolean resultat = false;
-            if(!keyToTest.isEmpty() && keyToTest != null)
+            if(!keyToTest.isEmpty())
             {
                 try
                 {

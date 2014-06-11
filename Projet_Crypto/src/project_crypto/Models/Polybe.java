@@ -1,13 +1,14 @@
 package project_crypto.Models;
 
+import Library.WordToNormalize;
+
 import java.util.HashMap;
 
 /**
- * Created by nicolas on 12/03/14.
  * @author Edouard SOUAN-MARCELON
  * @author Nicolas MACHUT
  * @author Kim SAVAROCHE
- * machut.nicolas@gmail.com
+ * Date : 12/03/14.
  *
  * This class crypt and decrypt whith Polybe Crypting as it's name suggests !
  */
@@ -61,13 +62,12 @@ public class Polybe extends Crypting
      */
     public void Crypting(String p_textToCrypt)
     {
-        this.m_readableString = p_textToCrypt;
-        System.out.println("String to crypt : "+ this.m_readableString);
+        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
+
         for(int i = 0; i < this.m_readableString.length(); i++)
         {
             this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
         }
-        System.out.println("Crypted String : "+this.m_cryptedString);
     }
 
     /**
@@ -88,7 +88,6 @@ public class Polybe extends Crypting
                 }
             }
         }
-        System.out.println("Uncrypted String : "+this.m_readableString);
     }
 
 
@@ -99,12 +98,14 @@ public class Polybe extends Crypting
     public String[] PutEachNumbersInArrayStrings()
     {
         int j = 0;
+
         String[] tabEncryptedString = new String[this.m_cryptedString.length()/2];
 
         for(int i = 0; i < this.m_cryptedString.length(); i += 2)
         {
             tabEncryptedString[j] = String.valueOf(this.m_cryptedString.charAt(i));
-            tabEncryptedString[j] += String.valueOf(this.m_cryptedString.charAt(i+1));
+            tabEncryptedString[j] += String.valueOf(this.m_cryptedString.charAt(i + 1));
+
             j++;
         }
         return tabEncryptedString;

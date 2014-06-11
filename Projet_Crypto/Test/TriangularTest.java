@@ -4,7 +4,10 @@ import project_crypto.Models.Triangular;
 import static org.junit.Assert.*;
 
 /**
- * Created by nicolas on 26/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ * Date : 26/03/14.
  */
 public class TriangularTest {
 
@@ -75,7 +78,7 @@ public class TriangularTest {
         this.triangular.Crypting(textToUncrypt, "codage");
 
         String uncryptedText = "LECODAGEPARTRANSPOSITIONTRIANGULAIRE";
-        assertEquals(uncryptedText, this.triangular.GetUncryptedString());
+        assertEquals(uncryptedText, this.triangular.GetReadableString());
     }
 
 }
