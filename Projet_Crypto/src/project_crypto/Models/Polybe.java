@@ -76,14 +76,15 @@ public class Polybe extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt)
     {
-        this.m_cryptedString = p_textToUncrypt;
+        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
+
         String[] coupleNumbers = this.PutEachNumbersInArrayStrings();
 
-        for(int i = 0; i < coupleNumbers.length; i++)
+        for (String coupleNumber : coupleNumbers)
         {
-            for(String key : this.association.keySet())
+            for (String key : this.association.keySet())
             {
-                if(this.association.get(key).equals(coupleNumbers[i]))
+                if (this.association.get(key).equals(coupleNumber))
                 {
                     this.m_readableString += key;
                 }
