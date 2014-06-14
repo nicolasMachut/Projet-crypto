@@ -22,6 +22,38 @@ public class TriangularTest {
     }
 
     @Test
+    public void TestCalculateNbLine1()
+    {
+        int nbLetters = 1;
+        int result = 1;
+        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
+    }
+
+    @Test
+    public void TestCalculateNbUsual()
+    {
+        int nbLetters = 10;
+        int result = 4;
+        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
+    }
+
+    @Test
+    public void TestCalculateNbColumns1()
+    {
+        int nbLines = 1;
+        int result = 1;
+        assertEquals(result, this.triangular.CalculateNbColumns(nbLines));
+    }
+
+    @Test
+    public void TestCalculateNbColumnsUsual()
+    {
+        int nbLines = 8;
+        int result = 16;
+        assertEquals(result, this.triangular.CalculateNbColumns(nbLines));
+    }
+
+    @Test
     public void TestSortAlphebetaOrder()
     {
         String textToSort = "NICOLAS";
@@ -35,25 +67,6 @@ public class TriangularTest {
         String textToTest = "BONJOUR";
         String result = "BONJUR";
         assertEquals(result, this.triangular.RemoveDuplicatedLetters(textToTest));
-    }
-
-
-    @Test
-    public void TestCalculateNbLine()
-    {
-        int nbLetters = 10;
-        int result = 4;
-        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
-    }
-
-
-    @Test
-    public void TestCalculateNbColumns()
-    {
-        int nbLines = 10;
-        int nbLetters = 30;
-        int result = 18;
-        assertEquals(result, this.triangular.CalculateNbColumns(nbLines, nbLetters));
     }
 
     @Test
@@ -87,7 +100,7 @@ public class TriangularTest {
     public void TestCryptingLongTxt()
     {
         TextFileManager m_textFileManager = new TextFileManager();
-        m_textFileManager.LoadFile("/home/kimsavinfo/IdeaProjects/Projet-crypto/Projet_Crypto/src/Test_TextFiles/NotreDameParis_clair.txt");
+        m_textFileManager.LoadFile("/home/kimsavinfo/IdeaProjects/Projet-crypto/Projet_Crypto/src/Test_TextFiles/NotreDameParis_readable.txt");
         String uncryptedText =  new WordToNormalize().normalize( m_textFileManager.getText() );
         String key = "epsi";
 

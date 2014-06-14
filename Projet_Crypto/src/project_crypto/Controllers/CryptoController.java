@@ -88,8 +88,9 @@ public class CryptoController
                     do {
                         key = this.GetCryptingKeyChoosenByUserAsString();
                     } while(!this.isAGoodTriangularKey(key));
+
                     Triangular triangular = new Triangular();
-                    triangular.Crypting(m_textFileManager.getText(), "cle");
+                    triangular.Crypting(m_textFileManager.getText(), key);
                     m_textFileManager.SetText(triangular.GetEncryptedString());
                 }
 
@@ -136,7 +137,7 @@ public class CryptoController
                 {
                     String key;
                     do {
-                        key = this.GetCryptingKeyChoosenByUserAsString();
+                        key =  this.GetCryptingKeyChoosenByUserAsString();
                     } while(!this.isAGoodTriangularKey(key));
 
                     Triangular triangular = new Triangular();
