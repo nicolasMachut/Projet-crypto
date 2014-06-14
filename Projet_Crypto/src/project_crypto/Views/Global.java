@@ -13,4 +13,7 @@ package project_crypto.Views;
 public class Global {
     public static int m_widthWindow = 700;
     public static int m_heightWindow = 500;
+
+    public static int m_widthScrollArea = 60;
+    public static int m_heightScrollArea = 10;
 }

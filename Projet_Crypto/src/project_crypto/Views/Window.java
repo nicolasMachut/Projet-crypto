@@ -1,7 +1,6 @@
 package project_crypto.Views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Color;
 
 /**
@@ -23,6 +22,9 @@ public class Window extends JFrame
         this.setBackground(Color.GRAY);
         // Allow the user to close the windows
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Scrollbar
+        JScrollPane scrollPaneUncryptedTextArea = new JScrollPane();
+        this.add(scrollPaneUncryptedTextArea);
 
         SetView(p_panel);
     }

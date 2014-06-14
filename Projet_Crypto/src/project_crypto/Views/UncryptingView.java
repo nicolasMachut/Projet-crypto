@@ -19,6 +19,7 @@ public class UncryptingView extends JPanel
     private AlphabetJTable alphaTable;
     private JButton m_cryptButton;
     private JTextArea m_uncryptedTextArea;
+    private JTextArea m_cryptedTextArea;
     private JButton m_exportButton;
 
 
@@ -38,10 +39,15 @@ public class UncryptingView extends JPanel
         m_cryptButton.addActionListener(new CryptActions());
         this.add(m_cryptButton);
 
-        m_uncryptedTextArea = new JTextArea(20 , 60);
-        JScrollPane scrollPaneTextArea = new JScrollPane(m_uncryptedTextArea);
+        m_cryptedTextArea = new JTextArea(Global.m_heightScrollArea, Global.m_widthScrollArea );
+        m_cryptedTextArea.setEditable(false);
+        JScrollPane scrollPaneCryptedTextArea = new JScrollPane(m_cryptedTextArea);
+        this.add(scrollPaneCryptedTextArea);
+
+        m_uncryptedTextArea = new JTextArea(Global.m_heightScrollArea, Global.m_widthScrollArea );
         m_uncryptedTextArea.setEditable(false);
-        this.add(scrollPaneTextArea);
+        JScrollPane scrollPaneUncryptedTextArea = new JScrollPane(m_uncryptedTextArea);
+        this.add(scrollPaneUncryptedTextArea);
 
         m_exportButton = new JButton("EXPORT");
         this.add(m_exportButton);
@@ -55,9 +61,9 @@ public class UncryptingView extends JPanel
         return alphaTable;
     }
 
-    public void setUncryptedTextArea(String p_text)
+    public void setCryptedTextArea(String p_text)
     {
-        m_uncryptedTextArea.setText(p_text);
+        m_cryptedTextArea.setText(p_text);
     }
 
     public String GetUncryptedText()
@@ -77,8 +83,6 @@ public class UncryptingView extends JPanel
             if (p_actionEvent.getSource() == m_cryptButton)
             {
                 List<String> alphabeTryUser = alphaTable.getAlphabetTryUser();
-
-                System.out.println(alphabeTryUser);
             }
         }
     }
