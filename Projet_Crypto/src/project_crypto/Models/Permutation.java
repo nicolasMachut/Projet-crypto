@@ -1,5 +1,7 @@
 package project_crypto.Models;
 
+import Library.WordToNormalize;
+
 import java.util.HashMap;
 
 /**
@@ -25,21 +27,20 @@ public class Permutation extends Crypting{
     //This method crypt a string using permutation crypting
     public void Crypting(String p_textToCrypt)
     {
-        System.out.println("String to crypt : "+this.m_readableString);
-        this.m_readableString = p_textToCrypt;
+        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
         String permutString;
+
         for(int i = 0; i < this.m_readableString.length(); i++)
         {
             if(!association.containsKey(String.valueOf(this.m_readableString.charAt(i))))
             {
                 permutString = this.GetVacantRandomLetter();
-                //System.out.println("On ajoute la lettre : "+this.m_stringToCrypt.charAt(i)+" permutée avec : "+permutString);
+
                 this.association.put(String.valueOf(this.m_readableString.charAt(i)), permutString);
             }
 
             this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
         }
-        System.out.println("Crypted String : "+this.m_cryptedString);
     }
 
 

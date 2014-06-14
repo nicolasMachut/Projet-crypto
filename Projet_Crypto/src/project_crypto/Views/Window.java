@@ -29,10 +29,12 @@ public class Window extends JFrame
 
     public void SetView(JPanel p_panel)
     {
+        this.getContentPane().removeAll();
         // Link with a JPanel
         m_panelActu = p_panel;
-        this.setContentPane(m_panelActu);
+        this.getContentPane().add(m_panelActu);
         // Refresh the view
+        this.validate();
         this.repaint();
     }
 
