@@ -132,6 +132,17 @@ public class CryptoController
                     polybe.Uncrypting( m_textFileManager.getText() );
                     m_textFileManager.SetText(polybe.GetReadableString());
                 }
+                else if(type.equals("Triangular permutation"))
+                {
+                    String key;
+                    do {
+                        key = this.GetCryptingKeyChoosenByUserAsString();
+                    } while(!this.isAGoodTriangularKey(key));
+
+                    Triangular triangular = new Triangular();
+                    triangular.Uncrypting( m_textFileManager.getText(), key );
+                    m_textFileManager.SetText(triangular.GetReadableString());
+                }
             }
             else
             {

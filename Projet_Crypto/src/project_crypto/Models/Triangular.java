@@ -43,10 +43,12 @@ public class Triangular extends Crypting
      */
     public void Crypting(String p_textToCrypt, String p_key)
     {
-        this.m_readableString = p_textToCrypt;
+        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
 
         // Need nb letters lines and columns
         FindInfo(this.m_readableString);
+
+        System.out.println( (m_nbLetters + 1) + " : "+ ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) );
 
         // Complete the string with random letters
         // if the last line is not full
@@ -88,7 +90,7 @@ public class Triangular extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt, String p_key)
     {
-        this.m_cryptedString = p_textToUncrypt;
+        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
 
         // Need nb letters lines and columns
         FindInfo(this.m_cryptedString);
@@ -102,6 +104,8 @@ public class Triangular extends Crypting
 
         // Fill the triangle
         String triangle[][] = BuildTriangleToUncrypt(lasstLetterCol, columnOrder);
+        System.out.println("Décryptage : "+m_cryptedString);
+        ShowTriangle(triangle);
 
         // We uncrypt thanks to the column order
         for (int iLig = 0; iLig < m_nbLines; iLig++)
@@ -364,10 +368,10 @@ public class Triangular extends Crypting
     }
 
     /* ===============================================================================================================
-    * Test - debug : to erase
+    * Vision for developpers : too afraid to erase
     * ============================================================================================================ */
 
-    // Put there temporally, please create a viw to show this to the user.
+    // Put there temporally
      private void ShowTriangle(String[][] p_triangle)
     {
         for (int iLig = 0; iLig < m_nbLines; iLig++) {
