@@ -77,12 +77,13 @@ public class Polybe extends Crypting
     public void Uncrypting(String p_textToUncrypt)
     {
         this.m_cryptedString = p_textToUncrypt;
+        String[] coupleNumbers = this.PutEachNumbersInArrayStrings();
 
-        for(int i = 0; i < this.PutEachNumbersInArrayStrings().length; i++)
+        for(int i = 0; i < coupleNumbers.length; i++)
         {
             for(String key : this.association.keySet())
             {
-                if(this.association.get(key).equals(this.PutEachNumbersInArrayStrings()[i]))
+                if(this.association.get(key).equals(coupleNumbers[i]))
                 {
                     this.m_readableString += key;
                 }
@@ -98,17 +99,33 @@ public class Polybe extends Crypting
     public String[] PutEachNumbersInArrayStrings()
     {
         int j = 0;
-
-        String[] tabEncryptedString = new String[this.m_cryptedString.length()/2];
+        String[] tabEncryptedString = new String[CalculTableLenght()];
 
         for(int i = 0; i < this.m_cryptedString.length(); i += 2)
         {
             tabEncryptedString[j] = String.valueOf(this.m_cryptedString.charAt(i));
-            tabEncryptedString[j] += String.valueOf(this.m_cryptedString.charAt(i + 1));
+
+            if(i < this.m_cryptedString.length())
+            {
+                tabEncryptedString[j] += String.valueOf(this.m_cryptedString.charAt(i + 1));
+            }
 
             j++;
         }
+
         return tabEncryptedString;
+    }
+
+    private int CalculTableLenght()
+    {
+        int tabLength = this.m_cryptedString.length()/2;
+
+        if( ModuloPositive(this.m_cryptedString.length()/2, 2) == 1 )
+        {
+            tabLength++;
+        }
+
+        return tabLength;
     }
 
 }

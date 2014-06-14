@@ -1,6 +1,7 @@
 package project_crypto.Controllers;
 
 import Library.TextFileManager;
+import Library.WordToNormalize;
 import project_crypto.Models.Caesar;
 import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
@@ -106,8 +107,6 @@ public class CryptoController
                     {
                         key = this.GetCryptingKeyChoosenByUserAsString();
 
-                        System.out.println(key);
-
                         if(!key.equals(autoFlag))
                         {
                             isKeyOK = this.isAGoodCeasarKey(key);
@@ -131,8 +130,8 @@ public class CryptoController
                 else if(type.equals("Polybe's square"))
                 {
                     Polybe polybe = new Polybe();
-                    polybe.Uncrypting(m_textFileManager.getText());
-                    m_textFileManager.SetText(polybe.GetEncryptedString());
+                    polybe.Uncrypting( new WordToNormalize().normalizeNumber( m_textFileManager.getText() ) );
+                    m_textFileManager.SetText(polybe.GetReadableString());
                 }
             }
             else
