@@ -80,8 +80,44 @@ public class Permutation extends Crypting{
         return tried.toUpperCase();
     }
 
-  /*  public HashMap<String,String> tryToUncrypt(String p_letterToUncrypt)
+    /**
+     * NON AUTO
+     * @param p_textToUncrypt
+     * @param p_alphaUncrypt
+     */
+    public void Uncrypting(String p_textToUncrypt, HashMap<String, String> p_alphaUncrypt)
     {
-        this.association.put(p_letterToUncrypt,GetVacantRandomLetter(p_letterToUncrypt))
-    }*/
+        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
+        this.m_readableString = "";
+        String letter;
+
+        for(int itext = 0; itext <this.m_cryptedString.length(); itext++)
+        {
+            letter = Character.toString( this.m_cryptedString.charAt(itext) );
+
+            if(p_alphaUncrypt.containsKey(letter))
+            {
+
+            }
+            else
+            {
+
+            }
+
+            //this.m_readableString += ;
+        }
+    }
+
+    /**
+     * AUTOMATIQUE
+     * @param p_textToUncrypt
+     */
+    public void Uncrypting(String p_textToUncrypt)
+    {
+        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
+        this.m_readableString = "";
+        String letter;
+
+        
+    }
 }
