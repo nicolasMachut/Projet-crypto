@@ -118,6 +118,6 @@ public class Permutation extends Crypting{
         this.m_readableString = "";
         String letter;
 
-        
+
     }
 }

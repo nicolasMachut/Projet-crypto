@@ -185,4 +185,17 @@ public class FrequencyAnalyse {
 
         return score;
     }
+
+
+    private void showCharFrequency(HashMap<String, Double> p_lettersFrequencies)
+    {
+        System.out.println(" CalculCharFrequency, char total : "+ m_text.length());
+
+        int totalChars = m_text.length();
+
+        for (String key : p_lettersFrequencies.keySet())
+        {
+            System.out.println("key: " + key + " = " + p_lettersFrequencies.get(key) + " %");
+        }
+    }
 }
