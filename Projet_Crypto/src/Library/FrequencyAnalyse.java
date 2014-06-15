@@ -1,7 +1,6 @@
 package Library;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Edouard SOUAN-MARCELON
@@ -14,26 +13,13 @@ public class FrequencyAnalyse
 {
 
     private String m_textToAnalyse;
-    private Map<String,Double> m_alphabet;
     private HashMap<String,HashMap<String,Double>> m_bigrammeTable = new HashMap<String, HashMap<String, Double>>();
 
     /**
     * FrequencyAnalyse's Constructor
     */
 
-     public FrequencyAnalyse(String p_file){this.m_textToAnalyse = p_file; SetLang("fr");}
-
-    public void SetLang(String p_lang)
-    {
-        if (p_lang.equals("fr"))
-        {
-            m_alphabet = new Alphabet().GetFrSortedDesc();
-        }
-        else if (p_lang.equals("en"))
-        {
-            m_alphabet = new Alphabet().GetEnSortedDesc();
-        }
-    }
+     public FrequencyAnalyse(String p_file){this.m_textToAnalyse = p_file; }
 
     /**
      * How many times each char is present in the text ?

@@ -1,8 +1,10 @@
 package project_crypto.Models;
 
+import Library.Alphabet;
 import Library.WordToNormalize;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by nicolas on 10/03/14.
@@ -17,11 +19,26 @@ public class Permutation extends Crypting{
 
     //Variable
     private HashMap<String, String> association = new HashMap<String, String>();
+    private Map<String,Double> m_alphabet;
     //End variable
 
     public Permutation()
     {
         super();
+        SetLang("fr");
+    }
+
+
+    public void SetLang(String p_lang)
+    {
+        if (p_lang.equals("fr"))
+        {
+            m_alphabet = new Alphabet().GetFrSortedDesc();
+        }
+        else if (p_lang.equals("en"))
+        {
+            m_alphabet = new Alphabet().GetEnSortedDesc();
+        }
     }
 
     //This method crypt a string using permutation crypting
@@ -51,15 +68,17 @@ public class Permutation extends Crypting{
         Boolean find = false;
         int random = GetRandom();
 
+        String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
+
         while(!find)
         {
-            if(this.association.containsValue(this.m_alphabet.GetLatin()[random]))
+            if(this.association.containsValue(latinLetters[random]))
             {
                 random = GetRandom();
             }
             else
             {
-                letter = this.m_alphabet.GetLatin()[random];
+                letter = latinLetters[random];
                 find = true;
             }
         }
