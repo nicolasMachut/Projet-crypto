@@ -1,7 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Permutation;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by nicolas on 26/03/14.
@@ -52,6 +56,20 @@ public class PermutationTest {
     @Test
     public void testPermuter()
     {
+        List<String> alphabeTryUser = new ArrayList<String>();
+        alphabeTryUser.add("p");
+        alphabeTryUser.add("r");
+
+        permutation.Uncrypting("ab", alphabeTryUser);
+
+        assertEquals("pr", permutation.GetReadableString());
+    }
+
+
+        /*
+    @Test
+    public void testPermuter()
+    {
         Permutation permut = new Permutation();
         permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
         System.out.println(permut.GetEncryptedString());
@@ -65,5 +83,6 @@ public class PermutationTest {
 
        assertEquals("KEFFEKSEVBXBYBFEOESAJEKEOOABSEZCLSYEOAKFBCJOAWEJBSKASLJKYBEJFJEOFZAOFCLPCLSOUAWCSAXYEALKTAJQEMEJF", this.permutation.lol());
     }
+    */
 
 }

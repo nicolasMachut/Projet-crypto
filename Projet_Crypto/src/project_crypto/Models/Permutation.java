@@ -4,6 +4,7 @@ import Library.Alphabet;
 import Library.WordToNormalize;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +19,8 @@ import java.util.Map;
 public class Permutation extends Crypting{
 
     //Variable
-    private HashMap<String, String> association = new HashMap<String, String>();
+    // <letterWantedForUncrypting, letterReadableFromAlphabet>
+    private HashMap<String, String> m_association = new HashMap<String, String>();
     private Map<String,Double> m_alphabet;
     //End variable
 
@@ -49,19 +51,19 @@ public class Permutation extends Crypting{
 
         for(int i = 0; i < this.m_readableString.length(); i++)
         {
-            if(!association.containsKey(String.valueOf(this.m_readableString.charAt(i))))
+            if(!m_association.containsKey(String.valueOf(this.m_readableString.charAt(i))))
             {
                 permutString = this.GetVacantRandomLetter();
 
-                this.association.put(String.valueOf(this.m_readableString.charAt(i)), permutString);
+                this.m_association.put(String.valueOf(this.m_readableString.charAt(i)), permutString);
             }
 
-            this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
+            this.m_cryptedString += this.m_association.get(String.valueOf(this.m_readableString.charAt(i)));
         }
     }
 
 
-    //This method return a letter in alphabet's tab which is not in this.association
+    //This method return a letter in alphabet's tab which is not in this.m_association
     public String GetVacantRandomLetter()
     {
         String letter = "";
@@ -72,7 +74,7 @@ public class Permutation extends Crypting{
 
         while(!find)
         {
-            if(this.association.containsValue(latinLetters[random]))
+            if(this.m_association.containsValue(latinLetters[random]))
             {
                 random = GetRandom();
             }
@@ -87,56 +89,80 @@ public class Permutation extends Crypting{
 
     public HashMap<String, String> getAssociation()
     {
-        return this.association;
+        return this.m_association;
     }
 
-    public String lol() {
-        String uncryptedString = this.m_cryptedString;
-        String tried = uncryptedString.replace("D","e");
-        tried = tried.replace("E","a");
 
-
-        return tried.toUpperCase();
-    }
-
-    /**
-     * NON AUTO
-     * @param p_textToUncrypt
-     * @param p_alphaUncrypt
-     */
-    public void Uncrypting(String p_textToUncrypt, HashMap<String, String> p_alphaUncrypt)
+    public void Uncrypting(String p_textToUncrypt, List<String> p_alphabeTryUser)
     {
-        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
-        this.m_readableString = "";
-        String letter;
+        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_readableString = m_cryptedString;
 
-        for(int itext = 0; itext <this.m_cryptedString.length(); itext++)
+        System.out.println(p_alphabeTryUser.toString());
+        setAssociation(p_alphabeTryUser);
+
+        for(String letterKey : m_association.keySet())
         {
-            letter = Character.toString( this.m_cryptedString.charAt(itext) );
+            this.m_readableString.replace( this.m_association.get(letterKey) , letterKey.toLowerCase());
+        }
 
-            if(p_alphaUncrypt.containsKey(letter))
-            {
+        this.m_cryptedString = this.m_cryptedString.toUpperCase();
+    }
 
-            }
-            else
-            {
+    public void setAssociation(List<String> p_alphabeTryUser)
+    {
+        // Only take strings
+        String[] latinLetters = new Alphabet().GetLatin();
 
-            }
+        // Associate strings
+        // <letterWantedForUncrypting, letterReadableFromAlphabet>
+        m_association.clear();
 
-            //this.m_readableString += ;
+        for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
+        {
+            m_association.put( p_alphabeTryUser.get(iLetter), latinLetters[iLetter] );
+
+            System.out.println( p_alphabeTryUser.get(iLetter) + "->" + latinLetters[iLetter] );
         }
     }
 
-    /**
-     * AUTOMATIQUE
-     * @param p_textToUncrypt
-     */
-    public void Uncrypting(String p_textToUncrypt)
+    public void setAssociationFrequency(List<String> p_alphabeTryUser)
     {
-        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
-        this.m_readableString = "";
-        String letter;
+        System.out.println(p_alphabeTryUser.toString());
 
+        // Only take strings
+        String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
 
+        // Associate strings
+        // <letterWantedForUncrypting, letterReadableFromAlphabet>
+        m_association.clear();
+
+        for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
+        {
+            m_association.put( p_alphabeTryUser.get(iLetter), latinLetters[iLetter] );
+        }
     }
+
+    /*
+    public void setAssociation(HashMap<String, Double> p_letters)
+    {
+        // Order
+        // latinLetters already in order frequency DESC
+        HashMap<String, Double> lettersOrder = (HashMap<String, Double>) MapManager.sortByComparator(p_letters, MapManager.DESC);
+
+        // Only take strings
+        String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
+        String[] lettersTry = lettersOrder.keySet().toArray(new String[lettersOrder.keySet().size()]);
+
+        // Associate strings
+        // <letterWantedForUncrypting, letterReadableFromAlphabet>
+        m_association.clear();
+
+
+        for(int iLetter = 0; iLetter < lettersTry.length; iLetter++)
+        {
+            m_association.put( lettersTry[iLetter], latinLetters[iLetter] );
+        }
+    }
+    */
 }

@@ -1,5 +1,7 @@
 package project_crypto.Views;
 
+import project_crypto.Models.Permutation;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -22,6 +24,8 @@ public class UncryptingView extends JPanel
     private JTextArea m_cryptedTextArea;
     private JButton m_exportButton;
 
+    private Permutation m_permutation;
+
 
     public UncryptingView()
     {
@@ -36,7 +40,7 @@ public class UncryptingView extends JPanel
 
         m_cryptButton = new JButton("TRY");
         m_cryptButton.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
-        m_cryptButton.addActionListener(new CryptActions());
+        m_cryptButton.addActionListener(new UncryptActions());
         this.add(m_cryptButton);
 
         m_cryptedTextArea = new JTextArea(Global.m_heightScrollArea, Global.m_widthScrollArea );
@@ -52,6 +56,7 @@ public class UncryptingView extends JPanel
         m_exportButton = new JButton("EXPORT");
         this.add(m_exportButton);
 
+        m_permutation = new Permutation();
 
         this.setVisible(true);
     }
@@ -66,6 +71,16 @@ public class UncryptingView extends JPanel
         m_cryptedTextArea.setText(p_text);
     }
 
+    private void updatePermutation(String p_textToUncrypt, List<String> alphabeTryUser)
+    {
+        m_permutation.Uncrypting(p_textToUncrypt, alphabeTryUser);
+    }
+
+    private void setUncryptedTextArea(String p_uncryptedText)
+    {
+        m_uncryptedTextArea.setText(p_uncryptedText);
+    }
+
     public String GetUncryptedText()
     {
         return m_uncryptedTextArea.getText();
@@ -75,7 +90,7 @@ public class UncryptingView extends JPanel
 * ActionListeners
 * ============================================================================================================ */
 
-    class CryptActions implements ActionListener
+    class UncryptActions implements ActionListener
     {
         public void actionPerformed(ActionEvent p_actionEvent)
         {
@@ -83,6 +98,10 @@ public class UncryptingView extends JPanel
             if (p_actionEvent.getSource() == m_cryptButton)
             {
                 List<String> alphabeTryUser = alphaTable.getAlphabetTryUser();
+
+                updatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);
+
+                setUncryptedTextArea(m_permutation.GetReadableString());
             }
         }
     }
