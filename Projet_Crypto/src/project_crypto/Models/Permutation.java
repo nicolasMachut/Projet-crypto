@@ -98,15 +98,14 @@ public class Permutation extends Crypting{
         this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
         this.m_readableString = m_cryptedString;
 
-        System.out.println(p_alphabeTryUser.toString());
         setAssociation(p_alphabeTryUser);
 
         for(String letterKey : m_association.keySet())
         {
-            this.m_readableString.replace( this.m_association.get(letterKey) , letterKey.toLowerCase());
+            this.m_readableString = this.m_readableString.replace( this.m_association.get(letterKey) , letterKey.toLowerCase());
         }
 
-        this.m_cryptedString = this.m_cryptedString.toUpperCase();
+        this.m_readableString = this.m_readableString.toUpperCase();
     }
 
     public void setAssociation(List<String> p_alphabeTryUser)
@@ -121,15 +120,11 @@ public class Permutation extends Crypting{
         for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
         {
             m_association.put( p_alphabeTryUser.get(iLetter), latinLetters[iLetter] );
-
-            System.out.println( p_alphabeTryUser.get(iLetter) + "->" + latinLetters[iLetter] );
         }
     }
 
     public void setAssociationFrequency(List<String> p_alphabeTryUser)
     {
-        System.out.println(p_alphabeTryUser.toString());
-
         // Only take strings
         String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
 
@@ -139,7 +134,7 @@ public class Permutation extends Crypting{
 
         for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
         {
-            m_association.put( p_alphabeTryUser.get(iLetter), latinLetters[iLetter] );
+            m_association.put(p_alphabeTryUser.get(iLetter), latinLetters[iLetter]);
         }
     }
 

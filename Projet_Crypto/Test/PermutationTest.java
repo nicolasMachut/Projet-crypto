@@ -57,12 +57,15 @@ public class PermutationTest {
     public void testPermuter()
     {
         List<String> alphabeTryUser = new ArrayList<String>();
-        alphabeTryUser.add("p");
-        alphabeTryUser.add("r");
+        alphabeTryUser.add("E");
+        alphabeTryUser.add("P");
+        alphabeTryUser.add("S");
+        alphabeTryUser.add("I");
 
-        permutation.Uncrypting("ab", alphabeTryUser);
 
-        assertEquals("pr", permutation.GetReadableString());
+        permutation.Uncrypting("abcd dcba", alphabeTryUser);
+
+        assertEquals("EPSIISPE", permutation.GetReadableString());
     }
 
 

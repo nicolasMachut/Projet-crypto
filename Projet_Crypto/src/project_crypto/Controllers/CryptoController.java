@@ -143,7 +143,7 @@ public class CryptoController
                     m_outputFilePath = m_mainView.GetOutputFile();
 
                     // Init text for the user
-                    m_uncryptingView.getAlphaTable().setDataRowAlphaTable("c");//"abcdefghijklmnopqrstuvwxyz");
+                    m_uncryptingView.getAlphaTable().setDataRowAlphaTable(""); //"abcdefghijklmnopqrstuvwxyz"
                     m_uncryptingView.setCryptedTextArea(m_textFileManager.getText());
 
                     // show interface
