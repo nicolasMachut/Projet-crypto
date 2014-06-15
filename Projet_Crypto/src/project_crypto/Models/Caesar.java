@@ -48,7 +48,7 @@ public class Caesar extends Crypting
     {
         FrequencyAnalyse fileGiven = new FrequencyAnalyse(p_textToUncrypt);
         this.m_cryptedString =  new WordToNormalize().normalize(p_textToUncrypt);
-        HashMap<String, Double> frequency = fileGiven.CalculCharFrequency();
+        HashMap<String, Double> frequency = fileGiven.CalculCharFrequencyMono();
 
         int key = 0;
         for(String KeyH : this.m_alphabet.GetFrequencySortedDesc().keySet())
