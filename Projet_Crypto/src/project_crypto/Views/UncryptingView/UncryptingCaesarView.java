@@ -42,8 +42,6 @@ public class UncryptingCaesarView extends UncryptingView
     {
         caesar.Uncrypting(m_cryptedTextArea.getText(), Integer.parseInt(m_keyField.getText()));
 
-        System.out.println(caesar.GetReadableString());
-
         setUncryptedTextArea(caesar.GetReadableString());
     }
 

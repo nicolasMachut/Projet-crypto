@@ -8,6 +8,7 @@ import project_crypto.Models.Triangular;
 import project_crypto.Views.MainView;
 import project_crypto.Views.UncryptingView.UncryptingCaesarView;
 import project_crypto.Views.UncryptingView.UncryptingPermutationView;
+import project_crypto.Views.UncryptingView.UncryptingPolybeView;
 import project_crypto.Views.UncryptingView.UncryptingView;
 import project_crypto.Views.Window;
 import project_crypto.Ressources.Lang.Lang_en;
@@ -188,12 +189,9 @@ public class CryptoController
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
-
-                    /*
-                    Polybe polybe = new Polybe("fr");
-                    polybe.Uncrypting( m_textFileManager.getText() );
-                    m_textFileManager.SetText(polybe.GetReadableString());
-                    */
+                    UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView("fr"); // PROVISOIRE
+                    uncryptingPolybeView.setCryptedTextArea(textToUncrypt);
+                    m_uncryptingView = uncryptingPolybeView;
                 }
                 else if(type.equals(Lang_en.permutation))
                 {
