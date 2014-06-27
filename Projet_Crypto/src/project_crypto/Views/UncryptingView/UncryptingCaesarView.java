@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class UncryptingCaesarView extends UncryptingView
 {
-    private Caesar caesar;
+    private Caesar m_caesar;
     private JFormattedTextField m_keyField;
 
     public UncryptingCaesarView()
@@ -26,7 +26,7 @@ public class UncryptingCaesarView extends UncryptingView
         m_keyField.setPreferredSize(new Dimension(200, 30));
         this.add(m_keyField);
 
-        caesar = new Caesar();
+        m_caesar = new Caesar();
 
         m_tryUncriptButton.addActionListener(new UncryptActions());
 
@@ -40,9 +40,7 @@ public class UncryptingCaesarView extends UncryptingView
 
     private void updateCaesar()
     {
-        caesar.Uncrypting(m_cryptedTextArea.getText(), Integer.parseInt(m_keyField.getText()));
-
-        setUncryptedTextArea(caesar.GetReadableString());
+        setUncryptedTextArea(m_caesar.GetReadableString());
     }
 
     private boolean isAGoodCeasarKey(String keyToTest)
@@ -82,6 +80,8 @@ public class UncryptingCaesarView extends UncryptingView
                 if( isAGoodCeasarKey(m_keyField.getText()) )
                 {
                     updateCaesar();
+
+                    m_caesar.Uncrypting(m_cryptedTextArea.getText(), Integer.parseInt(m_keyField.getText()));
                 }
             }
         }

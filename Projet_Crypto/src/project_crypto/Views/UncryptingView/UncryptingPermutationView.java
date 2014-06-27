@@ -20,17 +20,17 @@ import java.util.List;
 
 public class UncryptingPermutationView extends UncryptingView
 {
-    private AlphabetJTable alphaTable;
+    private AlphabetJTable m_alphaTable;
     private Permutation m_permutation;
 
     public UncryptingPermutationView()
     {
         super();
 
-        alphaTable = new AlphabetJTable();
-        JScrollPane scrollPaneTable = new JScrollPane(alphaTable);
-        Dimension dimension = alphaTable.getPreferredSize();
-        scrollPaneTable.setPreferredSize(new Dimension(dimension.width, alphaTable.getRowHeight() * 3 + 1));
+        m_alphaTable = new AlphabetJTable();
+        JScrollPane scrollPaneTable = new JScrollPane(m_alphaTable);
+        Dimension dimension = m_alphaTable.getPreferredSize();
+        scrollPaneTable.setPreferredSize(new Dimension(dimension.width, m_alphaTable.getRowHeight() * 3 + 1));
         Border noBorder = BorderFactory.createEmptyBorder(0, 0, 0, 0);
         scrollPaneTable.setBorder(noBorder);
         scrollPaneTable.setViewportBorder(null);
@@ -60,7 +60,7 @@ public class UncryptingPermutationView extends UncryptingView
             {
                 // TODO : adapter avec getLangUserChoose()
 
-                List<String> alphabeTryUser = alphaTable.getAlphabetTryUser();
+                List<String> alphabeTryUser = m_alphaTable.getAlphabetTryUser();
 
                 updatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);
 

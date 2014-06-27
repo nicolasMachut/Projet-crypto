@@ -65,6 +65,20 @@ public class Triangular extends Crypting
         ShowTriangle(triangle);
     }
 
+    // Getters for the view
+    public int getNbLines()
+    {
+        return m_nbLines;
+    }
+    public int getNbColumns()
+    {
+        return m_nbColumns;
+    }
+    public int getNbLetters()
+    {
+        return m_nbLetters;
+    }
+
     /**
      * Uncrypting :
      * This code will find the column's order thanks to the key word and the encrypting text length
@@ -90,8 +104,8 @@ public class Triangular extends Crypting
 
         // Fill the triangle
         String triangle[][] = BuildTriangleToUncrypt(lasstLetterCol, columnOrder);
-        System.out.println("Décryptage : "+m_cryptedString);
-        ShowTriangle(triangle);
+        //System.out.println("Décryptage : "+m_cryptedString);
+        //ShowTriangle(triangle);
 
         // We uncrypt thanks to the column order
         for (int iLig = 0; iLig < m_nbLines; iLig++)
@@ -173,8 +187,10 @@ public class Triangular extends Crypting
      * @param p_lastLetterCol : last letter's column
      * @param p_columnOrder : list of the columns in the key word's order
      * @return an array (so a rectangle or square) with the triangle in it
+     *
+     * NOTE : public for the view
      */
-    private String[][] BuildTriangleToUncrypt(int p_lastLetterCol, List<Integer> p_columnOrder)
+    public String[][] BuildTriangleToUncrypt(int p_lastLetterCol, List<Integer> p_columnOrder)
     {
         // Initialize the triangle
         String triangle[][] = new String[m_nbLines][m_nbColumns];
@@ -221,8 +237,10 @@ public class Triangular extends Crypting
      * Finally, save the indexes in the List
      * @param p_key : key word chosen by the user
      * @return column's order
+     *
+     * NOTE : public for the view
      */
-    private List<Integer> FindColumnOrder(String p_key)
+    public List<Integer> FindColumnOrder(String p_key)
     {
         // Create the encrypting key
         p_key = CreateKey(p_key);
@@ -389,7 +407,7 @@ public class Triangular extends Crypting
             {
                 if (p_triangle[iLig][iCol].equals(""))
                 {
-                    System.out.print("-"); // help us to see the rows and lines
+                    System.out.print("-"); // help us see the rows and lines
                 }
                 else
                 {

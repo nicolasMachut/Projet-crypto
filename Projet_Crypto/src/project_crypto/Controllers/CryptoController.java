@@ -6,10 +6,7 @@ import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
 import project_crypto.Models.Triangular;
 import project_crypto.Views.MainView;
-import project_crypto.Views.UncryptingView.UncryptingCaesarView;
-import project_crypto.Views.UncryptingView.UncryptingPermutationView;
-import project_crypto.Views.UncryptingView.UncryptingPolybeView;
-import project_crypto.Views.UncryptingView.UncryptingView;
+import project_crypto.Views.UncryptingView.*;
 import project_crypto.Views.Window;
 import project_crypto.Ressources.Lang.Lang_en;
 
@@ -187,17 +184,23 @@ public class CryptoController
                     uncryptingCaesarView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingCaesarView;
                 }
+                else if(type.equals(Lang_en.permutation))
+                {
+                    UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView();
+                    uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
+                    m_uncryptingView = uncryptingPermutationView;
+                }
                 else if(type.equals(Lang_en.polybe_square))
                 {
                     UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView("fr"); // PROVISOIRE
                     uncryptingPolybeView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingPolybeView;
                 }
-                else if(type.equals(Lang_en.permutation))
+                else if(type.equals(Lang_en.triangle_permutation))
                 {
-                    UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView();
-                    uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
-                    m_uncryptingView = uncryptingPermutationView;
+                    UncryptingTriangularView uncryptingTriangularView = new UncryptingTriangularView();
+                    uncryptingTriangularView.setCryptedTextArea(textToUncrypt);
+                    m_uncryptingView = uncryptingTriangularView;
                 }
 
                 // show interface

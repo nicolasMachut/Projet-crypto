@@ -11,13 +11,13 @@ import java.awt.event.ActionListener;
  */
 public class UncryptingPolybeView extends UncryptingView
 {
-    private Polybe polybe;
+    private Polybe m_polybe;
 
     public UncryptingPolybeView(String p_language)
     {
         super();
 
-        polybe = new Polybe(p_language);
+        m_polybe = new Polybe(p_language);
         m_tryUncriptButton.addActionListener(new UncryptActions());
 
         showComponents();
@@ -25,9 +25,9 @@ public class UncryptingPolybeView extends UncryptingView
 
     private void updatePolybe()
     {
-        polybe.Uncrypting(m_cryptedTextArea.getText());
+        m_polybe.Uncrypting(m_cryptedTextArea.getText());
 
-        setUncryptedTextArea(polybe.GetReadableString());
+        setUncryptedTextArea(m_polybe.GetReadableString());
     }
 
     /* ===============================================================================================================
