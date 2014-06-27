@@ -34,6 +34,8 @@ public class Permutation extends Crypting{
 
     public void SetLanguageAlphabetUsed(String p_lang)
     {
+        super.setLanguage(p_lang);
+
         if (p_lang.equals("fr"))
         {
             m_alphabetInLang = new Alphabet().GetFrSortedDesc();

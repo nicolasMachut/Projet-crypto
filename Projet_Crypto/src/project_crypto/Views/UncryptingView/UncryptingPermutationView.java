@@ -58,7 +58,7 @@ public class UncryptingPermutationView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                m_permutation.setLanguage(getLangUserChoose());
+                m_permutation.SetLanguageAlphabetUsed(getLangUserChoose());
 
                 List<String> alphabeTryUser = m_alphaTable.getAlphabetTryUser();
 

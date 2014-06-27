@@ -31,7 +31,7 @@ public class Polybe extends Crypting
         setAssociation(p_language);
     }
 
-    private void setAssociation(String p_language)
+    public void setAssociation(String p_language)
     {
         super.setLanguage(p_language);
 

@@ -43,6 +43,17 @@ public class PolybeTest {
     }
 
     @Test
+    public void TestPolybeUncryptingLittle()
+    {
+        String textToUncrypt = "44113444";
+
+        String uncryptedText = "SANS";
+
+        this.polybe.Uncrypting(textToUncrypt);
+        assertEquals(uncryptedText, this.polybe.GetReadableString());
+    }
+
+    @Test
     public void TestPutEachNumbersInArrayString()
     {
         this.polybe.Crypting("BCDE");

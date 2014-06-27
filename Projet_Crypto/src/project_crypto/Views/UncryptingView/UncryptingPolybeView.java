@@ -40,7 +40,8 @@ public class UncryptingPolybeView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                m_polybe.setLanguage(getLangUserChoose());
+                m_polybe.setAssociation(getLangUserChoose());
+
                 updatePolybe();
             }
         }
