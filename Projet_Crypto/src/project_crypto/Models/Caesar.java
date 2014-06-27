@@ -46,28 +46,25 @@ public class Caesar extends Crypting
 
      public int GetCryptingKey(String p_textToUncrypt)
     {
-        FrequencyAnalyse fileGiven = new FrequencyAnalyse(p_textToUncrypt);
         this.m_cryptedString =  new WordToNormalize().normalize(p_textToUncrypt);
-        HashMap<String, Double> frequency = fileGiven.CalculCharFrequencyMono();
+        FrequencyAnalyse fileGivenFreq = new FrequencyAnalyse(p_textToUncrypt);
+        HashMap<String, Double> frequency = fileGivenFreq.CalculCharFrequencyMono();
 
         int key = 0;
-        for(String KeyH : this.m_alphabet.GetFrequencySortedDesc().keySet())
+
+        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc().keySet().toArray()[0];
+        String letterMostUsedInText = (String) frequency.keySet().toArray()[0];
+
+        int iLetterMostUsedLanguage = this.m_alphabet.GetIndexLetter(letterMostUsedLanguage);
+        int iLetterMostUsedInText = this.m_alphabet.GetIndexLetter(letterMostUsedInText);
+
+        if(iLetterMostUsedInText > iLetterMostUsedLanguage)
         {
-            for(int i = 0; i < m_alphabet.GetLatin().length; i++)
-            {
-                if(m_alphabet.GetLatin()[i].equals(fileGiven.getMostUsedChar(frequency)))
-                {
-                    // Compare with most used letter in the alphabet, not in the text
-                    if((i+1) >  this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH))
-                    {
-                        key = (i+1) - this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH);
-                    }
-                    else
-                    {
-                        key = this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH) - (i+1);
-                    }
-                }
-            }
+            key = Math.abs(iLetterMostUsedLanguage - iLetterMostUsedInText);
+        }
+        else
+        {
+            key = (  this.m_alphabet.GetLatin().length + (iLetterMostUsedInText - iLetterMostUsedLanguage));
         }
 
         return key;

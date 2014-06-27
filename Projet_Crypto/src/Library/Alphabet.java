@@ -39,8 +39,6 @@ public class Alphabet
         HashMap<String, Double> trigrammeFr = new HashMap<String, Double>();
         HashMap<String, Double> trigrammeEn = new HashMap<String, Double>();
 
-        List<String> impossibleBigramme;
-
         monogrammeFr.put("A", 8.40);
         monogrammeFr.put("B", 1.06);
         monogrammeFr.put("C", 3.03);
@@ -200,23 +198,34 @@ public class Alphabet
     }
 
 
+    public int GetIndexLetter(String p_letter)
+    {
+        int iLetter = 0;
+
+        for(int iAlphabet = 0; iAlphabet < m_latin.length; iAlphabet++)
+        {
+            if(m_latin[iAlphabet].equals(p_letter))
+            {
+                iLetter = iAlphabet;
+            }
+        }
+
+        return iLetter;
+    }
+
     public Map<String, Double> GetFrequencySortedDesc()
     {
         //return MapManager.sortByComparator(m_frequency, MapManager.DESC);
-        return MapManager.sortByComparator(m_monogramme.get("fr"), MapManager.DESC);
+        //return MapManager.sortByComparator(m_monogramme.get("fr"), MapManager.DESC);
+
+        // TODO : en fonction de la langue
+
+        return GetFrSortedDesc();
     }
 
     public Map<String, Double> GetFrSortedDesc()
     {
-        // Début tempo : test pour analyse freq
-        // A discuter avec Nicolas
-        Alphabet v_alpha = new Alphabet();
-
-        // K 27/05/14 tempo en attendant dicussion avec les gars
-        //v_alpha.InitFr();
-        //HashMap<String, Double> m_frenchFrequency = v_alpha.GetFrequency();
         HashMap<String, Double> m_frenchFrequency = m_monogramme.get("fr");
-        // Fin tempo
 
         return MapManager.sortByComparator(m_frenchFrequency, MapManager.DESC);
     }
@@ -224,15 +233,7 @@ public class Alphabet
 
     public Map<String, Double> GetEnSortedDesc()
     {
-        // Début tempo : test pour analyse freq
-        // A discuter avec Nicolas
-        Alphabet v_alpha = new Alphabet();
-
-        // K 27/05/14 tempo en attendant dicussion avec les gars
-        //v_alpha.InitEn();
-        //HashMap<String, Double> m_englishFrequency = v_alpha.GetFrequency();
         HashMap<String, Double> m_englishFrequency = m_monogramme.get("en");
-        // Fin tempo
 
         return MapManager.sortByComparator(m_englishFrequency, MapManager.DESC);
     }
@@ -250,4 +251,12 @@ public class Alphabet
         return result;
     }
 
+
+    private void showCharFrequency(HashMap<String, Double> p_lettersFrequencies)
+    {
+        for (String key : p_lettersFrequencies.keySet())
+        {
+            System.out.println("key: " + key + " = " + p_lettersFrequencies.get(key) + " %");
+        }
+    }
 }

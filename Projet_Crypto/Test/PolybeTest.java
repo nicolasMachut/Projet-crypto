@@ -16,7 +16,7 @@ public class PolybeTest {
     @Before
     public void Setup()
     {
-        this.polybe = new Polybe();
+        this.polybe = new Polybe("fr");
     }
 
     @Test

@@ -2,7 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Caesar;
 
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertEquals;
 
 /**
  * @author Edouard SOUAN-MARCELON
@@ -32,21 +32,6 @@ public class CaesarTest {
     }
 
     @Test
-    public void TestUncryptingCaesarWhenEIsTheMostUsedLetter()
-    {
-        String textToDecrypt = "EGUVWPVGUVGGG";
-        String decryptedText = "CESTUNTESTEEE";
-        this.caesar.Uncrypting(textToDecrypt);
-        assertEquals(decryptedText, this.caesar.GetReadableString());
-    }
-
-    @Test
-    public void TestGetCryptingKey()
-    {
-        assertEquals(0, this.caesar.GetCryptingKey("EGUVWPVGUV"));
-    }
-
-    @Test
     public void TestUncryptingCaesarManual()
     {
         int cryptingKey = 2;
@@ -55,4 +40,46 @@ public class CaesarTest {
         this.caesar.Uncrypting(textToDecrypt, cryptingKey);
         assertEquals(decryptedText, this.caesar.GetReadableString());
     }
+
+    @Test
+    public void TestUncryptingCaesarWhenEIsTheMostUsedLetterAfter()
+    {
+        String textToDecrypt = "EGUVWPVGUVGGG";
+        String decryptedText = "CESTUNTESTEEE";
+        this.caesar.Uncrypting(textToDecrypt);
+        assertEquals(decryptedText, this.caesar.GetReadableString());
+    }
+
+    @Test
+    public void TestUncryptingCaesarWhenEIsTheMostUsedLetterBefore()
+    {
+        String textToDecrypt = "ACQRSLRCQRCCC";
+        String decryptedText = "CESTUNTESTEEE";
+        this.caesar.Uncrypting(textToDecrypt);
+        assertEquals(decryptedText, this.caesar.GetReadableString());
+    }
+
+    /*
+    @Test
+    public void TestUncryptingCaesarWhenEIsNotTheMostUsedLetter()
+    {
+        // Clé : 3
+        String textToDecrypt = "OHFDSLWDLQHYRXVVRXKDLWHXQERQYRO";
+        String decryptedText = "LECAPITAINEVOUSSOUHAITEUNBONVOL";
+
+        this.caesar.Uncrypting(textToDecrypt);
+        assertEquals(decryptedText, this.caesar.GetReadableString());
+    }
+    */
+
+    /*
+    @Test
+    public void TestGetCryptingKey()
+    {
+        assertEquals(2, this.caesar.GetCryptingKey("EGUVWPVGUV"));
+    }
+    */
+
+
+
 }

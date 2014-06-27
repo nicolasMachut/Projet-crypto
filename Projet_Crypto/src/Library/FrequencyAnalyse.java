@@ -96,10 +96,9 @@ public class FrequencyAnalyse
         for (String key : frequency.keySet())
         {
             frequency.put(key, frequency.get(key)/totalChars*100);
-
         }
 
-        return (HashMap<String, Double>)MapManager.sortByComparator(frequency, false);
+        return (HashMap<String, Double>)MapManager.sortByComparator(frequency, MapManager.DESC);
     }
 
     /**
@@ -166,7 +165,6 @@ public class FrequencyAnalyse
         return false;
     }
 
-    // TODO : améliorer, réfléchir sur l'algorithme
     public HashMap<String,Double> GetBigrammeScore(String p_UncryptedText)
     {
         HashMap score = new HashMap<String,Double>();

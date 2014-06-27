@@ -90,7 +90,8 @@ public class CryptoController
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
-                    Polybe polybe = new Polybe();
+                    // TODO : langue dynamique
+                    Polybe polybe = new Polybe("fr");
                     polybe.Crypting(m_textFileManager.getText());
                     m_textFileManager.SetText(polybe.GetEncryptedString());
                 }
@@ -151,7 +152,8 @@ public class CryptoController
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
-                    Polybe polybe = new Polybe();
+                    // TODO : langue dynamique
+                    Polybe polybe = new Polybe("fr");
                     polybe.Uncrypting( m_textFileManager.getText() );
                     m_textFileManager.SetText(polybe.GetReadableString());
                 }
