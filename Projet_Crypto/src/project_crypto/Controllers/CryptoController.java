@@ -1,5 +1,6 @@
 package project_crypto.Controllers;
 
+import Library.LanguageDetection;
 import Library.TextFileManager;
 import project_crypto.Models.Caesar;
 import project_crypto.Models.Permutation;
@@ -77,7 +78,7 @@ public class CryptoController
                     do
                     {
                         key = this.GetCryptingKeyChoosenByUserAsString();
-                    }while(! this.isAGoodCeasarKey(key));
+                    }while(!this.isAGoodCeasarKey(key));
 
                     Caesar caesar = new Caesar();
                     caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
@@ -119,8 +120,10 @@ public class CryptoController
                 m_outputFilePath = m_mainView.GetOutputFile();
                 String textToUncrypt = m_textFileManager.getText();
 
-                // TODO : langue dynamique
-                // TODO : Décrypter 1 fois automtiquement pour chaque
+                // Which language do you speak ?
+                String language = new LanguageDetection().getLanguage(textToUncrypt);
+
+
                 if(type.equals(Lang_en.caesar))
                 {
                     UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView();

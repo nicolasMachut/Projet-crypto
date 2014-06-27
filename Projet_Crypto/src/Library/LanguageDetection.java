@@ -66,4 +66,18 @@ public class LanguageDetection
         //retourne la valeur au centième
         return analyseLangue;
     }
+
+    public String getLanguage(String p_text)
+    {
+        Map<String, Double> analyseLangue = SumFrequenceMostUsedCharInLanguage(p_text);
+
+        if(analyseLangue.get("fr") > analyseLangue.get("en"))
+        {
+            return "fr";
+        }
+        else
+        {
+            return "en";
+        }
+    }
 }
