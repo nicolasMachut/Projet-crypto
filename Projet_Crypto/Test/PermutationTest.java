@@ -1,9 +1,12 @@
+import Library.LanguageDetection;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Permutation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -68,10 +71,26 @@ public class PermutationTest {
         assertEquals("EPSIISPE", permutation.GetReadableString());
     }
 
-
-        /*
     @Test
-    public void testPermuter()
+    public void testPermuterDetectionLangueFr()
+    {
+        Permutation permut = new Permutation();
+        permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
+        Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
+
+        if( analyseLangue.get("fr" > analyseLangue.get("en")) )
+        {
+            
+        }
+
+        Assert.assertEquals(392.24999999999994, analyseLangue.get("fr"));
+        Assert.assertEquals(356.9, analyseLangue.get("en"));
+    }
+
+
+    /*
+    @Test
+    public void testPermuter01()
     {
         Permutation permut = new Permutation();
         permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
@@ -84,7 +103,7 @@ public class PermutationTest {
        String crypted = "KDFFDKSDVBXBYBFDODSEJDKDOOEBSDZCLSYDOEKFBCJOEWDJBSKESLJKYBDJFJDOFZEOFCLPCLSOUEWCSEXYDELKTEJQDMDJF";
         this.permutation.setCryptedString(crypted);
 
-       assertEquals("KEFFEKSEVBXBYBFEOESAJEKEOOABSEZCLSYEOAKFBCJOAWEJBSKASLJKYBEJFJEOFZAOFCLPCLSOUAWCSAXYEALKTAJQEMEJF", this.permutation.lol());
+       assertEquals("KEFFEKSEVBXBYBFEOESAJEKEOOABSEZCLSYEOAKFBCJOAWEJBSKASLJKYBEJFJEOFZAOFCLPCLSOUAWCSAXYEALKTAJQEMEJF", this.permutation.GetEncryptedString());
     }
     */
 
