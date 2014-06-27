@@ -16,7 +16,7 @@ public class LanguageDetection {
     Map<String,Double> myAlphaFr = alpha.GetFrSortedDesc();
 
 
-    public Double SumFrequenceMostUsedCharInEnglish(String p_Text)
+    public Double SumFrequenceMostUsedCharInLanguage(String p_Text)
     {
         Double total;
         Double totalEn = 0.00d,

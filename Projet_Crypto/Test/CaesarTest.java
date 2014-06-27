@@ -40,6 +40,6 @@ public class CaesarTest {
     @Test
     public void TestGetCryptingKey()
     {
-        assertEquals(2, this.caesar.GetCryptingKey("EGUVWPVGUV"));
+        assertEquals(0, this.caesar.GetCryptingKey("EGUVWPVGUV"));
     }
 }
