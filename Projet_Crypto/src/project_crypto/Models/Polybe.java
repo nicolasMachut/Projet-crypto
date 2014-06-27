@@ -28,11 +28,11 @@ public class Polybe extends Crypting
     {
         super();
 
-        if (lang == "fr")
+        if (lang.equals("fr"))
         {
             association = setAssociationFr();
         }
-        else if (lang == "en")
+        else if (lang.equals("en"))
         {
             association = setAssociationEn();
         }
@@ -118,6 +118,8 @@ public class Polybe extends Crypting
         {
             this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
         }
+
+        System.out.println(m_cryptedString);
     }
 
     /**
