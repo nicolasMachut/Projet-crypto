@@ -12,17 +12,16 @@ import java.util.Map;
  *
  * Date :  27/03/14.
  */
-public class LanguageDetection {
-
-
+public class LanguageDetection
+{
     Alphabet alpha = new Alphabet();
     Map<String,Double> myAlphaEn = alpha.GetEnSortedDesc();
     Map<String,Double> myAlphaFr = alpha.GetFrSortedDesc();
 
 
-    public Double SumFrequenceMostUsedCharInLanguage(String p_Text)
+    public Map<String, Double> SumFrequenceMostUsedCharInLanguage(String p_Text)
     {
-        Double total;
+        Map<String, Double> analyseLangue = new HashMap<String, Double>();
         Double totalEn = 0.00d,
                totalFr = 0.00d;
 
@@ -58,15 +57,13 @@ public class LanguageDetection {
             totalFr += myAlphaFr.get(charCorrespondance.get(key))*nbAppearanceCharFr.get(key);
         }
 
-        if(totalEn > totalFr)
-        {
-            total = totalEn;
-        }else
-        {
-            total = totalFr;
-        }
+        totalEn = (totalEn*100)/100;
+        totalFr = (totalFr*100)/100;
+
+        analyseLangue.put("fr", totalFr);
+        analyseLangue.put("en", totalEn);
 
         //retourne la valeur au centième
-        return (total*100)/100;
+        return analyseLangue;
     }
 }
