@@ -24,34 +24,84 @@ public class Polybe extends Crypting
     //End variables
 
     //Constructor
-    public Polybe()
+    public Polybe(String lang)
     {
         super();
-        this.association.put("A", "11");
-        this.association.put("B", "12");
-        this.association.put("C", "13");
-        this.association.put("D", "14");
-        this.association.put("E", "15");
-        this.association.put("F", "21");
-        this.association.put("G", "22");
-        this.association.put("H", "23");
-        this.association.put("I", "24");
-        this.association.put("J", "25");
-        this.association.put("K", "31");
-        this.association.put("L", "32");
-        this.association.put("M", "33");
-        this.association.put("N", "34");
-        this.association.put("O", "35");
-        this.association.put("P", "41");
-        this.association.put("Q", "42");
-        this.association.put("R", "43");
-        this.association.put("S", "44");
-        this.association.put("T", "45");
-        this.association.put("U", "51");
-        this.association.put("V", "52");
-        this.association.put("X", "53");
-        this.association.put("Y", "54");
-        this.association.put("Z", "55");
+
+        if (lang == "fr")
+        {
+            association = setAssociationFr();
+        }
+        else if (lang == "en")
+        {
+            association = setAssociationEn();
+        }
+    }
+
+    private HashMap<String, String> setAssociationFr()
+    {
+        HashMap<String, String> associationFr = new HashMap<String, String>();
+
+        associationFr.put("A", "11");
+        associationFr.put("B", "12");
+        associationFr.put("C", "13");
+        associationFr.put("D", "14");
+        associationFr.put("E", "15");
+        associationFr.put("F", "21");
+        associationFr.put("G", "22");
+        associationFr.put("H", "23");
+        associationFr.put("I", "24");
+        associationFr.put("J", "25");
+        associationFr.put("K", "31");
+        associationFr.put("L", "32");
+        associationFr.put("M", "33");
+        associationFr.put("N", "34");
+        associationFr.put("O", "35");
+        associationFr.put("P", "41");
+        associationFr.put("Q", "42");
+        associationFr.put("R", "43");
+        associationFr.put("S", "44");
+        associationFr.put("T", "45");
+        associationFr.put("U", "51");
+        associationFr.put("V", "52");
+        associationFr.put("X", "53");
+        associationFr.put("Y", "54");
+        associationFr.put("Z", "55");
+
+        return associationFr;
+    }
+
+    private HashMap<String, String> setAssociationEn()
+    {
+        HashMap<String, String> associationEn = new HashMap<String, String>();
+
+        associationEn.put("A", "11");
+        associationEn.put("B", "12");
+        associationEn.put("C", "13");
+        associationEn.put("D", "14");
+        associationEn.put("E", "15");
+        associationEn.put("F", "21");
+        associationEn.put("G", "22");
+        associationEn.put("H", "23");
+        associationEn.put("I", "24");
+        associationEn.put("K", "25");
+        associationEn.put("L", "31");
+        associationEn.put("M", "32");
+        associationEn.put("N", "33");
+        associationEn.put("O", "34");
+        associationEn.put("P", "35");
+        associationEn.put("Q", "41");
+        associationEn.put("R", "42");
+        associationEn.put("S", "43");
+        associationEn.put("T", "44");
+        associationEn.put("U", "45");
+        associationEn.put("V", "51");
+        associationEn.put("W", "52");
+        associationEn.put("X", "53");
+        associationEn.put("Y", "54");
+        associationEn.put("Z", "55");
+
+        return associationEn;
     }
 
     /**
