@@ -178,12 +178,22 @@ public class CryptoController
                 m_outputFilePath = m_mainView.GetOutputFile();
                 String textToUncrypt = m_textFileManager.getText();
 
+                // TODO : langue dynamique
                 // TODO : Décrypter 1 fois automtiquement pour chaque
                 if(type.equals(Lang_en.caesar))
                 {
                     UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView();
                     uncryptingCaesarView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingCaesarView;
+                }
+                else if(type.equals(Lang_en.polybe_square))
+                {
+
+                    /*
+                    Polybe polybe = new Polybe("fr");
+                    polybe.Uncrypting( m_textFileManager.getText() );
+                    m_textFileManager.SetText(polybe.GetReadableString());
+                    */
                 }
                 else if(type.equals(Lang_en.permutation))
                 {
