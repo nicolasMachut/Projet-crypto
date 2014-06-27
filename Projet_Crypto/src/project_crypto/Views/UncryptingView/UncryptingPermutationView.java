@@ -1,6 +1,7 @@
-package project_crypto.Views;
+package project_crypto.Views.UncryptingView;
 
 import project_crypto.Models.Permutation;
+import project_crypto.Views.AlphabetJTable;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -37,7 +38,7 @@ public class UncryptingPermutationView extends UncryptingView
 
         m_permutation = new Permutation();
 
-        m_cryptButton.addActionListener(new UncryptActions());
+        m_tryUncriptButton.addActionListener(new UncryptActions());
 
         showComponents();
     }
@@ -55,8 +56,10 @@ public class UncryptingPermutationView extends UncryptingView
         public void actionPerformed(ActionEvent p_actionEvent)
         {
             //Handle open button action.
-            if (p_actionEvent.getSource() == m_cryptButton)
+            if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
+                // TODO : adapter avec getLangUserChoose()
+
                 List<String> alphabeTryUser = alphaTable.getAlphabetTryUser();
 
                 updatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);

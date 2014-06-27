@@ -6,8 +6,8 @@ import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
 import project_crypto.Models.Triangular;
 import project_crypto.Views.MainView;
-import project_crypto.Views.UncryptingPermutationView;
-import project_crypto.Views.UncryptingView;
+import project_crypto.Views.UncryptingView.UncryptingPermutationView;
+import project_crypto.Views.UncryptingView.UncryptingView;
 import project_crypto.Views.Window;
 import project_crypto.Ressources.Lang.Lang_en;
 

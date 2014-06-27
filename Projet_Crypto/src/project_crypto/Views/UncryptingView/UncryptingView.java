@@ -1,4 +1,6 @@
-package project_crypto.Views;
+package project_crypto.Views.UncryptingView;
+
+import project_crypto.Views.Global;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,16 +12,25 @@ import java.awt.event.ActionListener;
  */
 public class UncryptingView extends JPanel
 {
-    protected JButton m_cryptButton;
+    protected final ButtonGroup m_languageRadio;
+    protected final JRadioButton m_radioFr;
+    protected final JRadioButton m_radioEn;
+    protected final JButton m_tryUncriptButton;
     protected JTextArea m_uncryptedTextArea;
     protected JTextArea m_cryptedTextArea;
-    protected JButton m_exportButton;
+    protected final JButton m_exportButton;
 
 
     public UncryptingView()
     {
-        m_cryptButton = new JButton("TRY");
-        m_cryptButton.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
+        m_languageRadio = new ButtonGroup();
+        m_radioFr = new JRadioButton("(60%) fr");
+        m_languageRadio.add(m_radioFr);
+        m_radioEn = new JRadioButton("en (40%)");
+        m_languageRadio.add(m_radioEn);
+
+        m_tryUncriptButton = new JButton("TRY");
+        m_tryUncriptButton.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
 
         m_cryptedTextArea = new JTextArea(Global.m_heightScrollArea, Global.m_widthScrollArea );
         m_cryptedTextArea.setEditable(false);
@@ -32,7 +43,10 @@ public class UncryptingView extends JPanel
 
     protected void showComponents()
     {
-        this.add(m_cryptButton);
+        this.add(m_radioFr);
+        this.add(m_radioEn);
+
+        this.add(m_tryUncriptButton);
         JScrollPane scrollPaneCryptedTextArea = new JScrollPane(m_cryptedTextArea);
         this.add(scrollPaneCryptedTextArea);
         JScrollPane scrollPaneUncryptedTextArea = new JScrollPane(m_uncryptedTextArea);
@@ -59,9 +73,23 @@ public class UncryptingView extends JPanel
         return m_uncryptedTextArea.getText();
     }
 
-
     public void AddExportButtonListener(ActionListener p_actionListener)
     {
         m_exportButton.addActionListener(p_actionListener);
+    }
+
+    protected String getLangUserChoose()
+    {
+        String lang = "fr";
+
+        if(m_radioFr.isSelected())
+        {
+            lang = "fr";
+        } else if(m_radioEn.isSelected())
+        {
+            lang = "en";
+        }
+
+        return lang;
     }
 }
