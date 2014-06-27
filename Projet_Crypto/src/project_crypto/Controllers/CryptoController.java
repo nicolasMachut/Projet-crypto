@@ -6,6 +6,7 @@ import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
 import project_crypto.Models.Triangular;
 import project_crypto.Views.MainView;
+import project_crypto.Views.UncryptingView.UncryptingCaesarView;
 import project_crypto.Views.UncryptingView.UncryptingPermutationView;
 import project_crypto.Views.UncryptingView.UncryptingView;
 import project_crypto.Views.Window;
@@ -175,13 +176,24 @@ public class CryptoController
 
                 // Save the output file path
                 m_outputFilePath = m_mainView.GetOutputFile();
-                UncryptingPermutationView uncryptingPermutationView =  new UncryptingPermutationView();
-                uncryptingPermutationView.setCryptedTextArea(m_textFileManager.getText());
-                m_uncryptingView = uncryptingPermutationView;
+                String textToUncrypt = m_textFileManager.getText();
+
+                // TODO : Décrypter 1 fois automtiquement pour chaque
+                if(type.equals(Lang_en.caesar))
+                {
+                    UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView();
+                    uncryptingCaesarView.setCryptedTextArea(textToUncrypt);
+                    m_uncryptingView = uncryptingCaesarView;
+                }
+                else if(type.equals(Lang_en.permutation))
+                {
+                    UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView();
+                    uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
+                    m_uncryptingView = uncryptingPermutationView;
+                }
 
                 // show interface
                 m_window.SetView(m_uncryptingView);
-
                 m_uncryptingView.AddExportButtonListener(new UncryptingExportActions());
             }
             else
@@ -225,7 +237,7 @@ public class CryptoController
                 }
             }
             if(!resultat)
-                JOptionPane.showMessageDialog(null, "Please, choose a numeric key between 1 and 26 or 'auto' for uncrypting mode.");
+                JOptionPane.showMessageDialog(null, "Please, choose a numeric key between 1 and 26.");
 
             return resultat;
         }

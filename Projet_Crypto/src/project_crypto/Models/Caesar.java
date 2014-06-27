@@ -90,6 +90,8 @@ public class Caesar extends Crypting
 
     private void UncryptLetters(int uncryptedKey)
     {
+        this.m_readableString = "";
+
         // Uncrypt text letter by letter
         for(int itext = 0; itext <this.m_cryptedString.length(); itext++)
         {
