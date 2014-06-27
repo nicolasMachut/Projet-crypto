@@ -16,9 +16,9 @@ public class UncryptingCaesarView extends UncryptingView
     private Caesar m_caesar;
     private JFormattedTextField m_keyField;
 
-    public UncryptingCaesarView()
+    public UncryptingCaesarView(String p_language)
     {
-        super();
+        super(p_language);
 
         JLabel keyLabel = new JLabel("Caesar key :");
         this.add(keyLabel);
@@ -26,9 +26,11 @@ public class UncryptingCaesarView extends UncryptingView
         m_keyField.setPreferredSize(new Dimension(200, 30));
         this.add(m_keyField);
 
-        m_caesar = new Caesar();
+        m_cryptedTextArea.getText();
 
         m_tryUncriptButton.addActionListener(new UncryptActions());
+
+        m_caesar = new Caesar(p_language);
 
         showComponents();
     }
@@ -36,6 +38,8 @@ public class UncryptingCaesarView extends UncryptingView
     public void setCaesarKey(int p_key)
     {
         m_keyField.setText( Integer.toString(p_key) );
+
+
     }
 
     private void updateCaesar()
@@ -75,7 +79,7 @@ public class UncryptingCaesarView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                // TODO : adapter avec getLangUserChoose()
+                m_caesar.setLanguage(getLangUserChoose());
 
                 if( isAGoodCeasarKey(m_keyField.getText()) )
                 {

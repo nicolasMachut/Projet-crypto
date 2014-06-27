@@ -6,6 +6,7 @@ import project_crypto.Models.Caesar;
 import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
 import project_crypto.Models.Triangular;
+import project_crypto.Views.Global;
 import project_crypto.Views.MainView;
 import project_crypto.Views.UncryptingView.*;
 import project_crypto.Views.Window;
@@ -14,6 +15,7 @@ import project_crypto.Ressources.Lang.Lang_en;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,31 +74,31 @@ public class CryptoController
 
             if (mode.equals(Lang_en.encrypt))
             {
+                String langue;
+                do {
+                    langue = this.GetCryptingKeyChoosenByUserAsString(Global.m_msgAskLanguage);
+                } while(!this.isAGoodPolybeKey(langue));
+
                 if(type.equals(Lang_en.caesar))
                 {
                     String key;
                     do
                     {
-                        key = this.GetCryptingKeyChoosenByUserAsString();
+                        key = this.GetCryptingKeyChoosenByUserAsString(Global.m_msgAskKeyCaesar);
                     }while(!this.isAGoodCeasarKey(key));
 
-                    Caesar caesar = new Caesar();
+                    Caesar caesar = new Caesar(langue);
                     caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
                     m_textFileManager.SetText(caesar.GetEncryptedString());
                 }
                 else if(type.equals(Lang_en.permutation))
                 {
-                    Permutation permutation = new Permutation();
+                    Permutation permutation = new Permutation(langue);
                     permutation.Crypting(m_textFileManager.getText());
                     m_textFileManager.SetText(permutation.GetEncryptedString());
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
-                    String langue;
-                    do {
-                        langue = this.GetCryptingKeyChoosenByUserAsString();
-                    } while(!this.isAGoodPolybeKey(langue));
-
                     Polybe polybe = new Polybe(langue);
                     polybe.Crypting(m_textFileManager.getText());
                     m_textFileManager.SetText(polybe.GetEncryptedString());
@@ -105,7 +107,7 @@ public class CryptoController
                 {
                     String key;
                     do {
-                        key = this.GetCryptingKeyChoosenByUserAsString();
+                        key = this.GetCryptingKeyChoosenByUserAsString(Global.m_msgAskKeyWord);
                     } while(!this.isAGoodTriangularKey(key));
 
                     Triangular triangular = new Triangular();
@@ -121,33 +123,38 @@ public class CryptoController
                 String textToUncrypt = m_textFileManager.getText();
 
                 // Which language do you speak ?
-                String language = new LanguageDetection().getLanguage(textToUncrypt);
+                LanguageDetection languageDetection = new LanguageDetection();
+                String language = languageDetection.getLanguage(textToUncrypt);
 
 
                 if(type.equals(Lang_en.caesar))
                 {
-                    UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView();
+                    UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView(language);
                     uncryptingCaesarView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingCaesarView;
                 }
                 else if(type.equals(Lang_en.permutation))
                 {
-                    UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView();
+                    UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView(language);
                     uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingPermutationView;
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
-                    UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView("fr"); // PROVISOIRE
+                    UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView(language);
                     uncryptingPolybeView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingPolybeView;
                 }
                 else if(type.equals(Lang_en.triangle_permutation))
                 {
-                    UncryptingTriangularView uncryptingTriangularView = new UncryptingTriangularView();
+                    UncryptingTriangularView uncryptingTriangularView = new UncryptingTriangularView(language);
                     uncryptingTriangularView.setCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingTriangularView;
                 }
+
+                Map<String, Double> languageInfos = languageDetection.SumFrequenceMostUsedCharInLanguage(textToUncrypt);
+                m_uncryptingView.setTextLanguageRadioFr("fr ("+languageInfos.get("fr")+" %)");
+                m_uncryptingView.setTextLanguageRadioEn("en ("+languageInfos.get("en")+" %)");
 
                 // show interface
                 m_window.SetView(m_uncryptingView);
@@ -165,9 +172,9 @@ public class CryptoController
             }
         }
 
-        private String GetCryptingKeyChoosenByUserAsString()
+        private String GetCryptingKeyChoosenByUserAsString(String p_message)
         {
-            String value = JOptionPane.showInputDialog("Please, choose a key");
+            String value = JOptionPane.showInputDialog(p_message);
 
             if(value == null)
             {

@@ -23,9 +23,9 @@ public class UncryptingPermutationView extends UncryptingView
     private AlphabetJTable m_alphaTable;
     private Permutation m_permutation;
 
-    public UncryptingPermutationView()
+    public UncryptingPermutationView(String p_language)
     {
-        super();
+        super(p_language);
 
         m_alphaTable = new AlphabetJTable();
         JScrollPane scrollPaneTable = new JScrollPane(m_alphaTable);
@@ -36,7 +36,7 @@ public class UncryptingPermutationView extends UncryptingView
         scrollPaneTable.setViewportBorder(null);
         this.add(scrollPaneTable);
 
-        m_permutation = new Permutation();
+        m_permutation = new Permutation(p_language);
 
         m_tryUncriptButton.addActionListener(new UncryptActions());
 
@@ -58,7 +58,7 @@ public class UncryptingPermutationView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                // TODO : adapter avec getLangUserChoose()
+                m_permutation.setLanguage(getLangUserChoose());
 
                 List<String> alphabeTryUser = m_alphaTable.getAlphabetTryUser();
 

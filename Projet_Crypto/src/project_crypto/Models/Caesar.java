@@ -22,9 +22,10 @@ public class Caesar extends Crypting
     /* ===============================================================================================================
     * Functions and Methods
     * ============================================================================================================ */
-    public Caesar()
+    public Caesar(String p_language)
     {
         super();
+        setLanguage(p_language);
     }
 
 
@@ -52,7 +53,7 @@ public class Caesar extends Crypting
 
         int key = 0;
 
-        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc().keySet().toArray()[0];
+        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc(m_language).keySet().toArray()[0];
         String letterMostUsedInText = (String) frequency.keySet().toArray()[0];
 
         int iLetterMostUsedLanguage = this.m_alphabet.GetIndexLetter(letterMostUsedLanguage);

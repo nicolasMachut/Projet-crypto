@@ -213,14 +213,9 @@ public class Alphabet
         return iLetter;
     }
 
-    public Map<String, Double> GetFrequencySortedDesc()
+    public Map<String, Double> GetFrequencySortedDesc(String p_language)
     {
-        //return MapManager.sortByComparator(m_frequency, MapManager.DESC);
-        //return MapManager.sortByComparator(m_monogramme.get("fr"), MapManager.DESC);
-
-        // TODO : en fonction de la langue
-
-        return GetFrSortedDesc();
+        return MapManager.sortByComparator(m_monogramme.get(p_language), MapManager.DESC);
     }
 
     public Map<String, Double> GetFrSortedDesc()

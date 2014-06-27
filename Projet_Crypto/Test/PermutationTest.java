@@ -21,7 +21,7 @@ public class PermutationTest {
     @Before
     public void Setup()
     {
-        this.permutation = new Permutation();
+        this.permutation = new Permutation("fr");
     }
 
     @Test
@@ -74,8 +74,8 @@ public class PermutationTest {
     @Test
     public void testPermuterDetectionLangueFr()
     {
-        Permutation permut = new Permutation();
-        permut.SetLang("fr");
+        Permutation permut = new Permutation("fr");
+        permut.SetLanguageAlphabetUsed("fr");
         permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
         Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
 
@@ -91,8 +91,8 @@ public class PermutationTest {
     @Test
     public void testPermuterDetectionLangueEn()
     {
-        Permutation permut = new Permutation();
-        permut.SetLang("en");
+        Permutation permut = new Permutation("fr");
+        permut.SetLanguageAlphabetUsed("en");
         permut.Crypting("THISISATEST");
         Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
 

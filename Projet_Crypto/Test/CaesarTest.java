@@ -18,7 +18,7 @@ public class CaesarTest {
     @Before
     public void Setup()
     {
-        this.caesar = new Caesar();
+        this.caesar = new Caesar("fr");
     }
 
     @Test

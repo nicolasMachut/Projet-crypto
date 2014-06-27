@@ -21,25 +21,26 @@ public class Permutation extends Crypting{
     //Variable
     // <letterWantedForUncrypting, letterReadableFromAlphabet>
     private HashMap<String, String> m_association = new HashMap<String, String>();
-    private Map<String,Double> m_alphabet;
+    private Map<String,Double> m_alphabetInLang;
     //End variable
 
-    public Permutation()
+    public Permutation(String p_language)
     {
         super();
-        SetLang("fr");
+        setLanguage(p_language);
+        SetLanguageAlphabetUsed(p_language);
     }
 
 
-    public void SetLang(String p_lang)
+    public void SetLanguageAlphabetUsed(String p_lang)
     {
         if (p_lang.equals("fr"))
         {
-            m_alphabet = new Alphabet().GetFrSortedDesc();
+            m_alphabetInLang = new Alphabet().GetFrSortedDesc();
         }
         else if (p_lang.equals("en"))
         {
-            m_alphabet = new Alphabet().GetEnSortedDesc();
+            m_alphabetInLang = new Alphabet().GetEnSortedDesc();
         }
     }
 
@@ -70,7 +71,7 @@ public class Permutation extends Crypting{
         Boolean find = false;
         int random = GetRandom();
 
-        String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
+        String[] latinLetters = m_alphabetInLang.keySet().toArray(new String[m_alphabetInLang.keySet().size()]);
 
         while(!find)
         {
@@ -127,7 +128,7 @@ public class Permutation extends Crypting{
     public void setAssociationFrequency(List<String> p_alphabeTryUser)
     {
         // Only take strings
-        String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
+        String[] latinLetters = m_alphabetInLang.keySet().toArray(new String[m_alphabetInLang.keySet().size()]);
 
         // Associate strings
         // <letterWantedForUncrypting, letterReadableFromAlphabet>
@@ -147,7 +148,7 @@ public class Permutation extends Crypting{
         HashMap<String, Double> lettersOrder = (HashMap<String, Double>) MapManager.sortByComparator(p_letters, MapManager.DESC);
 
         // Only take strings
-        String[] latinLetters = m_alphabet.keySet().toArray(new String[m_alphabet.keySet().size()]);
+        String[] latinLetters = m_alphabetInLang.keySet().toArray(new String[m_alphabetInLang.keySet().size()]);
         String[] lettersTry = lettersOrder.keySet().toArray(new String[lettersOrder.keySet().size()]);
 
         // Associate strings

@@ -20,14 +20,14 @@ public class UncryptingView extends JPanel
     protected JTextArea m_cryptedTextArea;
     protected final JButton m_exportButton;
 
-
-    public UncryptingView()
+    public UncryptingView(String p_language)
     {
         m_languageRadio = new ButtonGroup();
-        m_radioFr = new JRadioButton("(60%) fr");
+        m_radioFr = new JRadioButton("(%) fr");
         m_languageRadio.add(m_radioFr);
-        m_radioEn = new JRadioButton("en (40%)");
+        m_radioEn = new JRadioButton("en (%)");
         m_languageRadio.add(m_radioEn);
+        setLanguageRadioSelected(p_language);
 
         m_tryUncriptButton = new JButton("TRY");
         m_tryUncriptButton.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
@@ -39,6 +39,28 @@ public class UncryptingView extends JPanel
         m_uncryptedTextArea.setEditable(false);
 
         m_exportButton = new JButton("EXPORT");
+    }
+
+    public void setLanguageRadioSelected(String p_language)
+    {
+        if(p_language.equals("fr"))
+        {
+            m_radioFr.setSelected(true);
+            m_radioEn.setSelected(false);
+        }
+        if(p_language.equals("en"))
+        {
+            m_radioFr.setSelected(false);
+            m_radioEn.setSelected(true);
+        }
+    }
+    public void setTextLanguageRadioFr(String p_legend)
+    {
+        m_radioFr.setText(p_legend);
+    }
+    public void setTextLanguageRadioEn(String p_legend)
+    {
+        m_radioEn.setText(p_legend);
     }
 
     protected void showComponents()

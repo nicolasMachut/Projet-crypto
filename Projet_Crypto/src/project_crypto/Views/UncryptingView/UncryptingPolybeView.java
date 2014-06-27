@@ -15,7 +15,7 @@ public class UncryptingPolybeView extends UncryptingView
 
     public UncryptingPolybeView(String p_language)
     {
-        super();
+        super(p_language);
 
         m_polybe = new Polybe(p_language);
         m_tryUncriptButton.addActionListener(new UncryptActions());
@@ -40,7 +40,7 @@ public class UncryptingPolybeView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                // TODO : adapter avec getLangUserChoose()
+                m_polybe.setLanguage(getLangUserChoose());
                 updatePolybe();
             }
         }

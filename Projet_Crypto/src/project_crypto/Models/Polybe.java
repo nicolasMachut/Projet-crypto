@@ -24,15 +24,22 @@ public class Polybe extends Crypting
     //End variables
 
     //Constructor
-    public Polybe(String lang)
+    public Polybe(String p_language)
     {
         super();
 
-        if (lang.equals("fr"))
+        setAssociation(p_language);
+    }
+
+    private void setAssociation(String p_language)
+    {
+        super.setLanguage(p_language);
+
+        if (p_language.equals("fr"))
         {
             association = setAssociationFr();
         }
-        else if (lang.equals("en"))
+        else if (p_language.equals("en"))
         {
             association = setAssociationEn();
         }
@@ -118,8 +125,6 @@ public class Polybe extends Crypting
         {
             this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
         }
-
-        System.out.println(m_cryptedString);
     }
 
     /**
@@ -130,6 +135,7 @@ public class Polybe extends Crypting
     {
         this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
 
+        m_readableString = "";
         String[] coupleNumbers = this.PutEachNumbersInArrayStrings();
 
         for (String coupleNumber : coupleNumbers)
@@ -138,6 +144,8 @@ public class Polybe extends Crypting
             {
                 if (this.association.get(key).equals(coupleNumber))
                 {
+                    System.out.println(key+" ("+this.association.get(key)+") = "+coupleNumber);
+
                     this.m_readableString += key;
                 }
             }

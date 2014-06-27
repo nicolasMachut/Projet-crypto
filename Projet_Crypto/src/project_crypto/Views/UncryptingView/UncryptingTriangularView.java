@@ -20,9 +20,9 @@ public class UncryptingTriangularView extends  UncryptingView
     private JFormattedTextField m_keyField;
     private JTextArea m_triangleArea;
 
-    public UncryptingTriangularView()
+    public UncryptingTriangularView(String p_language)
     {
-        super();
+        super(p_language);
 
         JLabel keyLabel = new JLabel("Triangular key :");
         this.add(keyLabel);
@@ -93,7 +93,7 @@ public class UncryptingTriangularView extends  UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                // TODO : adapter avec getLangUserChoose()
+                m_triangular.setLanguage(getLangUserChoose());
                 updateTriangular();
             }
         }

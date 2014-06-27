@@ -13,12 +13,14 @@ public abstract class Crypting{
     protected String m_cryptedString;
     protected String m_readableString;
     protected Alphabet m_alphabet;
+    protected String m_language;
 
     protected Crypting()
     {
         this.m_cryptedString = "";
         this.m_readableString = "";
         this.m_alphabet = new Alphabet();
+        setLanguage("fr");
     }
 
 
@@ -58,5 +60,16 @@ public abstract class Crypting{
 
     public void setCryptedString(String crypted) {
         this.m_cryptedString = crypted;
+    }
+
+    public void setLanguage(String p_language)
+    {
+        if(p_language.equals("fr") || p_language.equals("en")) {
+            m_language = p_language;
+        }
+        else
+        {
+            m_language = "fr";
+        }
     }
 }
