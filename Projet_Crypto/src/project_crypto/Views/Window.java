@@ -22,9 +22,7 @@ public class Window extends JFrame
         this.setBackground(Color.GRAY);
         // Allow the user to close the windows
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Scrollbar
-        JScrollPane scrollPaneUncryptedTextArea = new JScrollPane();
-        this.add(scrollPaneUncryptedTextArea);
+
 
         SetView(p_panel);
     }

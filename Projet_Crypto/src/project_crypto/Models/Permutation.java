@@ -125,7 +125,7 @@ public class Permutation extends Crypting{
         }
     }
 
-    /*
+    /* Code en commentaire : pourrait être utilisé pour un algo plus poussé
 
     public void setAssociationFrequency(List<String> p_alphabeTryUser)
     {
