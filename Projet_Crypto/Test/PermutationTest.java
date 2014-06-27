@@ -78,11 +78,6 @@ public class PermutationTest {
         permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
         Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
 
-       /* if( analyseLangue.get("fr" > analyseLangue.get("en")) )
-        {
-            
-        }*/
-
         Assert.assertEquals(2, analyseLangue.get("fr"));
     }
 
@@ -93,22 +88,10 @@ public class PermutationTest {
         permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
         Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
 
-       /* if( analyseLangue.get("fr" > analyseLangue.get("en")) )
-        {
-
-        }*/
         Assert.assertEquals(2, analyseLangue.get("en"));
     }
 
     /*
-    @Test
-    public void testPermuter01()
-    {
-        Permutation permut = new Permutation();
-        permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
-        System.out.println(permut.GetEncryptedString());
-    }
-
    @Test
     public void FirstTryWthFreqAnaRespected()
     {
