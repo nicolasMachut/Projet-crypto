@@ -1,5 +1,7 @@
 package project_crypto.Views;
 
+import project_crypto.Ressources.Lang.Lang_en;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -9,7 +11,11 @@ import java.io.File;
 import java.util.Enumeration;
 
 /**
- * Created by kimsavinfo on 11/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ *
+ * Date : on 11/03/14.
  */
 public class MainView extends JPanel
 {
@@ -27,9 +33,9 @@ public class MainView extends JPanel
     private ButtonGroup m_cryptGroup;
     private JComboBox m_encryptType = new JComboBox();
 
-
     // Bottom part : send choice button
     private JButton m_launchButton;
+
 
     public MainView()
     {
@@ -59,25 +65,25 @@ public class MainView extends JPanel
         JPanel outputPanel = new JPanel();
         m_outputPath = new JLabel("Input file's path (select a file please) ");
         outputPanel.add(m_outputPath);
-        m_outputFile = new JFormattedTextField();
+        m_outputFile = new JFormattedTextField("result");
         m_outputFile.setPreferredSize(new Dimension(200, 30));
         outputPanel.add(m_outputFile);
         outputPanel.add(new JLabel(".txt"));
 
         // -- MIDDLE PART --
         // Create buttons and the group
-        m_encryptButton = new JRadioButton("Encrypt"  , true);
-        m_uncryptButton = new JRadioButton("Uncrypt"   , false);
+        m_encryptButton = new JRadioButton(Lang_en.encrypt  , true);
+        m_uncryptButton = new JRadioButton(Lang_en.uncrypt   , false);
         m_cryptGroup = new ButtonGroup();
         m_cryptGroup.add(m_encryptButton);
         m_cryptGroup.add(m_uncryptButton);
 
         // Select
         m_encryptType = new JComboBox();
-        m_encryptType.addItem("Caesar");
-        m_encryptType.addItem("Permutation");
-        m_encryptType.addItem("Polybe's square");
-        m_encryptType.addItem("Triangular permutation");
+        m_encryptType.addItem(Lang_en.caesar);
+        m_encryptType.addItem(Lang_en.permutation);
+        m_encryptType.addItem(Lang_en.polybe_square);
+        m_encryptType.addItem(Lang_en.triangle_permutation);
 
         // Add buttons to a new panel
         JPanel cryptChoicePanel = new JPanel();
@@ -107,7 +113,14 @@ public class MainView extends JPanel
     }
     public String GetOutputFile()
     {
-        return m_outputPath.getText()+m_outputFile.getText()+".txt";
+        String ouputName = m_outputFile.getText();
+
+        if(ouputName.equals(""))
+        {
+            ouputName = "result";
+        }
+
+        return m_outputPath.getText()+ouputName+".txt";
     }
     public String GetMode()
     {

@@ -29,4 +29,9 @@ public class WordToNormalize
         strNormalized = strNormalized.replaceAll("_","");
         return strNormalized;
     }
+
+    public String normalizeNumber(String p_text)
+    {
+        return p_text.replaceAll("\\D+", "");
+    }
 }

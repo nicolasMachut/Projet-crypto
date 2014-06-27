@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by nicolas on 27/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ *
+ * Date :  27/03/14.
  */
 public class LanguageDetection {
 

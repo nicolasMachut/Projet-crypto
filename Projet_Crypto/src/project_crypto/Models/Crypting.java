@@ -3,7 +3,10 @@ package project_crypto.Models;
 import Library.Alphabet;
 
 /**
- * Created by nicolas on 10/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ * Date : 10/03/14.
  */
 public abstract class Crypting{
 
@@ -48,7 +51,7 @@ public abstract class Crypting{
         return this.m_cryptedString;
     }
 
-    public String GetUncryptedString()
+    public String GetReadableString()
     {
         return this.m_readableString;
     }

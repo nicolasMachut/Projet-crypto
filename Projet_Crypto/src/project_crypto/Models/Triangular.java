@@ -43,20 +43,10 @@ public class Triangular extends Crypting
      */
     public void Crypting(String p_textToCrypt, String p_key)
     {
-        this.m_readableString = p_textToCrypt;
+        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
 
         // Need nb letters lines and columns
         FindInfo(this.m_readableString);
-
-        // Complete the string with random letters
-        // if the last line is not full
-        // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
-        while ( m_nbLetters + 1 < ((m_nbLines + 1 * m_nbLines) + m_nbLines / 2 ) )
-        {
-            m_readableString += GetRandomLetter();
-            // Update infos
-            FindInfo(this.m_readableString);
-        }
 
         // Fill the triangle
         String[][] triangle = BuildTriangleToEncrypt();
@@ -65,11 +55,9 @@ public class Triangular extends Crypting
         List<Integer> columnOrder = FindColumnOrder(p_key);
 
         // Encrypt thanks to the column order
-        for (int iCol = 0; iCol < columnOrder.size(); iCol++)
-        {
-            for (int iLig = 0; iLig < m_nbLines; iLig++)
-            {
-                this.m_cryptedString += triangle[iLig][columnOrder.get(iCol)];
+        for (Integer aColumnOrder : columnOrder) {
+            for (int iLig = 0; iLig < m_nbLines; iLig++) {
+                this.m_cryptedString += triangle[iLig][aColumnOrder];
             }
         }
 
@@ -88,7 +76,7 @@ public class Triangular extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt, String p_key)
     {
-        this.m_cryptedString = p_textToUncrypt;
+        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
 
         // Need nb letters lines and columns
         FindInfo(this.m_cryptedString);
@@ -102,6 +90,8 @@ public class Triangular extends Crypting
 
         // Fill the triangle
         String triangle[][] = BuildTriangleToUncrypt(lasstLetterCol, columnOrder);
+        System.out.println("Décryptage : "+m_cryptedString);
+        ShowTriangle(triangle);
 
         // We uncrypt thanks to the column order
         for (int iLig = 0; iLig < m_nbLines; iLig++)
@@ -153,6 +143,26 @@ public class Triangular extends Crypting
             {
                 iCol += 2; // same line, shift two rows after
             }
+
+            // Complete the string with random letters
+            // if the last line is not full
+            if( iLetter == (m_nbLetters -1) && ( iLig < m_nbLines )  )
+            {
+                int iFillUp = iCol;
+
+                while ( iFillUp  <= m_nbColumns )
+                {
+                    if(iFillUp < m_nbColumns)
+                    {
+                        triangle[iLig][iFillUp] = GetRandomLetter();
+                    }
+                    else
+                    {
+                        triangle[iLig][m_nbColumns] = GetRandomLetter();
+                    }
+                    iFillUp += 2;
+                }
+            }
         }
 
         return triangle;
@@ -184,18 +194,15 @@ public class Triangular extends Crypting
         int iEncrypt = 0; // Encrypted string's index
 
         // Deal with columns in the key word's order
-        for(int iOrder = 0; iOrder < p_columnOrder.size(); iOrder++)
-        {
+        for (Integer aP_columnOrder : p_columnOrder) {
             // Get column the column's index
-            iCol = p_columnOrder.get(iOrder);
+            iCol = aP_columnOrder;
 
             // Run through lines, beginning at the interesting index (in short, not null)
-            for(int iLig =abs(base - iCol); iLig <m_nbLines; iLig+=2)
-            {
+            for (int iLig = abs(base - iCol); iLig < m_nbLines; iLig += 2) {
                 // Careful : on the last line, there is no letter after the last letter's column
-                if( (iLig < m_nbLines-1) || ( (iLig == m_nbLines-1)  && (iCol <= p_lastLetterCol) ) )
-                {
-                    // Put the letter int the triangle
+                if ((iLig < m_nbLines - 1) || ((iLig == m_nbLines - 1) && (iCol <= p_lastLetterCol))) {
+                    // Put the letter in the triangle
                     triangle[iLig][iCol] = String.valueOf(m_cryptedString.charAt(iEncrypt));
                     // Next letter please !
                     iEncrypt++;
@@ -323,7 +330,7 @@ public class Triangular extends Crypting
     {
         m_nbLetters = p_text.length();
         m_nbLines = CalculateNbLines(m_nbLetters);
-        m_nbColumns = CalculateNbColumns(m_nbLines, m_nbLetters);
+        m_nbColumns = CalculateNbColumns(m_nbLines);
     }
 
     /**
@@ -351,23 +358,30 @@ public class Triangular extends Crypting
      * @param p_nbLines : How many lines are there in the triangle ?
      * @return number of rows needed for the triangle
      */
-    public int CalculateNbColumns(int p_nbLines, int p_nbLettres)
+    public int CalculateNbColumns(int p_nbLines)
     {
-        if((p_nbLines * p_nbLines + p_nbLines)/2 == p_nbLettres)
+        if(p_nbLines == 1)
         {
-            return (2 * p_nbLines) - 1;
+            return p_nbLines;
         }
-            else
+        else
         {
-            return (2 * p_nbLines) - 2;
+            if (ModuloPositive((p_nbLines / 2), 2) == 0)
+            {
+                return 2 * p_nbLines;
+            }
+            else
+            {
+                return (2 * p_nbLines) - 1;
+            }
         }
     }
 
     /* ===============================================================================================================
-    * Test - debug : to erase
+    * Vision for developpers : too afraid to erase
     * ============================================================================================================ */
 
-    // Put there temporally, please create a viw to show this to the user.
+    // Put there temporally
      private void ShowTriangle(String[][] p_triangle)
     {
         for (int iLig = 0; iLig < m_nbLines; iLig++) {

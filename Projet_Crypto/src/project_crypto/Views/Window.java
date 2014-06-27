@@ -1,7 +1,6 @@
 package project_crypto.Views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Color;
 
 /**
@@ -23,16 +22,21 @@ public class Window extends JFrame
         this.setBackground(Color.GRAY);
         // Allow the user to close the windows
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Scrollbar
+        JScrollPane scrollPaneUncryptedTextArea = new JScrollPane();
+        this.add(scrollPaneUncryptedTextArea);
 
         SetView(p_panel);
     }
 
     public void SetView(JPanel p_panel)
     {
+        this.getContentPane().removeAll();
         // Link with a JPanel
         m_panelActu = p_panel;
-        this.setContentPane(m_panelActu);
+        this.getContentPane().add(m_panelActu);
         // Refresh the view
+        this.validate();
         this.repaint();
     }
 

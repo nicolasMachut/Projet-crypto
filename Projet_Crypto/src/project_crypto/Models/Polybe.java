@@ -1,13 +1,14 @@
 package project_crypto.Models;
 
+import Library.WordToNormalize;
+
 import java.util.HashMap;
 
 /**
- * Created by nicolas on 12/03/14.
  * @author Edouard SOUAN-MARCELON
  * @author Nicolas MACHUT
  * @author Kim SAVAROCHE
- * machut.nicolas@gmail.com
+ * Date : 12/03/14.
  *
  * This class crypt and decrypt whith Polybe Crypting as it's name suggests !
  */
@@ -61,13 +62,12 @@ public class Polybe extends Crypting
      */
     public void Crypting(String p_textToCrypt)
     {
-        this.m_readableString = p_textToCrypt;
-        System.out.println("String to crypt : "+ this.m_readableString);
+        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
+
         for(int i = 0; i < this.m_readableString.length(); i++)
         {
             this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
         }
-        System.out.println("Crypted String : "+this.m_cryptedString);
     }
 
     /**
@@ -76,19 +76,20 @@ public class Polybe extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt)
     {
-        this.m_cryptedString = p_textToUncrypt;
+        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
 
-        for(int i = 0; i < this.PutEachNumbersInArrayStrings().length; i++)
+        String[] coupleNumbers = this.PutEachNumbersInArrayStrings();
+
+        for (String coupleNumber : coupleNumbers)
         {
-            for(String key : this.association.keySet())
+            for (String key : this.association.keySet())
             {
-                if(this.association.get(key).equals(this.PutEachNumbersInArrayStrings()[i]))
+                if (this.association.get(key).equals(coupleNumber))
                 {
                     this.m_readableString += key;
                 }
             }
         }
-        System.out.println("Uncrypted String : "+this.m_readableString);
     }
 
 
@@ -99,15 +100,33 @@ public class Polybe extends Crypting
     public String[] PutEachNumbersInArrayStrings()
     {
         int j = 0;
-        String[] tabEncryptedString = new String[this.m_cryptedString.length()/2];
+        String[] tabEncryptedString = new String[CalculTableLenght()];
 
         for(int i = 0; i < this.m_cryptedString.length(); i += 2)
         {
             tabEncryptedString[j] = String.valueOf(this.m_cryptedString.charAt(i));
-            tabEncryptedString[j] += String.valueOf(this.m_cryptedString.charAt(i+1));
+
+            if(i < this.m_cryptedString.length())
+            {
+                tabEncryptedString[j] += String.valueOf(this.m_cryptedString.charAt(i + 1));
+            }
+
             j++;
         }
+
         return tabEncryptedString;
+    }
+
+    private int CalculTableLenght()
+    {
+        int tabLength = this.m_cryptedString.length()/2;
+
+        if( ModuloPositive(this.m_cryptedString.length()/2, 2) == 1 )
+        {
+            tabLength++;
+        }
+
+        return tabLength;
     }
 
 }

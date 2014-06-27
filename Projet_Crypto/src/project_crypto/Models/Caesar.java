@@ -1,6 +1,7 @@
 package project_crypto.Models;
 
 import Library.FrequencyAnalyse;
+import Library.WordToNormalize;
 
 import java.util.HashMap;
 
@@ -29,8 +30,7 @@ public class Caesar extends Crypting
 
     public void Crypting(String p_textToCrypt, int p_crytingKey)
     {
-        System.out.println("String to crypt : "+p_textToCrypt);
-        this.m_readableString = p_textToCrypt;
+        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
         // Encrypt text letter by letter
         for(int iText = 0; iText < this.m_readableString.length(); iText++)
         {
@@ -42,15 +42,14 @@ public class Caesar extends Crypting
                 }
             }
         }
-        System.out.println("Crypted string : " + this.m_cryptedString);
     }
 
      public int GetCryptingKey(String p_textToUncrypt)
     {
         FrequencyAnalyse fileGiven = new FrequencyAnalyse(p_textToUncrypt);
-        this.m_cryptedString = p_textToUncrypt;
-        HashMap<String, Double> frequency = fileGiven.CalculCharFrequency();
-        //this.m_alphabet.SetLanguage("fr");
+        this.m_cryptedString =  new WordToNormalize().normalize(p_textToUncrypt);
+        HashMap<String, Double> frequency = fileGiven.CalculCharFrequencyMono();
+
         int key = 0;
         for(String KeyH : this.m_alphabet.GetFrequencySortedDesc().keySet())
         {
@@ -59,7 +58,6 @@ public class Caesar extends Crypting
                 if(m_alphabet.GetLatin()[i].equals(fileGiven.getMostUsedChar(frequency)))
                 {
                     // Compare with most used letter in the alphabet, not in the text
-                    // NOTE : how do we deal with language ?
                     if((i+1) >  this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH))
                     {
                         key = (i+1) - this.m_alphabet.GetIndexOfALetterInAlphabet(KeyH);
@@ -79,20 +77,32 @@ public class Caesar extends Crypting
     public void Uncrypting(String p_textToUncrypt)
     {
         //Find Key
-        int UncryptedKey = this.GetCryptingKey(p_textToUncrypt);
+        int uncryptedKey = this.GetCryptingKey(p_textToUncrypt);
 
-        // Decrypt text letter by letter
+        UncryptLetters(uncryptedKey);
+    }
+
+
+    public void Uncrypting(String p_textToUncrypt, int uncryptedKey)
+    {
+        this.m_cryptedString =  new WordToNormalize().normalize(p_textToUncrypt);
+
+        UncryptLetters(uncryptedKey);
+    }
+
+
+    private void UncryptLetters(int uncryptedKey)
+    {
+        // Uncrypt text letter by letter
         for(int itext = 0; itext <this.m_cryptedString.length(); itext++)
         {
             for(int iAlphabet = 0; iAlphabet < m_alphabet.GetLatin().length; iAlphabet++)
             {
                 if( m_alphabet.GetLatin()[iAlphabet].equals( Character.toString(this.m_cryptedString.charAt(itext)) ) )
                 {
-                    this.m_readableString += m_alphabet.GetLatin()[ModuloPositive(iAlphabet - UncryptedKey, m_alphabet.GetLatin().length)];
+                    this.m_readableString += m_alphabet.GetLatin()[ModuloPositive(iAlphabet - uncryptedKey, m_alphabet.GetLatin().length)];
                 }
             }
         }
-        System.out.print("Uncrypted string "+this.m_readableString);
-        System.out.println("crypting key : "+UncryptedKey);
     }
 }

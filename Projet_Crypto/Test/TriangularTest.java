@@ -1,10 +1,15 @@
+import Library.TextFileManager;
+import Library.WordToNormalize;
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Triangular;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
- * Created by nicolas on 26/03/14.
+ * @author Edouard SOUAN-MARCELON
+ * @author Nicolas MACHUT
+ * @author Kim SAVAROCHE
+ * Date : 26/03/14.
  */
 public class TriangularTest {
 
@@ -14,6 +19,38 @@ public class TriangularTest {
     public void Setup()
     {
         this.triangular = new Triangular();
+    }
+
+    @Test
+    public void TestCalculateNbLine1()
+    {
+        int nbLetters = 1;
+        int result = 1;
+        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
+    }
+
+    @Test
+    public void TestCalculateNbUsual()
+    {
+        int nbLetters = 10;
+        int result = 4;
+        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
+    }
+
+    @Test
+    public void TestCalculateNbColumns1()
+    {
+        int nbLines = 1;
+        int result = 1;
+        assertEquals(result, this.triangular.CalculateNbColumns(nbLines));
+    }
+
+    @Test
+    public void TestCalculateNbColumnsUsual()
+    {
+        int nbLines = 8;
+        int result = 16;
+        assertEquals(result, this.triangular.CalculateNbColumns(nbLines));
     }
 
     @Test
@@ -30,25 +67,6 @@ public class TriangularTest {
         String textToTest = "BONJOUR";
         String result = "BONJUR";
         assertEquals(result, this.triangular.RemoveDuplicatedLetters(textToTest));
-    }
-
-
-    @Test
-    public void TestCalculateNbLine()
-    {
-        int nbLetters = 10;
-        int result = 4;
-        assertEquals(result, this.triangular.CalculateNbLines(nbLetters));
-    }
-
-
-    @Test
-    public void TestCalculateNbColumns()
-    {
-        int nbLines = 10;
-        int nbLetters = 30;
-        int result = 18;
-        assertEquals(result, this.triangular.CalculateNbColumns(nbLines, nbLetters));
     }
 
     @Test
@@ -75,7 +93,23 @@ public class TriangularTest {
         this.triangular.Crypting(textToUncrypt, "codage");
 
         String uncryptedText = "LECODAGEPARTRANSPOSITIONTRIANGULAIRE";
-        assertEquals(uncryptedText, this.triangular.GetUncryptedString());
+        assertEquals(uncryptedText, this.triangular.GetReadableString());
+    }
+
+    @Test
+    public void TestCryptingLongTxt()
+    {
+        TextFileManager m_textFileManager = new TextFileManager();
+        m_textFileManager.LoadFile("/home/kimsavinfo/IdeaProjects/Projet-crypto/Projet_Crypto/src/Test_TextFiles/NotreDameParis_readable.txt");
+        String uncryptedText =  new WordToNormalize().normalize( m_textFileManager.getText() );
+        String key = "epsi";
+
+        Triangular triangular = new Triangular();
+        triangular.Crypting(m_textFileManager.getText(), key);
+
+        this.triangular.Uncrypting(triangular.GetEncryptedString(), key);
+
+        assertEquals(uncryptedText, this.triangular.GetReadableString().substring(0, uncryptedText.length()));
     }
 
 }
