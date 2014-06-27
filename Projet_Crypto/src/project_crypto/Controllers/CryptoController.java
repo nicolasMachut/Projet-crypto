@@ -6,6 +6,7 @@ import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
 import project_crypto.Models.Triangular;
 import project_crypto.Views.MainView;
+import project_crypto.Views.UncryptingPermutationView;
 import project_crypto.Views.UncryptingView;
 import project_crypto.Views.Window;
 import project_crypto.Ressources.Lang.Lang_en;
@@ -31,6 +32,7 @@ public class CryptoController
     private static MainView m_mainView;
     private static TextFileManager m_textFileManager;
     private static UncryptingView m_uncryptingView;
+    //private static UncryptingPermutationView m_uncryptingPermutationView;
     private static String m_outputFilePath;
 
     public static void main(String[] args)
@@ -44,10 +46,10 @@ public class CryptoController
         m_mainView.AddLaunchButtonListener(new CryptingActions());
 
         // Uncrypting View
-        m_uncryptingView = new UncryptingView();
         m_outputFilePath = "";
-        // Add listners
-         m_uncryptingView.AddExportButtonListener(new UncryptingExportActions());
+
+        //m_uncryptingPermutationView = new UncryptingPermutationView();
+         //m_uncryptingPermutationView.AddExportButtonListener(new UncryptingExportActions());
 
         // Create a window
         m_window = new Window(m_mainView);
@@ -110,6 +112,7 @@ public class CryptoController
             }
             else if (mode.equals(Lang_en.uncrypt))
             {
+                /*
                 if(type.equals(Lang_en.caesar))
                 {
                     Boolean isKeyOK = false;
@@ -144,11 +147,11 @@ public class CryptoController
                     m_outputFilePath = m_mainView.GetOutputFile();
 
                     // Init text for the user
-                    m_uncryptingView.getAlphaTable().setDataRowAlphaTable(""); //"abcdefghijklmnopqrstuvwxyz"
-                    m_uncryptingView.setCryptedTextArea(m_textFileManager.getText());
+                    m_uncryptingPermutationView.getAlphaTable().setDataRowAlphaTable("traduction"); //"abcdefghijklmnopqrstuvwxyz"
+                    m_uncryptingPermutationView.setCryptedTextArea(m_textFileManager.getText());
 
                     // show interface
-                    m_window.SetView(m_uncryptingView);
+                    m_window.SetView(m_uncryptingPermutationView);
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
@@ -168,13 +171,25 @@ public class CryptoController
                     triangular.Uncrypting( m_textFileManager.getText(), key );
                     m_textFileManager.SetText(triangular.GetReadableString());
                 }
+                */
+
+                // Save the output file path
+                m_outputFilePath = m_mainView.GetOutputFile();
+                UncryptingPermutationView uncryptingPermutationView =  new UncryptingPermutationView();
+                uncryptingPermutationView.setCryptedTextArea(m_textFileManager.getText());
+                m_uncryptingView = uncryptingPermutationView;
+
+                // show interface
+                m_window.SetView(m_uncryptingView);
+
+                m_uncryptingView.AddExportButtonListener(new UncryptingExportActions());
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "Please, choose a mode (encrypt/uncrypt).");
             }
 
-            if( !( mode.equals(Lang_en.uncrypt) && type.equals(Lang_en.permutation) ) )
+            if( mode.equals(Lang_en.encrypt) )
             {
                 m_textFileManager.WriteFile(m_mainView.GetOutputFile());
                 JOptionPane.showMessageDialog(null, "A file has just been created in : " + m_mainView.GetOutputFile());

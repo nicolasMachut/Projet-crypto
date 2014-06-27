@@ -181,7 +181,6 @@ public class AlphabetJTable extends JTable
         }
         else if(p_part.equals("row"))
         {
-
             for(int iColumn = 0; iColumn < COLUMNS; iColumn++)
             {
                 if(iColumn < COLUMNS)
@@ -215,7 +214,7 @@ public class AlphabetJTable extends JTable
         {
             if(iColumn < COLUMNS)
             {
-                alphaTryUser.add( getValueAt(0, iColumn).toString() );
+                alphaTryUser.add(this.getValueAt(0, iColumn).toString());
             }
         }
 

@@ -102,7 +102,7 @@ public class Permutation extends Crypting{
 
         for(String letterKey : m_association.keySet())
         {
-            this.m_readableString = this.m_readableString.replace( this.m_association.get(letterKey) , letterKey.toLowerCase());
+            this.m_readableString = this.m_readableString.replace( letterKey, this.m_association.get(letterKey).toLowerCase() );
         }
 
         this.m_readableString = this.m_readableString.toUpperCase();
@@ -114,14 +114,15 @@ public class Permutation extends Crypting{
         String[] latinLetters = new Alphabet().GetLatin();
 
         // Associate strings
-        // <letterWantedForUncrypting, letterReadableFromAlphabet>
         m_association.clear();
 
         for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
         {
-            m_association.put( p_alphabeTryUser.get(iLetter), latinLetters[iLetter] );
+            m_association.put(p_alphabeTryUser.get(iLetter), latinLetters[iLetter]);
         }
     }
+
+    /*
 
     public void setAssociationFrequency(List<String> p_alphabeTryUser)
     {
@@ -138,7 +139,7 @@ public class Permutation extends Crypting{
         }
     }
 
-    /*
+
     public void setAssociation(HashMap<String, Double> p_letters)
     {
         // Order
