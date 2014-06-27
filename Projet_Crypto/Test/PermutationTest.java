@@ -1,5 +1,4 @@
 import Library.LanguageDetection;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import project_crypto.Models.Permutation;
@@ -9,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by nicolas on 26/03/14.
@@ -75,20 +75,34 @@ public class PermutationTest {
     public void testPermuterDetectionLangueFr()
     {
         Permutation permut = new Permutation();
+        permut.SetLang("fr");
         permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
         Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
 
-        Assert.assertEquals(2, analyseLangue.get("fr"));
+        boolean languageDectectee = false;
+        if( analyseLangue.get("fr") > analyseLangue.get("en") )
+        {
+            languageDectectee = true;
+        }
+
+        assertTrue(languageDectectee);
     }
 
     @Test
     public void testPermuterDetectionLangueEn()
     {
         Permutation permut = new Permutation();
-        permut.Crypting("CETTECREDIBILITESERANECESSAIREPOURLESACTIONSAVENIRCARUNCLIENTNESTPASTOUJOURSFAVORABLEAUCHANGEMENT");
+        permut.SetLang("en");
+        permut.Crypting("THISISATEST");
         Map<String, Double> analyseLangue = new LanguageDetection().SumFrequenceMostUsedCharInLanguage(permut.GetEncryptedString());
 
-        Assert.assertEquals(2, analyseLangue.get("en"));
+        boolean languageDectectee = false;
+        if( analyseLangue.get("en") > analyseLangue.get("fr") )
+        {
+            languageDectectee = true;
+        }
+
+        assertTrue(languageDectectee);
     }
 
     /*
