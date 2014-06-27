@@ -59,7 +59,6 @@ public class CaesarTest {
         assertEquals(decryptedText, this.caesar.GetReadableString());
     }
 
-    /*
     @Test
     public void TestUncryptingCaesarWhenEIsNotTheMostUsedLetter()
     {
@@ -70,16 +69,5 @@ public class CaesarTest {
         this.caesar.Uncrypting(textToDecrypt);
         assertEquals(decryptedText, this.caesar.GetReadableString());
     }
-    */
-
-    /*
-    @Test
-    public void TestGetCryptingKey()
-    {
-        assertEquals(2, this.caesar.GetCryptingKey("EGUVWPVGUV"));
-    }
-    */
-
-
 
 }
