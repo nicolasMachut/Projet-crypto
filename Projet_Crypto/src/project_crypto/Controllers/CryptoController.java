@@ -91,8 +91,12 @@ public class CryptoController
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
-                    // TODO : langue dynamique
-                    Polybe polybe = new Polybe("fr");
+                    String langue;
+                    do {
+                        langue = this.GetCryptingKeyChoosenByUserAsString();
+                    } while(!this.isAGoodPolybeKey(langue));
+
+                    Polybe polybe = new Polybe(langue);
                     polybe.Crypting(m_textFileManager.getText());
                     m_textFileManager.SetText(polybe.GetEncryptedString());
                 }
@@ -111,68 +115,7 @@ public class CryptoController
             }
             else if (mode.equals(Lang_en.uncrypt))
             {
-                /*
-                if(type.equals(Lang_en.caesar))
-                {
-                    Boolean isKeyOK = false;
-                    String key;
-                    do
-                    {
-                        key = this.GetCryptingKeyChoosenByUserAsString();
-
-                        if(!key.equals(Lang_en.auto))
-                        {
-                            isKeyOK = this.isAGoodCeasarKey(key);
-                        }
-
-                    }while(!isKeyOK && (!key.equals(Lang_en.auto)));
-
-                    Caesar caesar = new Caesar();
-
-                    if(!key.equals(Lang_en.auto))
-                    {
-                        caesar.Uncrypting(m_textFileManager.getText(), Integer.valueOf(key));
-                    }
-                    else
-                    {
-                        caesar.Uncrypting(m_textFileManager.getText());
-                    }
-
-                    m_textFileManager.SetText(caesar.GetReadableString());
-                }
-                else if(type.equals(Lang_en.permutation))
-                {
-                    // Save the output file path
-                    m_outputFilePath = m_mainView.GetOutputFile();
-
-                    // Init text for the user
-                    m_uncryptingPermutationView.getAlphaTable().setDataRowAlphaTable("traduction"); //"abcdefghijklmnopqrstuvwxyz"
-                    m_uncryptingPermutationView.setCryptedTextArea(m_textFileManager.getText());
-
-                    // show interface
-                    m_window.SetView(m_uncryptingPermutationView);
-                }
-                else if(type.equals(Lang_en.polybe_square))
-                {
-                    // TODO : langue dynamique
-                    Polybe polybe = new Polybe("fr");
-                    polybe.Uncrypting( m_textFileManager.getText() );
-                    m_textFileManager.SetText(polybe.GetReadableString());
-                }
-                else if(type.equals(Lang_en.permutation))
-                {
-                    String key;
-                    do {
-                        key =  this.GetCryptingKeyChoosenByUserAsString();
-                    } while(!this.isAGoodTriangularKey(key));
-
-                    Triangular triangular = new Triangular();
-                    triangular.Uncrypting( m_textFileManager.getText(), key );
-                    m_textFileManager.SetText(triangular.GetReadableString());
-                }
-                */
-
-                // Save the output file path
+                 // Save the output file path
                 m_outputFilePath = m_mainView.GetOutputFile();
                 String textToUncrypt = m_textFileManager.getText();
 
@@ -249,6 +192,22 @@ public class CryptoController
             }
             if(!resultat)
                 JOptionPane.showMessageDialog(null, "Please, choose a numeric key between 1 and 26.");
+
+            return resultat;
+        }
+
+        private boolean isAGoodPolybeKey(String keyToTest)
+        {
+            boolean resultat = false;
+
+            if(keyToTest.equals("fr") || keyToTest.equals("en"))
+            {
+                resultat = true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Please, choose 'fr' or 'en'.");
+            }
 
             return resultat;
         }

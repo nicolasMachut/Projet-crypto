@@ -61,8 +61,8 @@ public class Triangular extends Crypting
             }
         }
 
-        System.out.println("crypter : "+m_readableString);
-        ShowTriangle(triangle);
+        //System.out.println("crypter : "+m_readableString);
+        //ShowTriangle(triangle);
     }
 
     // Getters for the view
