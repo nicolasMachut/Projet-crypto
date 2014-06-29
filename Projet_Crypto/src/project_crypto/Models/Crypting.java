@@ -72,4 +72,9 @@ public abstract class Crypting{
             m_language = "fr";
         }
     }
+
+    public Alphabet GetAlphabet()
+    {
+        return m_alphabet;
+    }
 }

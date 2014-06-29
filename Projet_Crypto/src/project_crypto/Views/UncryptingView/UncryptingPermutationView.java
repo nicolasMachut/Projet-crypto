@@ -50,7 +50,9 @@ public class UncryptingPermutationView extends UncryptingView
         m_permutation.Uncrypting(p_textToUncrypt, alphabeTryUser);
 
         setUncryptedTextArea(m_permutation.GetReadableString());
-        m_alphaTable.SetDataRowAlphaTable(AssociationUserTryToString(m_permutation.GetAssociation()));
+
+        m_permutation.SetAssociationUncrypt(alphabeTryUser);
+        SetDataRowAlphaTable(m_permutation.GetAssociation());
     }
 
     public Permutation GetPermutation()
@@ -62,12 +64,17 @@ public class UncryptingPermutationView extends UncryptingView
     {
         String associationString = "";
 
-        for(String letterKey : p_association.keySet())
+        String[] alphaOrder = m_permutation.GetAlphabet().GetLatin();
+        for (int iLetter =0; iLetter < alphaOrder.length ; iLetter++)
         {
-            associationString += letterKey;
+            for(String letterKey : p_association.keySet())
+            {
+                if(letterKey.equals(alphaOrder[iLetter]))
+                {
+                   associationString += p_association.get(letterKey);
+                }
+            }
         }
-
-        System.out.println(associationString);
 
         m_alphaTable.SetDataRowAlphaTable(associationString);
     }
@@ -87,17 +94,5 @@ public class UncryptingPermutationView extends UncryptingView
                 updatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);
             }
         }
-    }
-
-    private String AssociationUserTryToString(HashMap<String, String> p_association)
-    {
-        String associationString = "";
-
-        for(int iLetter = 0; iLetter < p_association.size(); iLetter++)
-        {
-            associationString += p_association.get(iLetter);
-        }
-
-        return associationString;
     }
 }

@@ -103,7 +103,7 @@ public class Permutation extends Crypting{
         this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
         this.m_readableString = m_cryptedString;
 
-        SetAssociation(p_alphabeTryUser);
+        SetAssociationUncrypt(p_alphabeTryUser);
 
         for(String letterKey : m_association.keySet())
         {
@@ -113,8 +113,9 @@ public class Permutation extends Crypting{
         this.m_readableString = this.m_readableString.toUpperCase();
     }
 
-    public void SetAssociation(List<String> p_alphabeTryUser)
+    public void SetAssociationEncrypt(List<String> p_alphabeTryUser)
     {
+        this.m_association.clear();
         // Only take strings
         String[] latinLetters = new Alphabet().GetLatin();
 
@@ -133,7 +134,7 @@ public class Permutation extends Crypting{
         this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
         this.m_readableString = m_cryptedString;
 
-        SetAssociation();
+        SetAssociationUncrypt();
 
         for(String letterKey : m_association.keySet())
         {
@@ -144,7 +145,7 @@ public class Permutation extends Crypting{
     }
 
     // Associate frequency analysis with most used letters in the chosen language
-    private void SetAssociation()
+    private void SetAssociationUncrypt()
     {
         this.m_association.clear();
 
@@ -156,11 +157,24 @@ public class Permutation extends Crypting{
         int iLetter = 0;
         for(String letterKey : frequencyScore.keySet())
         {
-            System.out.println( letterKey +"->"+ latinLetters[iLetter] );
-
             this.m_association.put(letterKey , latinLetters[iLetter]);
 
             iLetter++;
+        }
+    }
+
+    public void SetAssociationUncrypt(List<String> p_alphabeTryUser)
+    {
+        this.m_association.clear();
+        // Only take strings
+        String[] latinLetters = new Alphabet().GetLatin();
+
+        // Associate strings
+        m_association.clear();
+
+        for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
+        {
+            m_association.put(latinLetters[iLetter], p_alphabeTryUser.get(iLetter));
         }
     }
 }
