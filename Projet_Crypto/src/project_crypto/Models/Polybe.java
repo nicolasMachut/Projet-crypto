@@ -121,10 +121,34 @@ public class Polybe extends Crypting
     {
         this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
 
-        for(int i = 0; i < this.m_readableString.length(); i++)
+        String cryptedFormalizeForPolybe = NormalizeLettersForCrypting(this.m_readableString);
+
+        for(int i = 0; i < cryptedFormalizeForPolybe.length(); i++)
         {
-            this.m_cryptedString += this.association.get(String.valueOf(this.m_readableString.charAt(i)));
+            this.m_cryptedString += this.association.get(String.valueOf(cryptedFormalizeForPolybe.charAt(i)));
         }
+    }
+
+    /**
+     * Be careful :
+     * in French, "v" and "w" are the same letter, they are found with the "v"
+     * in English : "i" and "j"
+     * @retur
+     */
+    private String NormalizeLettersForCrypting(String p_text)
+    {
+        String cryptedFormalizeForPolybe = p_text;
+
+        if (m_language.equals("fr"))
+        {
+            cryptedFormalizeForPolybe = p_text.replace("W", "V");
+        }
+        else if (m_language.equals("en"))
+        {
+            cryptedFormalizeForPolybe = p_text.replace("J", "I");
+        }
+
+        return cryptedFormalizeForPolybe;
     }
 
     /**
@@ -144,14 +168,11 @@ public class Polybe extends Crypting
             {
                 if (this.association.get(key).equals(coupleNumber))
                 {
-                    System.out.println(key+" ("+this.association.get(key)+") = "+coupleNumber);
-
                     this.m_readableString += key;
                 }
             }
         }
     }
-
 
     /**
      * PutEachNumbersInArrayStrings
@@ -188,5 +209,4 @@ public class Polybe extends Crypting
 
         return tabLength;
     }
-
 }

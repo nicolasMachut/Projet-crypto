@@ -34,7 +34,6 @@ public class CryptoController
     private static MainView m_mainView;
     private static TextFileManager m_textFileManager;
     private static UncryptingView m_uncryptingView;
-    //private static UncryptingPermutationView m_uncryptingPermutationView;
     private static String m_outputFilePath;
 
     public static void main(String[] args)
@@ -49,9 +48,6 @@ public class CryptoController
 
         // Uncrypting View
         m_outputFilePath = "";
-
-        //m_uncryptingPermutationView = new UncryptingPermutationView();
-         //m_uncryptingPermutationView.AddExportButtonListener(new UncryptingExportActions());
 
         // Create a window
         m_window = new Window(m_mainView);

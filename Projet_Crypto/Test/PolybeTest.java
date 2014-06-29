@@ -64,4 +64,28 @@ public class PolybeTest {
             assertEquals(result[i], this.polybe.PutEachNumbersInArrayStrings()[i]);
         }
     }
+
+    @Test
+    public void TestNormalizeLettersForCryptingFr()
+    {
+        String textToCrypt = "Wapiti";
+
+        polybe.setAssociation("fr");
+        polybe.Crypting(textToCrypt);
+        // NormalizeLettersForCrypting retourne VAPITI
+
+        assertEquals("521141244524", polybe.GetEncryptedString());
+    }
+
+    @Test
+    public void TestNormalizeLettersForCryptingEn()
+    {
+        String textToCrypt = "Jelly";
+
+        polybe.setAssociation("en");
+        polybe.Crypting(textToCrypt);
+        // NormalizeLettersForCrypting retourne IELLY
+
+        assertEquals("2415313154", polybe.GetEncryptedString());
+    }
 }
