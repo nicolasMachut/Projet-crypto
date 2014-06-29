@@ -28,24 +28,24 @@ public class Polybe extends Crypting
     {
         super();
 
-        setAssociation(p_language);
+        SetAssociation(p_language);
     }
 
-    public void setAssociation(String p_language)
+    public void SetAssociation(String p_language)
     {
         super.setLanguage(p_language);
 
         if (p_language.equals("fr"))
         {
-            association = setAssociationFr();
+            association = SetAssociationFr();
         }
         else if (p_language.equals("en"))
         {
-            association = setAssociationEn();
+            association = SetAssociationEn();
         }
     }
 
-    private HashMap<String, String> setAssociationFr()
+    private HashMap<String, String> SetAssociationFr()
     {
         HashMap<String, String> associationFr = new HashMap<String, String>();
 
@@ -78,7 +78,7 @@ public class Polybe extends Crypting
         return associationFr;
     }
 
-    private HashMap<String, String> setAssociationEn()
+    private HashMap<String, String> SetAssociationEn()
     {
         HashMap<String, String> associationEn = new HashMap<String, String>();
 

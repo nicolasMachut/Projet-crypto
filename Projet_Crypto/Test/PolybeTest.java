@@ -70,7 +70,7 @@ public class PolybeTest {
     {
         String textToCrypt = "Wapiti";
 
-        polybe.setAssociation("fr");
+        polybe.SetAssociation("fr");
         polybe.Crypting(textToCrypt);
         // NormalizeLettersForCrypting retourne VAPITI
 
@@ -82,7 +82,7 @@ public class PolybeTest {
     {
         String textToCrypt = "Jelly";
 
-        polybe.setAssociation("en");
+        polybe.SetAssociation("en");
         polybe.Crypting(textToCrypt);
         // NormalizeLettersForCrypting retourne IELLY
 

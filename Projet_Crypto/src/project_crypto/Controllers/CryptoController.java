@@ -138,12 +138,19 @@ public class CryptoController
                 {
                     UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView(language);
                     uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
+
+                    uncryptingPermutationView.GetPermutation().Uncrypting(textToUncrypt);
+
                     m_uncryptingView = uncryptingPermutationView;
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
                     UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView(language);
                     uncryptingPolybeView.setCryptedTextArea(textToUncrypt);
+
+                    uncryptingPolybeView.GetPolybe().Uncrypting(textToUncrypt);
+                    uncryptingPolybeView.setUncryptedTextArea(uncryptingPolybeView.GetPolybe().GetReadableString());
+
                     m_uncryptingView = uncryptingPolybeView;
                 }
                 else if(type.equals(Lang_en.triangle_permutation))

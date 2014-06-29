@@ -23,11 +23,16 @@ public class UncryptingPolybeView extends UncryptingView
         showComponents();
     }
 
-    private void updatePolybe()
+    private void UpdatePolybe()
     {
         m_polybe.Uncrypting(m_cryptedTextArea.getText());
 
         setUncryptedTextArea(m_polybe.GetReadableString());
+    }
+
+    public Polybe GetPolybe()
+    {
+        return  m_polybe;
     }
 
     /* ===============================================================================================================
@@ -40,9 +45,9 @@ public class UncryptingPolybeView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                m_polybe.setAssociation(getLangUserChoose());
+                m_polybe.SetAssociation(getLangUserChoose());
 
-                updatePolybe();
+                UpdatePolybe();
             }
         }
     }

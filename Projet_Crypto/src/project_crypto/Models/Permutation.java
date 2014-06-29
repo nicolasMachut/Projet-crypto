@@ -19,7 +19,6 @@ import java.util.Map;
 public class Permutation extends Crypting{
 
     //Variable
-    // <letterWantedForUncrypting, letterReadableFromAlphabet>
     private HashMap<String, String> m_association = new HashMap<String, String>();
     private Map<String,Double> m_alphabetInLang;
     //End variable
@@ -90,18 +89,19 @@ public class Permutation extends Crypting{
         return letter;
     }
 
-    public HashMap<String, String> getAssociation()
+    public HashMap<String, String> GetAssociation()
     {
         return this.m_association;
     }
 
 
+    // Manually
     public void Uncrypting(String p_textToUncrypt, List<String> p_alphabeTryUser)
     {
         this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
         this.m_readableString = m_cryptedString;
 
-        setAssociation(p_alphabeTryUser);
+        SetAssociation(p_alphabeTryUser);
 
         for(String letterKey : m_association.keySet())
         {
@@ -111,7 +111,7 @@ public class Permutation extends Crypting{
         this.m_readableString = this.m_readableString.toUpperCase();
     }
 
-    public void setAssociation(List<String> p_alphabeTryUser)
+    public void SetAssociation(List<String> p_alphabeTryUser)
     {
         // Only take strings
         String[] latinLetters = new Alphabet().GetLatin();
@@ -124,6 +124,29 @@ public class Permutation extends Crypting{
             m_association.put(p_alphabeTryUser.get(iLetter), latinLetters[iLetter]);
         }
     }
+
+    // Automatically()
+    public void Uncrypting(String p_textToUncrypt)
+    {
+        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_readableString = m_cryptedString;
+
+        SetAssociation();
+
+        for(String letterKey : m_association.keySet())
+        {
+            this.m_readableString = this.m_readableString.replace( letterKey, this.m_association.get(letterKey).toLowerCase() );
+        }
+
+        this.m_readableString = this.m_readableString.toUpperCase();
+    }
+
+    // Associate frequency analysis with most used letters in the chosen language
+    private void SetAssociation()
+    {
+        
+    }
+
 
     /* Code en commentaire : pourrait être utilisé pour un algo plus poussé
 
@@ -143,7 +166,7 @@ public class Permutation extends Crypting{
     }
 
 
-    public void setAssociation(HashMap<String, Double> p_letters)
+    public void SetAssociation(HashMap<String, Double> p_letters)
     {
         // Order
         // latinLetters already in order frequency DESC
