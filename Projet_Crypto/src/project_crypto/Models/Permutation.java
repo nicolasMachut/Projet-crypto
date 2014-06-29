@@ -1,6 +1,7 @@
 package project_crypto.Models;
 
 import Library.Alphabet;
+import Library.FrequencyAnalyse;
 import Library.WordToNormalize;
 
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class Permutation extends Crypting{
 
     //Variable
+    // m_association : HashMap < letterWeCanSee, letterWeWantToReplaceWith>
     private HashMap<String, String> m_association = new HashMap<String, String>();
     private Map<String,Double> m_alphabetInLang;
     //End variable
@@ -144,47 +146,21 @@ public class Permutation extends Crypting{
     // Associate frequency analysis with most used letters in the chosen language
     private void SetAssociation()
     {
-        
-    }
+        this.m_association.clear();
 
-
-    /* Code en commentaire : pourrait être utilisé pour un algo plus poussé
-
-    public void setAssociationFrequency(List<String> p_alphabeTryUser)
-    {
-        // Only take strings
         String[] latinLetters = m_alphabetInLang.keySet().toArray(new String[m_alphabetInLang.keySet().size()]);
 
-        // Associate strings
-        // <letterWantedForUncrypting, letterReadableFromAlphabet>
-        m_association.clear();
+        FrequencyAnalyse frequencyAnalyse = new FrequencyAnalyse(this.m_cryptedString);
+        HashMap<String, Double> frequencyScore = frequencyAnalyse.CalculCharFrequencyMono();
 
-        for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
+        int iLetter = 0;
+        for(String letterKey : frequencyScore.keySet())
         {
-            m_association.put(p_alphabeTryUser.get(iLetter), latinLetters[iLetter]);
+            System.out.println( letterKey +"->"+ latinLetters[iLetter] );
+
+            this.m_association.put(letterKey , latinLetters[iLetter]);
+
+            iLetter++;
         }
     }
-
-
-    public void SetAssociation(HashMap<String, Double> p_letters)
-    {
-        // Order
-        // latinLetters already in order frequency DESC
-        HashMap<String, Double> lettersOrder = (HashMap<String, Double>) MapManager.sortByComparator(p_letters, MapManager.DESC);
-
-        // Only take strings
-        String[] latinLetters = m_alphabetInLang.keySet().toArray(new String[m_alphabetInLang.keySet().size()]);
-        String[] lettersTry = lettersOrder.keySet().toArray(new String[lettersOrder.keySet().size()]);
-
-        // Associate strings
-        // <letterWantedForUncrypting, letterReadableFromAlphabet>
-        m_association.clear();
-
-
-        for(int iLetter = 0; iLetter < lettersTry.length; iLetter++)
-        {
-            m_association.put( lettersTry[iLetter], latinLetters[iLetter] );
-        }
-    }
-    */
 }

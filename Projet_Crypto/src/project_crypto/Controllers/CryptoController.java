@@ -140,6 +140,8 @@ public class CryptoController
                     uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
 
                     uncryptingPermutationView.GetPermutation().Uncrypting(textToUncrypt);
+                    uncryptingPermutationView.SetDataRowAlphaTable( uncryptingPermutationView.GetPermutation().GetAssociation() );
+                    uncryptingPermutationView.setUncryptedTextArea(uncryptingPermutationView.GetPermutation().GetReadableString());
 
                     m_uncryptingView = uncryptingPermutationView;
                 }

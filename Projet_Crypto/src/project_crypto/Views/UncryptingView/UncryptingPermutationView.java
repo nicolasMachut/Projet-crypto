@@ -50,12 +50,26 @@ public class UncryptingPermutationView extends UncryptingView
         m_permutation.Uncrypting(p_textToUncrypt, alphabeTryUser);
 
         setUncryptedTextArea(m_permutation.GetReadableString());
-        m_alphaTable.setDataRowAlphaTable(AssociationUserTryToString(m_permutation.GetAssociation()));
+        m_alphaTable.SetDataRowAlphaTable(AssociationUserTryToString(m_permutation.GetAssociation()));
     }
 
     public Permutation GetPermutation()
     {
         return m_permutation;
+    }
+
+    public void SetDataRowAlphaTable(HashMap<String, String> p_association)
+    {
+        String associationString = "";
+
+        for(String letterKey : p_association.keySet())
+        {
+            associationString += letterKey;
+        }
+
+        System.out.println(associationString);
+
+        m_alphaTable.SetDataRowAlphaTable(associationString);
     }
 
     /* ===============================================================================================================

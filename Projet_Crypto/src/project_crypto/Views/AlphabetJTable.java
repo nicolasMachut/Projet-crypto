@@ -132,7 +132,7 @@ public class AlphabetJTable extends JTable
     * Custom
     * ============================================================================================================ */
 
-    public void setHeaderAlphaTable(String p_headerString)
+    public void SetHeaderAlphaTable(String p_headerString)
     {
         clearAlphaTable("header");
 
@@ -150,7 +150,7 @@ public class AlphabetJTable extends JTable
         }
     }
 
-    public void setDataRowAlphaTable(String p_dataString)
+    public void SetDataRowAlphaTable(String p_dataString)
     {
         clearAlphaTable("row");
 

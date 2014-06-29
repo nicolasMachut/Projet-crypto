@@ -19,7 +19,7 @@ public class FrequencyAnalyse
     * FrequencyAnalyse's Constructor
     */
 
-     public FrequencyAnalyse(String p_file){this.m_textToAnalyse = p_file; }
+     public FrequencyAnalyse(String p_text){this.m_textToAnalyse = p_text; }
 
     /**
      * How many times each char is present in the text ?
