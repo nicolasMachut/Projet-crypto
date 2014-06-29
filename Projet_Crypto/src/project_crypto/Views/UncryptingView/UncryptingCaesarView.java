@@ -35,11 +35,14 @@ public class UncryptingCaesarView extends UncryptingView
         showComponents();
     }
 
-    public void setCaesarKey(int p_key)
+    public void setCaesarKeyField(int p_key)
     {
         m_keyField.setText( Integer.toString(p_key) );
+    }
 
-
+    public Caesar getCaesar()
+    {
+        return m_caesar;
     }
 
     private void updateCaesar()

@@ -85,7 +85,7 @@ public class UncryptingView extends JPanel
         m_cryptedTextArea.setText(p_text);
     }
 
-    protected void setUncryptedTextArea(String p_uncryptedText)
+    public void setUncryptedTextArea(String p_uncryptedText)
     {
         m_uncryptedTextArea.setText(p_uncryptedText);
     }

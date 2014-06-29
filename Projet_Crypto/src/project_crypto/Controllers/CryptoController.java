@@ -131,6 +131,11 @@ public class CryptoController
                 {
                     UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView(language);
                     uncryptingCaesarView.setCryptedTextArea(textToUncrypt);
+
+                    uncryptingCaesarView.getCaesar().Uncrypting(textToUncrypt);
+                    uncryptingCaesarView.setUncryptedTextArea(uncryptingCaesarView.getCaesar().GetReadableString());
+                    uncryptingCaesarView.setCaesarKeyField(uncryptingCaesarView.getCaesar().GetCryptingKey(textToUncrypt));
+
                     m_uncryptingView = uncryptingCaesarView;
                 }
                 else if(type.equals(Lang_en.permutation))
