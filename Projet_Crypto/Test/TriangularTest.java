@@ -101,11 +101,11 @@ public class TriangularTest {
     {
         TextFileManager m_textFileManager = new TextFileManager();
         m_textFileManager.LoadFile("/home/kimsavinfo/IdeaProjects/Projet-crypto/Projet_Crypto/src/Test_TextFiles/NotreDameParis_readable.txt");
-        String uncryptedText =  new WordToNormalize().normalize( m_textFileManager.getText() );
+        String uncryptedText =  new WordToNormalize().Normalize(m_textFileManager.GetText());
         String key = "epsi";
 
         Triangular triangular = new Triangular();
-        triangular.Crypting(m_textFileManager.getText(), key);
+        triangular.Crypting(m_textFileManager.GetText(), key);
 
         this.triangular.Uncrypting(triangular.GetEncryptedString(), key);
 

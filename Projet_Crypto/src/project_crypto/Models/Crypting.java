@@ -20,7 +20,7 @@ public abstract class Crypting{
         this.m_cryptedString = "";
         this.m_readableString = "";
         this.m_alphabet = new Alphabet();
-        setLanguage("fr");
+        SetLanguage("fr");
     }
 
 
@@ -58,11 +58,11 @@ public abstract class Crypting{
         return this.m_readableString;
     }
 
-    public void setCryptedString(String crypted) {
+    public void SetCryptedString(String crypted) {
         this.m_cryptedString = crypted;
     }
 
-    public void setLanguage(String p_language)
+    public void SetLanguage(String p_language)
     {
         if(p_language.equals("fr") || p_language.equals("en")) {
             m_language = p_language;

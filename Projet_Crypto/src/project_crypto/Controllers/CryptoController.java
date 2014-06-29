@@ -84,19 +84,19 @@ public class CryptoController
                     }while(!this.isAGoodCeasarKey(key));
 
                     Caesar caesar = new Caesar(langue);
-                    caesar.Crypting(m_textFileManager.getText(), Integer.valueOf(key));
+                    caesar.Crypting(m_textFileManager.GetText(), Integer.valueOf(key));
                     m_textFileManager.SetText(caesar.GetEncryptedString());
                 }
                 else if(type.equals(Lang_en.permutation))
                 {
                     Permutation permutation = new Permutation(langue);
-                    permutation.Crypting(m_textFileManager.getText());
+                    permutation.Crypting(m_textFileManager.GetText());
                     m_textFileManager.SetText(permutation.GetEncryptedString());
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
                     Polybe polybe = new Polybe(langue);
-                    polybe.Crypting(m_textFileManager.getText());
+                    polybe.Crypting(m_textFileManager.GetText());
                     m_textFileManager.SetText(polybe.GetEncryptedString());
                 }
                 else if(type.equals(Lang_en.triangle_permutation))
@@ -107,7 +107,7 @@ public class CryptoController
                     } while(!this.isAGoodTriangularKey(key));
 
                     Triangular triangular = new Triangular();
-                    triangular.Crypting(m_textFileManager.getText(), key);
+                    triangular.Crypting(m_textFileManager.GetText(), key);
                     m_textFileManager.SetText(triangular.GetEncryptedString());
                 }
 
@@ -116,55 +116,55 @@ public class CryptoController
             {
                  // Save the output file path
                 m_outputFilePath = m_mainView.GetOutputFile();
-                String textToUncrypt = m_textFileManager.getText();
+                String textToUncrypt = m_textFileManager.GetText();
 
                 // Which language do you speak ?
                 LanguageDetection languageDetection = new LanguageDetection();
-                String language = languageDetection.getLanguage(textToUncrypt);
+                String language = languageDetection.GetLanguage(textToUncrypt);
 
 
                 if(type.equals(Lang_en.caesar))
                 {
                     UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView(language);
-                    uncryptingCaesarView.setCryptedTextArea(textToUncrypt);
+                    uncryptingCaesarView.SetCryptedTextArea(textToUncrypt);
 
-                    uncryptingCaesarView.getCaesar().Uncrypting(textToUncrypt);
-                    uncryptingCaesarView.setUncryptedTextArea(uncryptingCaesarView.getCaesar().GetReadableString());
-                    uncryptingCaesarView.setCaesarKeyField(uncryptingCaesarView.getCaesar().GetCryptingKey(textToUncrypt));
+                    uncryptingCaesarView.GetCaesar().Uncrypting(textToUncrypt);
+                    uncryptingCaesarView.SetUncryptedTextArea(uncryptingCaesarView.GetCaesar().GetReadableString());
+                    uncryptingCaesarView.SetCaesarKeyField(uncryptingCaesarView.GetCaesar().GetCryptingKey(textToUncrypt));
 
                     m_uncryptingView = uncryptingCaesarView;
                 }
                 else if(type.equals(Lang_en.permutation))
                 {
                     UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView(language);
-                    uncryptingPermutationView.setCryptedTextArea(textToUncrypt);
+                    uncryptingPermutationView.SetCryptedTextArea(textToUncrypt);
 
                     uncryptingPermutationView.GetPermutation().Uncrypting(textToUncrypt);
                     uncryptingPermutationView.SetDataRowAlphaTable( uncryptingPermutationView.GetPermutation().GetAssociation() );
-                    uncryptingPermutationView.setUncryptedTextArea(uncryptingPermutationView.GetPermutation().GetReadableString());
+                    uncryptingPermutationView.SetUncryptedTextArea(uncryptingPermutationView.GetPermutation().GetReadableString());
 
                     m_uncryptingView = uncryptingPermutationView;
                 }
                 else if(type.equals(Lang_en.polybe_square))
                 {
                     UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView(language);
-                    uncryptingPolybeView.setCryptedTextArea(textToUncrypt);
+                    uncryptingPolybeView.SetCryptedTextArea(textToUncrypt);
 
                     uncryptingPolybeView.GetPolybe().Uncrypting(textToUncrypt);
-                    uncryptingPolybeView.setUncryptedTextArea(uncryptingPolybeView.GetPolybe().GetReadableString());
+                    uncryptingPolybeView.SetUncryptedTextArea(uncryptingPolybeView.GetPolybe().GetReadableString());
 
                     m_uncryptingView = uncryptingPolybeView;
                 }
                 else if(type.equals(Lang_en.triangle_permutation))
                 {
                     UncryptingTriangularView uncryptingTriangularView = new UncryptingTriangularView(language);
-                    uncryptingTriangularView.setCryptedTextArea(textToUncrypt);
+                    uncryptingTriangularView.SetCryptedTextArea(textToUncrypt);
                     m_uncryptingView = uncryptingTriangularView;
                 }
 
                 Map<String, Double> languageInfos = languageDetection.SumFrequenceMostUsedCharInLanguage(textToUncrypt);
-                m_uncryptingView.setTextLanguageRadioFr("fr ("+languageInfos.get("fr")+" %)");
-                m_uncryptingView.setTextLanguageRadioEn("en ("+languageInfos.get("en")+" %)");
+                m_uncryptingView.SetTextLanguageRadioFr("fr (" + languageInfos.get("fr") + " %)");
+                m_uncryptingView.SetTextLanguageRadioEn("en (" + languageInfos.get("en") + " %)");
 
                 // show interface
                 m_window.SetView(m_uncryptingView);

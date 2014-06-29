@@ -33,7 +33,7 @@ public class Polybe extends Crypting
 
     public void SetAssociation(String p_language)
     {
-        super.setLanguage(p_language);
+        super.SetLanguage(p_language);
 
         if (p_language.equals("fr"))
         {
@@ -119,7 +119,7 @@ public class Polybe extends Crypting
      */
     public void Crypting(String p_textToCrypt)
     {
-        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
+        this.m_readableString = new WordToNormalize().Normalize(p_textToCrypt);
 
         String cryptedFormalizeForPolybe = NormalizeLettersForCrypting(this.m_readableString);
 
@@ -157,7 +157,7 @@ public class Polybe extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt)
     {
-        this.m_cryptedString = new WordToNormalize().normalizeNumber(p_textToUncrypt);
+        this.m_cryptedString = new WordToNormalize().NormalizeNumber(p_textToUncrypt);
 
         m_readableString = "";
         String[] coupleNumbers = this.PutEachNumbersInArrayStrings();

@@ -41,15 +41,15 @@ public class UncryptingPermutationView extends UncryptingView
 
         m_tryUncriptButton.addActionListener(new UncryptActions());
 
-        showComponents();
+        ShowComponents();
     }
 
-    private void updatePermutation(String p_textToUncrypt, List<String> alphabeTryUser)
+    private void UpdatePermutation(String p_textToUncrypt, List<String> alphabeTryUser)
     {
         m_permutation.SetLanguageAlphabetUsed(getLangUserChoose());
         m_permutation.Uncrypting(p_textToUncrypt, alphabeTryUser);
 
-        setUncryptedTextArea(m_permutation.GetReadableString());
+        SetUncryptedTextArea(m_permutation.GetReadableString());
 
         m_permutation.SetAssociationUncrypt(alphabeTryUser);
         SetDataRowAlphaTable(m_permutation.GetAssociation());
@@ -91,7 +91,7 @@ public class UncryptingPermutationView extends UncryptingView
             {
                 List<String> alphabeTryUser = m_alphaTable.getAlphabetTryUser();
 
-                updatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);
+                UpdatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);
             }
         }
     }

@@ -39,25 +39,25 @@ public class UncryptingTriangularView extends  UncryptingView
         JScrollPane scrollPaneTrangleTextArea = new JScrollPane(m_triangleArea);
         this.add(scrollPaneTrangleTextArea);
 
-        showComponents();
+        ShowComponents();
     }
 
-    private void updateTriangular()
+    private void UpdateTriangular()
     {
-        fillTriangleArea();
+        FillTriangleArea();
 
-        m_triangular.Uncrypting(m_cryptedTextArea.getText(), wordToNormalize.normalize(m_keyField.getText()));
+        m_triangular.Uncrypting(m_cryptedTextArea.getText(), wordToNormalize.Normalize(m_keyField.getText()));
 
-        setUncryptedTextArea(m_triangular.GetReadableString());
+        SetUncryptedTextArea(m_triangular.GetReadableString());
     }
 
-    private void fillTriangleArea()
+    private void FillTriangleArea()
     {
-        java.util.List<Integer> columnOrder = m_triangular.FindColumnOrder(wordToNormalize.normalize(m_keyField.getText()));
+        java.util.List<Integer> columnOrder = m_triangular.FindColumnOrder(wordToNormalize.Normalize(m_keyField.getText()));
 
-        int m_nbLetters = m_triangular.getNbLetters();
-        int m_nbLines = m_triangular.getNbLines();
-        int m_nbColumns = m_triangular.getNbColumns();
+        int m_nbLetters = m_triangular.GetNbLetters();
+        int m_nbLines = m_triangular.GetNbLines();
+        int m_nbColumns = m_triangular.GetNbColumns();
         int nbLettersDoneBeforeLine = ((m_nbLines - 1) * (m_nbLines - 1) + (m_nbLines - 1)) / 2;
         int lasstLetterCol = 2 * (m_nbLetters - (nbLettersDoneBeforeLine + 1));
 
@@ -93,8 +93,8 @@ public class UncryptingTriangularView extends  UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                m_triangular.setLanguage(getLangUserChoose());
-                updateTriangular();
+                m_triangular.SetLanguage(getLangUserChoose());
+                UpdateTriangular();
             }
         }
     }

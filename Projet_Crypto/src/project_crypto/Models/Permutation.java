@@ -28,14 +28,14 @@ public class Permutation extends Crypting{
     public Permutation(String p_language)
     {
         super();
-        setLanguage(p_language);
+        SetLanguage(p_language);
         SetLanguageAlphabetUsed(p_language);
     }
 
 
     public void SetLanguageAlphabetUsed(String p_lang)
     {
-        super.setLanguage(p_lang);
+        super.SetLanguage(p_lang);
 
         if (p_lang.equals("fr"))
         {
@@ -50,7 +50,7 @@ public class Permutation extends Crypting{
     //This method crypt a string using permutation crypting
     public void Crypting(String p_textToCrypt)
     {
-        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
+        this.m_readableString = new WordToNormalize().Normalize(p_textToCrypt);
         String permutString;
 
         for(int i = 0; i < this.m_readableString.length(); i++)
@@ -100,7 +100,7 @@ public class Permutation extends Crypting{
     // Manually
     public void Uncrypting(String p_textToUncrypt, List<String> p_alphabeTryUser)
     {
-        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_cryptedString = new WordToNormalize().Normalize(p_textToUncrypt);
         this.m_readableString = m_cryptedString;
 
         SetAssociationUncrypt(p_alphabeTryUser);
@@ -131,7 +131,7 @@ public class Permutation extends Crypting{
     // Automatically()
     public void Uncrypting(String p_textToUncrypt)
     {
-        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_cryptedString = new WordToNormalize().Normalize(p_textToUncrypt);
         this.m_readableString = m_cryptedString;
 
         SetAssociationUncrypt();

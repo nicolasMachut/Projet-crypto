@@ -110,7 +110,7 @@ public class PermutationTest {
     public void FirstTryWthFreqAnaRespected()
     {
        String crypted = "KDFFDKSDVBXBYBFDODSEJDKDOOEBSDZCLSYDOEKFBCJOEWDJBSKESLJKYBDJFJDOFZEOFCLPCLSOUEWCSEXYDELKTEJQDMDJF";
-        this.permutation.setCryptedString(crypted);
+        this.permutation.SetCryptedString(crypted);
 
        assertEquals("KEFFEKSEVBXBYBFEOESAJEKEOOABSEZCLSYEOAKFBCJOAWEJBSKASLJKYBEJFJEOFZAOFCLPCLSOUAWCSAXYEALKTAJQEMEJF", this.permutation.GetEncryptedString());
     }

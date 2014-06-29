@@ -67,7 +67,7 @@ public class LanguageDetection
         return analyseLangue;
     }
 
-    public String getLanguage(String p_text)
+    public String GetLanguage(String p_text)
     {
         Map<String, Double> analyseLangue = SumFrequenceMostUsedCharInLanguage(p_text);
 

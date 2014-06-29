@@ -1,16 +1,8 @@
 package Library;
 
 
-import javax.swing.JOptionPane;
-import java.io.FileReader ;
-import java.io.BufferedReader ;
-import java.io.BufferedWriter ;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.File;
-import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import javax.swing.*;
+import java.io.*;
 
 /**
  * @author Edouard SOUAN-MARCELON
@@ -50,7 +42,7 @@ public class TextFileManager
         // Normalize and then save the text
         m_text = p_text;
     }
-    public String getText()
+    public String GetText()
     {
         return m_text;
     }

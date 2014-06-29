@@ -43,7 +43,7 @@ public class Triangular extends Crypting
      */
     public void Crypting(String p_textToCrypt, String p_key)
     {
-        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
+        this.m_readableString = new WordToNormalize().Normalize(p_textToCrypt);
 
         // Need nb letters lines and columns
         FindInfo(this.m_readableString);
@@ -66,15 +66,15 @@ public class Triangular extends Crypting
     }
 
     // Getters for the view
-    public int getNbLines()
+    public int GetNbLines()
     {
         return m_nbLines;
     }
-    public int getNbColumns()
+    public int GetNbColumns()
     {
         return m_nbColumns;
     }
-    public int getNbLetters()
+    public int GetNbLetters()
     {
         return m_nbLetters;
     }
@@ -90,7 +90,7 @@ public class Triangular extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt, String p_key)
     {
-        this.m_cryptedString = new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_cryptedString = new WordToNormalize().Normalize(p_textToUncrypt);
 
         // Need nb letters lines and columns
         FindInfo(this.m_cryptedString);

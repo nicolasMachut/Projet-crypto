@@ -9,7 +9,7 @@ import java.text.Normalizer;
  *
  * Date : 24/02/2014
  *
- * Class that normalize the text for futur handling :
+ * Class that Normalize the text for futur handling :
  * no accent, no space, all in upper case
  */
 
@@ -19,7 +19,7 @@ public class WordToNormalize
     * Functions and Methods
     * ============================================================================================================ */
 
-     public String normalize(String p_text)
+     public String Normalize(String p_text)
     {
         // no accent, no space, all in upper case
         String strNormalized =p_text.toUpperCase();
@@ -30,7 +30,7 @@ public class WordToNormalize
         return strNormalized;
     }
 
-    public String normalizeNumber(String p_text)
+    public String NormalizeNumber(String p_text)
     {
         return p_text.replaceAll("\\D+", "");
     }

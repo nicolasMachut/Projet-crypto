@@ -56,7 +56,7 @@ public class FrequencyAnalyse
         return presence;
     }
 
-    public String getMostUsedChar(HashMap<String, Double> p_frequency)
+    public String GetMostUsedChar(HashMap<String, Double> p_frequency)
     {
         String mostUsedChar = "";
         Double higherFrequency = (double)0;
@@ -98,7 +98,7 @@ public class FrequencyAnalyse
             frequency.put(key, frequency.get(key)/totalChars*100);
         }
 
-        return (HashMap<String, Double>)MapManager.sortByComparator(frequency, MapManager.DESC);
+        return (HashMap<String, Double>)MapManager.SortByComparator(frequency, MapManager.DESC);
     }
 
     /**
@@ -185,7 +185,7 @@ public class FrequencyAnalyse
     }
 
 
-    private void showCharFrequency(HashMap<String, Double> p_lettersFrequencies)
+    private void ShowCharFrequency(HashMap<String, Double> p_lettersFrequencies)
     {
         System.out.println(" CalculCharFrequencyMono, char total : " + m_textToAnalyse.length());
 

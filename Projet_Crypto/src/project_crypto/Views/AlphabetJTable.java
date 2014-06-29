@@ -27,17 +27,17 @@ public class AlphabetJTable extends JTable
     public AlphabetJTable()
     {
         super(new DefaultTableModel(ROWS, COLUMNS));
-        tableSetup();
+        TableSetup();
         setVisible(true);
     }
 
-    private void tableSetup()
+    private void TableSetup()
     {
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
         setDefaultRenderer(String.class, cellRenderer);
 
-        header = getRowFromEachStringLetters("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        header = GetRowFromEachStringLetters("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         data =
             new Object[][]{
                     {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
@@ -94,7 +94,7 @@ public class AlphabetJTable extends JTable
         // Update data so you can do whatever we want after
         // So you don't have to do this
         Object value = this.getValueAt(row, column);
-        data[row][column] = dealValueFirstLetterUpperCase(value);
+        data[row][column] = DealValueFirstLetterUpperCase(value);
 
         // Cell style
         return new MyRenderer();
@@ -113,17 +113,17 @@ public class AlphabetJTable extends JTable
                 if (value instanceof String)
                 {
                     // Mettre en maj et ne garder que la 1er lettre
-                    setText( dealValueFirstLetterUpperCase(value) );
+                    setText( DealValueFirstLetterUpperCase(value) );
                 }
             }
         }
     }
 
-    private String dealValueFirstLetterUpperCase(Object p_value)
+    private String DealValueFirstLetterUpperCase(Object p_value)
     {
         String userString = ((String)p_value).toUpperCase();
         userString = String.valueOf(userString.charAt(0));
-        userString = wordToNormalizer.normalize(userString);
+        userString = wordToNormalizer.Normalize(userString);
 
         return userString;
     }
@@ -134,9 +134,9 @@ public class AlphabetJTable extends JTable
 
     public void SetHeaderAlphaTable(String p_headerString)
     {
-        clearAlphaTable("header");
+        ClearAlphaTable("header");
 
-        header = getRowFromEachStringLetters(p_headerString);
+        header = GetRowFromEachStringLetters(p_headerString);
 
         JTableHeader header = getTableHeader();
         TableColumnModel columnModel = header.getColumnModel();
@@ -146,26 +146,26 @@ public class AlphabetJTable extends JTable
         {
             tc = columnModel.getColumn(iColumn);
 
-            tc.setHeaderValue( String.valueOf(wordToNormalizer.normalize(p_headerString).charAt(iColumn)) );
+            tc.setHeaderValue( String.valueOf(wordToNormalizer.Normalize(p_headerString).charAt(iColumn)) );
         }
     }
 
     public void SetDataRowAlphaTable(String p_dataString)
     {
-        clearAlphaTable("row");
+        ClearAlphaTable("row");
 
-        data[0][0] = getRowFromEachStringLetters(p_dataString);
+        data[0][0] = GetRowFromEachStringLetters(p_dataString);
 
         for(int iColumn = 0; iColumn < p_dataString.length(); iColumn++)
         {
             if(iColumn < COLUMNS)
             {
-                setValueAt(String.valueOf(wordToNormalizer.normalize(p_dataString).charAt(iColumn)), 0, iColumn);
+                setValueAt(String.valueOf(wordToNormalizer.Normalize(p_dataString).charAt(iColumn)), 0, iColumn);
             }
         }
     }
 
-    private void clearAlphaTable(String p_part)
+    private void ClearAlphaTable(String p_part)
     {
         if(p_part.equals("header"))
         {
@@ -191,7 +191,7 @@ public class AlphabetJTable extends JTable
         }
     }
 
-    private Object[] getRowFromEachStringLetters(String p_string)
+    private Object[] GetRowFromEachStringLetters(String p_string)
     {
         List<String> dataRow = new ArrayList<String>();
         for(int iChar = 0; iChar < p_string.length(); iChar++)

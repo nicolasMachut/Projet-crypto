@@ -25,12 +25,12 @@ public class WordToNomalizeTest {
     @Test
     public void TestEraseSpecialChar()
     {
-        assertEquals("CESTNICOLASQUIVOUSAPARLE", this.normalize.normalize("c'est nicolas qui vous à parl_é"));
+        assertEquals("CESTNICOLASQUIVOUSAPARLE", this.normalize.Normalize("c'est nicolas qui vous à parl_é"));
     }
 
     @Test
     public void TestNumber()
     {
-        assertEquals("1234567890", this.normalize.normalizeNumber(" 1cdsppokdsc sh2 sld3 lfooaz 4pvpoozev 5pze:!;az 6 =+ 7° &8 <9 >0"));
+        assertEquals("1234567890", this.normalize.NormalizeNumber(" 1cdsppokdsc sh2 sld3 lfooaz 4pvpoozev 5pze:!;az 6 =+ 7° &8 <9 >0"));
     }
 }

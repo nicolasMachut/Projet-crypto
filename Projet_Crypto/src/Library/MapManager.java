@@ -22,7 +22,7 @@ public class MapManager
     public static boolean DESC = false;
 
     // Sort a map
-    public static Map<String, Double> sortByComparator(Map<String, Double> unsortMap, final boolean order)
+    public static Map<String, Double> SortByComparator(Map<String, Double> unsortMap, final boolean order)
     {
         List<Map.Entry<String, Double>> list = new LinkedList<Map.Entry<String, Double>>(unsortMap.entrySet());
 

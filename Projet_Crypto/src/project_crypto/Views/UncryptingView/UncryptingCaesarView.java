@@ -32,22 +32,22 @@ public class UncryptingCaesarView extends UncryptingView
 
         m_caesar = new Caesar(p_language);
 
-        showComponents();
+        ShowComponents();
     }
 
-    public void setCaesarKeyField(int p_key)
+    public void SetCaesarKeyField(int p_key)
     {
         m_keyField.setText( Integer.toString(p_key) );
     }
 
-    public Caesar getCaesar()
+    public Caesar GetCaesar()
     {
         return m_caesar;
     }
 
     private void updateCaesar()
     {
-        setUncryptedTextArea(m_caesar.GetReadableString());
+        SetUncryptedTextArea(m_caesar.GetReadableString());
     }
 
     private boolean isAGoodCeasarKey(String keyToTest)
@@ -82,7 +82,7 @@ public class UncryptingCaesarView extends UncryptingView
             //Handle open button action.
             if (p_actionEvent.getSource() == m_tryUncriptButton)
             {
-                m_caesar.setLanguage(getLangUserChoose());
+                m_caesar.SetLanguage(getLangUserChoose());
 
                 if( isAGoodCeasarKey(m_keyField.getText()) )
                 {

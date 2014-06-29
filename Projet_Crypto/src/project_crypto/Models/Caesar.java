@@ -25,13 +25,13 @@ public class Caesar extends Crypting
     public Caesar(String p_language)
     {
         super();
-        setLanguage(p_language);
+        SetLanguage(p_language);
     }
 
 
     public void Crypting(String p_textToCrypt, int p_crytingKey)
     {
-        this.m_readableString = new WordToNormalize().normalize(p_textToCrypt);
+        this.m_readableString = new WordToNormalize().Normalize(p_textToCrypt);
         // Encrypt text letter by letter
         for(int iText = 0; iText < this.m_readableString.length(); iText++)
         {
@@ -47,7 +47,7 @@ public class Caesar extends Crypting
 
      public int GetCryptingKey(String p_textToUncrypt)
     {
-        this.m_cryptedString =  new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_cryptedString =  new WordToNormalize().Normalize(p_textToUncrypt);
         FrequencyAnalyse fileGivenFreq = new FrequencyAnalyse(p_textToUncrypt);
         HashMap<String, Double> frequency = fileGivenFreq.CalculCharFrequencyMono();
 
@@ -83,7 +83,7 @@ public class Caesar extends Crypting
 
     public void Uncrypting(String p_textToUncrypt, int uncryptedKey)
     {
-        this.m_cryptedString =  new WordToNormalize().normalize(p_textToUncrypt);
+        this.m_cryptedString =  new WordToNormalize().Normalize(p_textToUncrypt);
 
         UncryptLetters(uncryptedKey);
     }

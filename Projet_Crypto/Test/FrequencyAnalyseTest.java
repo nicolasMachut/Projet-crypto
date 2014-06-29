@@ -33,7 +33,7 @@ public class FrequencyAnalyseTest {
     @Test
     public void TestGetMostUsedChar()
     {
-        assertEquals("E", this.analyse.getMostUsedChar(this.analyse.CalculCharFrequencyMono()));
+        assertEquals("E", this.analyse.GetMostUsedChar(this.analyse.CalculCharFrequencyMono()));
     }
 
     @Test

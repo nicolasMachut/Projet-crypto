@@ -20,14 +20,14 @@ public class UncryptingPolybeView extends UncryptingView
         m_polybe = new Polybe(p_language);
         m_tryUncriptButton.addActionListener(new UncryptActions());
 
-        showComponents();
+        ShowComponents();
     }
 
     private void UpdatePolybe()
     {
         m_polybe.Uncrypting(m_cryptedTextArea.getText());
 
-        setUncryptedTextArea(m_polybe.GetReadableString());
+        SetUncryptedTextArea(m_polybe.GetReadableString());
     }
 
     public Polybe GetPolybe()

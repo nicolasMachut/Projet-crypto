@@ -215,14 +215,14 @@ public class Alphabet
 
     public Map<String, Double> GetFrequencySortedDesc(String p_language)
     {
-        return MapManager.sortByComparator(m_monogramme.get(p_language), MapManager.DESC);
+        return MapManager.SortByComparator(m_monogramme.get(p_language), MapManager.DESC);
     }
 
     public Map<String, Double> GetFrSortedDesc()
     {
         HashMap<String, Double> m_frenchFrequency = m_monogramme.get("fr");
 
-        return MapManager.sortByComparator(m_frenchFrequency, MapManager.DESC);
+        return MapManager.SortByComparator(m_frenchFrequency, MapManager.DESC);
     }
 
 
@@ -230,7 +230,7 @@ public class Alphabet
     {
         HashMap<String, Double> m_englishFrequency = m_monogramme.get("en");
 
-        return MapManager.sortByComparator(m_englishFrequency, MapManager.DESC);
+        return MapManager.SortByComparator(m_englishFrequency, MapManager.DESC);
     }
 
     public int GetIndexOfALetterInAlphabet(String letter)
@@ -247,7 +247,7 @@ public class Alphabet
     }
 
 
-    private void showCharFrequency(HashMap<String, Double> p_lettersFrequencies)
+    private void ShowCharFrequency(HashMap<String, Double> p_lettersFrequencies)
     {
         for (String key : p_lettersFrequencies.keySet())
         {
