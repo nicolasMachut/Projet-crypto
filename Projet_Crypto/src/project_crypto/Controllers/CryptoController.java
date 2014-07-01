@@ -130,7 +130,7 @@ public class CryptoController
 
                     uncryptingCaesarView.GetCaesar().Uncrypting(textToUncrypt);
                     uncryptingCaesarView.SetUncryptedTextArea(uncryptingCaesarView.GetCaesar().GetReadableString());
-                    uncryptingCaesarView.SetCaesarKeyField(uncryptingCaesarView.GetCaesar().GetCryptingKey(textToUncrypt));
+                    uncryptingCaesarView.SetCaesarKeyField(uncryptingCaesarView.GetCaesar().FindCryptingKey(textToUncrypt));
 
                     m_uncryptingView = uncryptingCaesarView;
                 }

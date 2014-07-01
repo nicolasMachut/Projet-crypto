@@ -14,8 +14,7 @@ public abstract class Crypting{
     protected String m_readableString;
     protected Alphabet m_alphabet;
     protected String m_language;
-    protected Object m_iUncryptedLetter;
-
+    protected Object m_iNextUKeyAuto; // key type depends on Models
 
     protected Crypting()
     {
@@ -23,8 +22,6 @@ public abstract class Crypting{
         this.m_readableString = "";
         this.m_alphabet = new Alphabet();
         SetLanguage("fr");
-
-        m_iUncryptedLetter = 0;
     }
 
 
@@ -77,7 +74,7 @@ public abstract class Crypting{
         }
 
         // Reset iUncryptedLettert
-        m_iUncryptedLetter = 0;
+        m_iNextUKeyAuto = 0;
     }
 
     public String GetLanguage()
@@ -90,9 +87,10 @@ public abstract class Crypting{
         return m_alphabet;
     }
 
-    public void SetNextMostUsedLetter()
+    public abstract void SetNextKeyAuto();
+
+    public Object GetNextKeyAuto()
     {
-        int test = Integer.valueOf(m_iUncryptedLetter.toString());
-        ++test;
+        return m_iNextUKeyAuto;
     }
 }

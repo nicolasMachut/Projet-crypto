@@ -32,6 +32,11 @@ public class Permutation extends Crypting{
         SetLanguageAlphabetUsed(p_language);
     }
 
+    @Override
+    public void SetNextKeyAuto() {
+
+    }
+
 
     public void SetLanguageAlphabetUsed(String p_lang)
     {

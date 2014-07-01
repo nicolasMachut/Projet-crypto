@@ -18,6 +18,8 @@ import java.util.HashMap;
 
 public class Caesar extends Crypting
 {
+    // m_iNextUKeyAuto is an int
+    private int m_keyCaesar;
 
     /* ===============================================================================================================
     * Functions and Methods
@@ -26,6 +28,15 @@ public class Caesar extends Crypting
     {
         super();
         SetLanguage(p_language);
+        m_iNextUKeyAuto = 0;
+        m_keyCaesar = 0;
+    }
+
+    @Override
+    public void SetNextKeyAuto()
+    {
+        int key = ((Integer) m_iNextUKeyAuto);
+        m_iNextUKeyAuto = ++key;
     }
 
 
@@ -45,7 +56,7 @@ public class Caesar extends Crypting
         }
     }
 
-     public int GetCryptingKey(String p_textToUncrypt)
+    public int FindCryptingKey(String p_textToUncrypt)
     {
         this.m_cryptedString =  new WordToNormalize().Normalize(p_textToUncrypt);
         FrequencyAnalyse fileGivenFreq = new FrequencyAnalyse(p_textToUncrypt);
@@ -53,7 +64,8 @@ public class Caesar extends Crypting
 
         int key = 0;
 
-        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc(m_language).keySet().toArray()[m_iUncryptedLetter];
+        int iLetterAuto = (Integer) m_iNextUKeyAuto;
+        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc(m_language).keySet().toArray()[iLetterAuto];
         String letterMostUsedInText = (String) frequency.keySet().toArray()[0];
 
         int iLetterMostUsedLanguage = this.m_alphabet.GetIndexLetter(letterMostUsedLanguage);
@@ -68,6 +80,8 @@ public class Caesar extends Crypting
             key = (  this.m_alphabet.GetLatin().length + (iLetterMostUsedInText - iLetterMostUsedLanguage));
         }
 
+        m_keyCaesar = key;
+
         return key;
     }
 
@@ -75,7 +89,7 @@ public class Caesar extends Crypting
     public void Uncrypting(String p_textToUncrypt)
     {
         //Find Key
-        int uncryptedKey = this.GetCryptingKey(p_textToUncrypt);
+        int uncryptedKey = this.FindCryptingKey(p_textToUncrypt);
 
         UncryptLetters(uncryptedKey);
     }
@@ -84,6 +98,8 @@ public class Caesar extends Crypting
     public void Uncrypting(String p_textToUncrypt, int uncryptedKey)
     {
         this.m_cryptedString =  new WordToNormalize().Normalize(p_textToUncrypt);
+
+        m_keyCaesar = uncryptedKey;
 
         UncryptLetters(uncryptedKey);
     }
@@ -104,5 +120,10 @@ public class Caesar extends Crypting
                 }
             }
         }
+    }
+
+    public int GetKeyCaesar()
+    {
+        return m_keyCaesar;
     }
 }

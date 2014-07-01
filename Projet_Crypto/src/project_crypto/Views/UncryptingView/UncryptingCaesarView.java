@@ -22,6 +22,11 @@ public class UncryptingCaesarView extends UncryptingView
     {
         super(p_language);
 
+        m_tryAuto = new JButton("FEELING LUCKY");
+        m_tryAuto.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
+        m_tryAuto.addActionListener(new UncryptAutoActions());
+        this.add(m_tryAuto);
+
         JLabel keyLabel = new JLabel("Caesar key :");
         this.add(keyLabel);
         m_keyField = new JFormattedTextField("0");
@@ -29,14 +34,7 @@ public class UncryptingCaesarView extends UncryptingView
         this.add(m_keyField);
 
         m_cryptedTextArea.getText();
-
         m_tryUncriptButton.addActionListener(new UncryptActions());
-
-        m_tryAuto = new JButton("FEELING LUCKY");
-        m_tryAuto.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
-        m_tryAuto.addActionListener(new UncryptAutoActions());
-        this.add(m_tryAuto);
-
         m_caesar = new Caesar(p_language);
 
         ShowComponents();
@@ -52,7 +50,7 @@ public class UncryptingCaesarView extends UncryptingView
         return m_caesar;
     }
 
-    private void updateCaesar()
+    private void UpdateCaesar()
     {
         SetUncryptedTextArea(m_caesar.GetReadableString());
     }
@@ -93,7 +91,7 @@ public class UncryptingCaesarView extends UncryptingView
 
                 if( isAGoodCeasarKey(m_keyField.getText()) )
                 {
-                    updateCaesar();
+                    UpdateCaesar();
 
                     m_caesar.Uncrypting(m_cryptedTextArea.getText(), Integer.parseInt(m_keyField.getText()));
                 }
@@ -113,11 +111,11 @@ public class UncryptingCaesarView extends UncryptingView
                     m_caesar.SetLanguage(getLangUserChoose());
                 }
 
-                m_caesar.SetNextMostUsedLetter();
-
+                m_caesar.SetNextKeyAuto();
                 m_caesar.Uncrypting(m_cryptedTextArea.getText());
 
-                updateCaesar();
+                UpdateCaesar();
+                SetCaesarKeyField(m_caesar.GetKeyCaesar());
             }
         }
     }

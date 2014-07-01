@@ -31,6 +31,11 @@ public class Polybe extends Crypting
         SetAssociation(p_language);
     }
 
+    @Override
+    public void SetNextKeyAuto() {
+
+    }
+
     public void SetAssociation(String p_language)
     {
         super.SetLanguage(p_language);
@@ -209,4 +214,5 @@ public class Polybe extends Crypting
 
         return tabLength;
     }
+
 }
