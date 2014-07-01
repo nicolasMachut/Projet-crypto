@@ -2,15 +2,16 @@ package project_crypto.Controllers;
 
 import Library.LanguageDetection;
 import Library.TextFileManager;
+import Library.WordToNormalize;
 import project_crypto.Models.Caesar;
 import project_crypto.Models.Permutation;
 import project_crypto.Models.Polybe;
 import project_crypto.Models.Triangular;
+import project_crypto.Ressources.Lang.Lang_en;
 import project_crypto.Views.Global;
 import project_crypto.Views.MainView;
 import project_crypto.Views.UncryptingView.*;
 import project_crypto.Views.Window;
-import project_crypto.Ressources.Lang.Lang_en;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -258,7 +259,7 @@ public class CryptoController
         {
             // Log
             m_textFileManager.SetText(m_uncryptingViewType+" trials :\n"+m_uncryptingView.GetLogsToExport());
-            String logExport = m_mainView.GetOutputLogs(m_uncryptingViewType);
+            String logExport = m_mainView.GetOutputLogs(new WordToNormalize().Normalize(m_uncryptingViewType));
             m_textFileManager.WriteFile(logExport);
 
 

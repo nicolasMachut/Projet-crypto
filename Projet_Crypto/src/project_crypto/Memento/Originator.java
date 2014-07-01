@@ -22,6 +22,7 @@ public class Originator
     }
 
     /* Serait utilisé via IA et arbre de décisions
+    Si demande à user, est ce qu'on se rapproche : oui/non revenir sur ses décisions
     public void SetMemento(Memento memento) {
 
         m_state = memento.GetState();

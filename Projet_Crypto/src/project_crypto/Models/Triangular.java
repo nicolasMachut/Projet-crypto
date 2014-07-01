@@ -23,6 +23,7 @@ public class Triangular extends Crypting
     private int m_nbLines;
     private int m_nbColumns;
     private int m_nbLetters;
+    private String m_keyTriangular;
 
     public Triangular()
     {
@@ -36,8 +37,10 @@ public class Triangular extends Crypting
     }
 
     @Override
-    public void SaveKeyInMemento() {
-
+    public void SaveKeyInMemento()
+    {
+        m_originator.SetState(m_keyTriangular+" : "+m_readableString);
+        m_caretaker.AddMemento(m_originator.CreateMemento());
     }
 
      /* ===============================================================================================================
@@ -126,6 +129,9 @@ public class Triangular extends Crypting
                 m_readableString = m_readableString + triangle[iLig][iCol];
             }
         }
+
+        m_keyTriangular = p_key;
+        SaveKeyInMemento();
     }
 
     /* ===============================================================================================================

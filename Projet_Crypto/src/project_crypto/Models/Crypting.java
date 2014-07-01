@@ -19,8 +19,8 @@ public abstract class Crypting{
     protected Object m_iNextUKeyAuto; // key type depends on Models
 
     // Memento for the Log
-    protected Caretaker caretaker;
-    protected Originator originator;
+    protected Caretaker m_caretaker;
+    protected Originator m_originator;
 
     protected Crypting()
     {
@@ -29,8 +29,8 @@ public abstract class Crypting{
         this.m_alphabet = new Alphabet();
         SetLanguage("fr");
 
-        caretaker = new Caretaker();
-        originator = new Originator();
+        m_caretaker = new Caretaker();
+        m_originator = new Originator();
     }
 
 
@@ -103,7 +103,7 @@ public abstract class Crypting{
 
     public String ExportKeyLog()
     {
-        return caretaker.GetStatesForExport();
+        return m_caretaker.GetStatesForExport();
     }
 
     public abstract void SetNextKeyAuto();

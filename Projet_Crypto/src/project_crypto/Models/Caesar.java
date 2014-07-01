@@ -43,8 +43,8 @@ public class Caesar extends Crypting
     @Override
     public void SaveKeyInMemento()
     {
-        originator.SetState(Integer.toString(m_keyCaesar)+" : "+m_readableString);
-        caretaker.AddMemento(originator.CreateMemento());
+        m_originator.SetState(Integer.toString(m_keyCaesar)+" : "+m_readableString);
+        m_caretaker.AddMemento(m_originator.CreateMemento());
     }
 
 

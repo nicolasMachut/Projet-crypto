@@ -45,7 +45,7 @@ public class MementoTest
 
         for (int i=0; i < 10 ; i++) {
             assertEquals(menetosValue.get(i), caretaker.GetMemento(i).GetState());
-            //System.out.println(menetosValue.get(i)+" : "+caretaker.GetMemento(i).GetState());
+            //System.out.println(menetosValue.get(i)+" : "+m_caretaker.GetMemento(i).GetState());
         }
     }
 

@@ -24,8 +24,9 @@ public class UncryptingPolybeView extends UncryptingView
     }
 
     @Override
-    public String GetLogsToExport() {
-        return null;
+    public String GetLogsToExport()
+    {
+        return m_polybe.ExportKeyLog();
     }
 
     private void UpdatePolybe()

@@ -33,12 +33,14 @@ public class Polybe extends Crypting
 
     @Override
     public void SetNextKeyAuto() {
-
+        // Nothing if I m not wrong
     }
 
     @Override
-    public void SaveKeyInMemento() {
-
+    public void SaveKeyInMemento()
+    {
+        m_originator.SetState(m_language+" : "+m_readableString);
+        m_caretaker.AddMemento(m_originator.CreateMemento());;
     }
 
     public void SetAssociation(String p_language)
@@ -182,6 +184,8 @@ public class Polybe extends Crypting
                 }
             }
         }
+
+        SaveKeyInMemento();
     }
 
     /**
