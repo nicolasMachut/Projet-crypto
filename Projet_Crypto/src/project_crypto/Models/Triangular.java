@@ -165,7 +165,7 @@ public class Triangular extends Crypting
 
         for (int iLetter = 0; iLetter < m_nbLetters; iLetter++)
         {
-            triangle[iLig][iCol] = triangle[iLig][iCol] = String.valueOf(this.m_readableString.charAt(iLetter));
+            triangle[iLig][iCol] = String.valueOf(this.m_readableString.charAt(iLetter));
             // Do we have to change the line ?
             // nb letters max at the end of this line = (iLig + 1) * (iLig + 1) + (iLig + 1)) / 2
             if (iLetter + 1 == ((iLig + 1) * (iLig + 1) + (iLig + 1)) / 2)
