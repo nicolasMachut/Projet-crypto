@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  * Autheur : kimsavinfo
  * Date : 08:18 27 juin 2014
  */
-public class UncryptingView extends JPanel
+public abstract class UncryptingView extends JPanel
 {
     protected final ButtonGroup m_languageRadio;
     protected final JRadioButton m_radioFr;
@@ -114,4 +114,6 @@ public class UncryptingView extends JPanel
 
         return lang;
     }
+
+    public abstract String GetLogsToExport();
 }

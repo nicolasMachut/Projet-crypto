@@ -21,6 +21,7 @@ public class Caesar extends Crypting
     // m_iNextUKeyAuto is an int
     private int m_keyCaesar;
 
+
     /* ===============================================================================================================
     * Functions and Methods
     * ============================================================================================================ */
@@ -37,6 +38,13 @@ public class Caesar extends Crypting
     {
         int key = ((Integer) m_iNextUKeyAuto);
         m_iNextUKeyAuto = ++key;
+    }
+
+    @Override
+    public void SaveKeyInMemento()
+    {
+        originator.SetState(Integer.toString(m_keyCaesar)+" : "+m_readableString);
+        caretaker.AddMemento(originator.CreateMemento());
     }
 
 
@@ -120,10 +128,14 @@ public class Caesar extends Crypting
                 }
             }
         }
+
+        SaveKeyInMemento();
     }
 
     public int GetKeyCaesar()
     {
         return m_keyCaesar;
     }
+
+
 }

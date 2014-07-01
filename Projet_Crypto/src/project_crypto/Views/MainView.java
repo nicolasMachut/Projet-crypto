@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 /**
@@ -119,6 +121,17 @@ public class MainView extends JPanel
         {
             ouputName = "result";
         }
+
+        return m_outputPath.getText()+ouputName+".txt";
+    }
+    public String GetOutputLogs(String p_type)
+    {
+        String ouputName = "Log_"+p_type+"_";
+
+        SimpleDateFormat formater = null;
+        Date today = new Date();
+        formater = new SimpleDateFormat("ddMMyyyy");
+        ouputName += formater.format(today);
 
         return m_outputPath.getText()+ouputName+".txt";
     }

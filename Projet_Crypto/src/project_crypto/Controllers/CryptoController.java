@@ -34,6 +34,7 @@ public class CryptoController
     private static MainView m_mainView;
     private static TextFileManager m_textFileManager;
     private static UncryptingView m_uncryptingView;
+    private static String m_uncryptingViewType;
     private static String m_outputFilePath;
 
     public static void main(String[] args)
@@ -66,7 +67,7 @@ public class CryptoController
             m_textFileManager.LoadFile(m_mainView.GetInputFile());
 
             String mode = m_mainView.GetMode();
-            String type = m_mainView.GetEncryptType();
+            m_uncryptingViewType = m_mainView.GetEncryptType();
 
             if (mode.equals(Lang_en.encrypt))
             {
@@ -75,7 +76,7 @@ public class CryptoController
                     langue = this.GetCryptingKeyChoosenByUserAsString(Global.m_msgAskLanguage);
                 } while(!this.isAGoodPolybeKey(langue));
 
-                if(type.equals(Lang_en.caesar))
+                if(m_uncryptingViewType.equals(Lang_en.caesar))
                 {
                     String key;
                     do
@@ -87,19 +88,19 @@ public class CryptoController
                     caesar.Crypting(m_textFileManager.GetText(), Integer.valueOf(key));
                     m_textFileManager.SetText(caesar.GetEncryptedString());
                 }
-                else if(type.equals(Lang_en.permutation))
+                else if(m_uncryptingViewType.equals(Lang_en.permutation))
                 {
                     Permutation permutation = new Permutation(langue);
                     permutation.Crypting(m_textFileManager.GetText());
                     m_textFileManager.SetText(permutation.GetEncryptedString());
                 }
-                else if(type.equals(Lang_en.polybe_square))
+                else if(m_uncryptingViewType.equals(Lang_en.polybe_square))
                 {
                     Polybe polybe = new Polybe(langue);
                     polybe.Crypting(m_textFileManager.GetText());
                     m_textFileManager.SetText(polybe.GetEncryptedString());
                 }
-                else if(type.equals(Lang_en.triangle_permutation))
+                else if(m_uncryptingViewType.equals(Lang_en.triangle_permutation))
                 {
                     String key;
                     do {
@@ -123,7 +124,7 @@ public class CryptoController
                 String language = languageDetection.GetLanguage(textToUncrypt);
 
 
-                if(type.equals(Lang_en.caesar))
+                if(m_uncryptingViewType.equals(Lang_en.caesar))
                 {
                     UncryptingCaesarView uncryptingCaesarView = new UncryptingCaesarView(language);
                     uncryptingCaesarView.SetCryptedTextArea(textToUncrypt);
@@ -134,7 +135,7 @@ public class CryptoController
 
                     m_uncryptingView = uncryptingCaesarView;
                 }
-                else if(type.equals(Lang_en.permutation))
+                else if(m_uncryptingViewType.equals(Lang_en.permutation))
                 {
                     UncryptingPermutationView uncryptingPermutationView = new UncryptingPermutationView(language);
                     uncryptingPermutationView.SetCryptedTextArea(textToUncrypt);
@@ -145,7 +146,7 @@ public class CryptoController
 
                     m_uncryptingView = uncryptingPermutationView;
                 }
-                else if(type.equals(Lang_en.polybe_square))
+                else if(m_uncryptingViewType.equals(Lang_en.polybe_square))
                 {
                     UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView(language);
                     uncryptingPolybeView.SetCryptedTextArea(textToUncrypt);
@@ -155,7 +156,7 @@ public class CryptoController
 
                     m_uncryptingView = uncryptingPolybeView;
                 }
-                else if(type.equals(Lang_en.triangle_permutation))
+                else if(m_uncryptingViewType.equals(Lang_en.triangle_permutation))
                 {
                     UncryptingTriangularView uncryptingTriangularView = new UncryptingTriangularView(language);
                     uncryptingTriangularView.SetCryptedTextArea(textToUncrypt);
@@ -255,10 +256,16 @@ public class CryptoController
     {
         public void actionPerformed(ActionEvent p_actionEvent)
         {
-            m_textFileManager.SetText(m_uncryptingView.GetUncryptedText());
+            // Log
+            m_textFileManager.SetText(m_uncryptingViewType+" trials :\n"+m_uncryptingView.GetLogsToExport());
+            String logExport = m_mainView.GetOutputLogs(m_uncryptingViewType);
+            m_textFileManager.WriteFile(logExport);
 
+
+            // Text
+            m_textFileManager.SetText(m_uncryptingView.GetUncryptedText());
             m_textFileManager.WriteFile(m_outputFilePath);
-            JOptionPane.showMessageDialog(null, "A file has just been created in : " + m_mainView.GetOutputFile());
+            JOptionPane.showMessageDialog(null, "Two files have just been created : " + m_outputFilePath+" and "+logExport);
         }
     }
 }

@@ -42,6 +42,11 @@ public class UncryptingTriangularView extends  UncryptingView
         ShowComponents();
     }
 
+    @Override
+    public String GetLogsToExport() {
+        return null;
+    }
+
     private void UpdateTriangular()
     {
         FillTriangleArea();

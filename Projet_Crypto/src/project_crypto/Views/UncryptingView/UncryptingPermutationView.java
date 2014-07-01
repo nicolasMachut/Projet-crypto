@@ -44,6 +44,11 @@ public class UncryptingPermutationView extends UncryptingView
         ShowComponents();
     }
 
+    @Override
+    public String GetLogsToExport() {
+        return null;
+    }
+
     private void UpdatePermutation(String p_textToUncrypt, List<String> alphabeTryUser)
     {
         m_permutation.SetLanguageAlphabetUsed(getLangUserChoose());

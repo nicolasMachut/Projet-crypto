@@ -40,6 +40,11 @@ public class UncryptingCaesarView extends UncryptingView
         ShowComponents();
     }
 
+    @Override
+    public String GetLogsToExport() {
+        return m_caesar.ExportKeyLog();
+    }
+
     public void SetCaesarKeyField(int p_key)
     {
         m_keyField.setText( Integer.toString(p_key) );

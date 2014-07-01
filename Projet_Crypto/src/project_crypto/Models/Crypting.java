@@ -1,6 +1,8 @@
 package project_crypto.Models;
 
 import Library.Alphabet;
+import project_crypto.Memento.Caretaker;
+import project_crypto.Memento.Originator;
 
 /**
  * @author Edouard SOUAN-MARCELON
@@ -16,12 +18,19 @@ public abstract class Crypting{
     protected String m_language;
     protected Object m_iNextUKeyAuto; // key type depends on Models
 
+    // Memento for the Log
+    protected Caretaker caretaker;
+    protected Originator originator;
+
     protected Crypting()
     {
         this.m_cryptedString = "";
         this.m_readableString = "";
         this.m_alphabet = new Alphabet();
         SetLanguage("fr");
+
+        caretaker = new Caretaker();
+        originator = new Originator();
     }
 
 
@@ -87,10 +96,18 @@ public abstract class Crypting{
         return m_alphabet;
     }
 
-    public abstract void SetNextKeyAuto();
-
     public Object GetNextKeyAuto()
     {
         return m_iNextUKeyAuto;
     }
+
+    public String ExportKeyLog()
+    {
+        return caretaker.GetStatesForExport();
+    }
+
+    public abstract void SetNextKeyAuto();
+
+    public abstract void SaveKeyInMemento();
+
 }

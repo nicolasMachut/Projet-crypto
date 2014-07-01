@@ -36,6 +36,11 @@ public class Polybe extends Crypting
 
     }
 
+    @Override
+    public void SaveKeyInMemento() {
+
+    }
+
     public void SetAssociation(String p_language)
     {
         super.SetLanguage(p_language);
@@ -138,7 +143,7 @@ public class Polybe extends Crypting
      * Be careful :
      * in French, "v" and "w" are the same letter, they are found with the "v"
      * in English : "i" and "j"
-     * @retur
+     * @return
      */
     private String NormalizeLettersForCrypting(String p_text)
     {

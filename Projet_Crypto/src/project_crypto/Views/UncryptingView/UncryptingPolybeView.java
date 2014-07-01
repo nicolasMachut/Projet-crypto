@@ -23,6 +23,11 @@ public class UncryptingPolybeView extends UncryptingView
         ShowComponents();
     }
 
+    @Override
+    public String GetLogsToExport() {
+        return null;
+    }
+
     private void UpdatePolybe()
     {
         m_polybe.Uncrypting(m_cryptedTextArea.getText());
