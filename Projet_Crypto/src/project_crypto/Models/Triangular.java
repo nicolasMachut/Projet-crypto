@@ -62,6 +62,8 @@ public class Triangular extends Crypting
         // Need nb letters lines and columns
         FindInfo(this.m_readableString);
 
+        System.out.println("TIRANGLE "+m_nbLetters+", lig "+m_nbLines+", col "+m_nbColumns);
+
         // Fill the triangle
         String[][] triangle = BuildTriangleToEncrypt();
 
@@ -104,6 +106,7 @@ public class Triangular extends Crypting
      */
     public void Uncrypting(String p_textToUncrypt, String p_key)
     {
+        m_readableString = "";
         this.m_cryptedString = new WordToNormalize().Normalize(p_textToUncrypt);
 
         // Need nb letters lines and columns
@@ -395,21 +398,7 @@ public class Triangular extends Crypting
      */
     public int CalculateNbColumns(int p_nbLines)
     {
-        if(p_nbLines == 1)
-        {
-            return p_nbLines;
-        }
-        else
-        {
-            if (ModuloPositive((p_nbLines / 2), 2) == 0)
-            {
-                return 2 * p_nbLines;
-            }
-            else
-            {
-                return (2 * p_nbLines) - 1;
-            }
-        }
+        return (2 * p_nbLines) - 1;
     }
 
     /* ===============================================================================================================

@@ -44,7 +44,7 @@ public class UncryptingTriangularView extends  UncryptingView
 
     @Override
     public String GetLogsToExport() {
-        return null;
+        return m_triangular.ExportKeyLog();
     }
 
     private void UpdateTriangular()

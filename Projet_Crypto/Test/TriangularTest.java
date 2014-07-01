@@ -49,7 +49,15 @@ public class TriangularTest {
     public void TestCalculateNbColumnsUsual()
     {
         int nbLines = 8;
-        int result = 16;
+        int result = 15;
+        assertEquals(result, this.triangular.CalculateNbColumns(nbLines));
+    }
+
+    @Test
+    public void TestCalculateNbColumnsUsual02()
+    {
+        int nbLines = 4;
+        int result = 7;
         assertEquals(result, this.triangular.CalculateNbColumns(nbLines));
     }
 
@@ -93,6 +101,16 @@ public class TriangularTest {
         this.triangular.Crypting(textToUncrypt, "codage");
 
         String uncryptedText = "LECODAGEPARTRANSPOSITIONTRIANGULAIRE";
+        assertEquals(uncryptedText, this.triangular.GetReadableString());
+    }
+
+    @Test
+    public void TestUncrypting02()
+    {
+        String textToUncrypt = "Le capitaine vous souhaite un bon vol.";
+        this.triangular.Crypting(textToUncrypt, "memento");
+
+        String uncryptedText = "LECAPITAINEVOUSSOUHAITEUNBONVOL";
         assertEquals(uncryptedText, this.triangular.GetReadableString());
     }
 
