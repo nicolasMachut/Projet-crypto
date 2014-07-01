@@ -1,6 +1,7 @@
 package project_crypto.Views.UncryptingView;
 
 import project_crypto.Models.Caesar;
+import project_crypto.Views.Global;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class UncryptingCaesarView extends UncryptingView
 {
     private Caesar m_caesar;
     private JFormattedTextField m_keyField;
+    private JButton m_tryAuto;
 
     public UncryptingCaesarView(String p_language)
     {
@@ -29,6 +31,11 @@ public class UncryptingCaesarView extends UncryptingView
         m_cryptedTextArea.getText();
 
         m_tryUncriptButton.addActionListener(new UncryptActions());
+
+        m_tryAuto = new JButton("FEELING LUCKY");
+        m_tryAuto.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
+        m_tryAuto.addActionListener(new UncryptAutoActions());
+        this.add(m_tryAuto);
 
         m_caesar = new Caesar(p_language);
 
@@ -90,6 +97,27 @@ public class UncryptingCaesarView extends UncryptingView
 
                     m_caesar.Uncrypting(m_cryptedTextArea.getText(), Integer.parseInt(m_keyField.getText()));
                 }
+            }
+        }
+    }
+
+    class UncryptAutoActions implements ActionListener
+    {
+        public void actionPerformed(ActionEvent p_actionEvent)
+        {
+            //Handle open button action.
+            if (p_actionEvent.getSource() == m_tryAuto)
+            {
+                if(!m_caesar.GetLanguage().equals(getLangUserChoose()))
+                {
+                    m_caesar.SetLanguage(getLangUserChoose());
+                }
+
+                m_caesar.SetNextMostUsedLetter();
+
+                m_caesar.Uncrypting(m_cryptedTextArea.getText());
+
+                updateCaesar();
             }
         }
     }

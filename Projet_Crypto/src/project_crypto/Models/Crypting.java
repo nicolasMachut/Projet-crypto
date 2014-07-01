@@ -14,6 +14,8 @@ public abstract class Crypting{
     protected String m_readableString;
     protected Alphabet m_alphabet;
     protected String m_language;
+    protected int m_iUncryptedLetter;
+
 
     protected Crypting()
     {
@@ -21,6 +23,8 @@ public abstract class Crypting{
         this.m_readableString = "";
         this.m_alphabet = new Alphabet();
         SetLanguage("fr");
+
+        m_iUncryptedLetter = 0;
     }
 
 
@@ -71,10 +75,23 @@ public abstract class Crypting{
         {
             m_language = "fr";
         }
+
+        // Reset iUncryptedLettert
+        m_iUncryptedLetter = 0;
+    }
+
+    public String GetLanguage()
+    {
+        return m_language;
     }
 
     public Alphabet GetAlphabet()
     {
         return m_alphabet;
+    }
+
+    public void SetNextMostUsedLetter()
+    {
+        ++m_iUncryptedLetter;
     }
 }

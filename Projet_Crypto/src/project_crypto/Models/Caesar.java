@@ -53,7 +53,7 @@ public class Caesar extends Crypting
 
         int key = 0;
 
-        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc(m_language).keySet().toArray()[0];
+        String letterMostUsedLanguage = (String) this.m_alphabet.GetFrequencySortedDesc(m_language).keySet().toArray()[m_iUncryptedLetter];
         String letterMostUsedInText = (String) frequency.keySet().toArray()[0];
 
         int iLetterMostUsedLanguage = this.m_alphabet.GetIndexLetter(letterMostUsedLanguage);

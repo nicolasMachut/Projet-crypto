@@ -163,8 +163,8 @@ public class CryptoController
                 }
 
                 Map<String, Double> languageInfos = languageDetection.SumFrequenceMostUsedCharInLanguage(textToUncrypt);
-                m_uncryptingView.SetTextLanguageRadioFr("fr (" + languageInfos.get("fr") + " %)");
-                m_uncryptingView.SetTextLanguageRadioEn("en (" + languageInfos.get("en") + " %)");
+                m_uncryptingView.SetTextLanguageRadioFr("fr (" + languageInfos.get("fr") + " )");
+                m_uncryptingView.SetTextLanguageRadioEn("en (" + languageInfos.get("en") + " )");
 
                 // show interface
                 m_window.SetView(m_uncryptingView);
