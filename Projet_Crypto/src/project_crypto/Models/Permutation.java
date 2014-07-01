@@ -4,6 +4,7 @@ import Library.Alphabet;
 import Library.FrequencyAnalyse;
 import Library.WordToNormalize;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class Permutation extends Crypting{
 
     //Variable
+    List<String> m_iNextUKeyAuto = new ArrayList<String>();
     // m_association : HashMap < letterWeCanSee, letterWeWantToReplaceWith>
     private HashMap<String, String> m_association = new HashMap<String, String>();
     private Map<String,Double> m_alphabetInLang;
@@ -33,13 +35,48 @@ public class Permutation extends Crypting{
     }
 
     @Override
-    public void SetNextKeyAuto() {
+    public void SetNextKeyAuto()
+    {
+        m_association.clear();
+        m_iNextUKeyAuto.clear();
 
+        for(int i = 0; i < this.m_readableString.length(); i++)
+        {
+            if(!m_iNextUKeyAuto.contains(String.valueOf(this.m_readableString.charAt(i))))
+            {
+                m_iNextUKeyAuto.add(this.GetVacantRandomLetter(m_iNextUKeyAuto));
+                System.out.println(this.m_readableString.charAt(i));
+            }
+        }
+
+        //SetAssociationUncrypt(permut);
     }
 
     @Override
-    public void SaveKeyInMemento() {
+    public void SaveKeyInMemento()
+    {
+        String associationString = "";
 
+        String[] alphaOrder = m_alphabet.GetLatin();
+        for (int iLetter =0; iLetter < alphaOrder.length ; iLetter++)
+        {
+            for(String letterKey : m_association.keySet())
+            {
+                if(letterKey.equals(alphaOrder[iLetter]))
+                {
+                    associationString += m_association.get(letterKey);
+                }
+            }
+        }
+
+        m_originator.SetState(associationString+" : "+m_readableString);
+        m_caretaker.AddMemento(m_originator.CreateMemento());
+    }
+
+    @Override
+    public List<String> GetNextKeyAuto()
+    {
+        return m_iNextUKeyAuto;
     }
 
 
@@ -101,6 +138,30 @@ public class Permutation extends Crypting{
         return letter;
     }
 
+    public String GetVacantRandomLetter(List<String> p_list)
+    {
+        String letter = "";
+        Boolean find = false;
+        int random = GetRandom();
+
+        String[] latinLetters = m_alphabetInLang.keySet().toArray(new String[m_alphabetInLang.keySet().size()]);
+
+        while(!find)
+        {
+            if(p_list.contains(latinLetters[random]))
+            {
+                random = GetRandom();
+            }
+            else
+            {
+                letter = latinLetters[random];
+                find = true;
+            }
+        }
+        return letter;
+    }
+
+
     public HashMap<String, String> GetAssociation()
     {
         return this.m_association;
@@ -120,22 +181,8 @@ public class Permutation extends Crypting{
             this.m_readableString = this.m_readableString.replace( letterKey, this.m_association.get(letterKey).toLowerCase() );
         }
 
+        SaveKeyInMemento();
         this.m_readableString = this.m_readableString.toUpperCase();
-    }
-
-    public void SetAssociationEncrypt(List<String> p_alphabeTryUser)
-    {
-        this.m_association.clear();
-        // Only take strings
-        String[] latinLetters = new Alphabet().GetLatin();
-
-        // Associate strings
-        m_association.clear();
-
-        for(int iLetter = 0; iLetter < p_alphabeTryUser.size(); iLetter++)
-        {
-            m_association.put(p_alphabeTryUser.get(iLetter), latinLetters[iLetter]);
-        }
     }
 
     // Automatically()
@@ -151,6 +198,7 @@ public class Permutation extends Crypting{
             this.m_readableString = this.m_readableString.replace( letterKey, this.m_association.get(letterKey).toLowerCase() );
         }
 
+        SaveKeyInMemento();
         this.m_readableString = this.m_readableString.toUpperCase();
     }
 

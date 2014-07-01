@@ -2,6 +2,7 @@ package project_crypto.Views.UncryptingView;
 
 import project_crypto.Models.Permutation;
 import project_crypto.Views.AlphabetJTable;
+import project_crypto.Views.Global;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -23,10 +24,16 @@ public class UncryptingPermutationView extends UncryptingView
 {
     private AlphabetJTable m_alphaTable;
     private Permutation m_permutation;
+    private JButton m_tryAuto;
 
     public UncryptingPermutationView(String p_language)
     {
         super(p_language);
+
+        m_tryAuto = new JButton(Global.m_tryUncryptingAuto);
+        m_tryAuto.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
+        m_tryAuto.addActionListener(new UncryptAutoActions());
+        this.add(m_tryAuto);
 
         m_alphaTable = new AlphabetJTable();
         JScrollPane scrollPaneTable = new JScrollPane(m_alphaTable);
@@ -46,7 +53,7 @@ public class UncryptingPermutationView extends UncryptingView
 
     @Override
     public String GetLogsToExport() {
-        return null;
+        return m_permutation.ExportKeyLog();
     }
 
     private void UpdatePermutation(String p_textToUncrypt, List<String> alphabeTryUser)
@@ -97,6 +104,25 @@ public class UncryptingPermutationView extends UncryptingView
                 List<String> alphabeTryUser = m_alphaTable.getAlphabetTryUser();
 
                 UpdatePermutation(m_cryptedTextArea.getText(), alphabeTryUser);
+            }
+        }
+    }
+
+    class UncryptAutoActions implements ActionListener
+    {
+        public void actionPerformed(ActionEvent p_actionEvent)
+        {
+            //Handle open button action.
+            if (p_actionEvent.getSource() == m_tryAuto)
+            {
+                if(!m_permutation.GetLanguage().equals(getLangUserChoose()))
+                {
+                    m_permutation.SetLanguage(getLangUserChoose());
+                }
+
+                m_permutation.SetNextKeyAuto();
+
+                UpdatePermutation(m_cryptedTextArea.getText(), m_permutation.GetNextKeyAuto());
             }
         }
     }

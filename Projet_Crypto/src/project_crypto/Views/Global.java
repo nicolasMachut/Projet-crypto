@@ -20,4 +20,6 @@ public class Global {
     public static String m_msgAskLanguage = "Please, choose a language ('fr' or 'en')";
     public static String m_msgAskKeyCaesar = "Please, choose a numeric key between 1 and 26.";
     public static String m_msgAskKeyWord = "Please, choose a word key.";
+
+    public static String m_tryUncryptingAuto = "FEELING LUCKY";
 }

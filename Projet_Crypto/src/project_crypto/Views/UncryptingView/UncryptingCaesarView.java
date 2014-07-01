@@ -22,7 +22,7 @@ public class UncryptingCaesarView extends UncryptingView
     {
         super(p_language);
 
-        m_tryAuto = new JButton("FEELING LUCKY");
+        m_tryAuto = new JButton(Global.m_tryUncryptingAuto);
         m_tryAuto.setPreferredSize(new Dimension(Global.m_widthWindow - 40, 30));
         m_tryAuto.addActionListener(new UncryptAutoActions());
         this.add(m_tryAuto);
