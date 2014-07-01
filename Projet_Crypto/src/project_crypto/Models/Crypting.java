@@ -14,7 +14,7 @@ public abstract class Crypting{
     protected String m_readableString;
     protected Alphabet m_alphabet;
     protected String m_language;
-    protected int m_iUncryptedLetter;
+    protected Object m_iUncryptedLetter;
 
 
     protected Crypting()
@@ -92,6 +92,7 @@ public abstract class Crypting{
 
     public void SetNextMostUsedLetter()
     {
-        ++m_iUncryptedLetter;
+        int test = Integer.valueOf(m_iUncryptedLetter.toString());
+        ++test;
     }
 }
