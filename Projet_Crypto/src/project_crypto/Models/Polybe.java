@@ -43,6 +43,18 @@ public class Polybe extends Crypting
         m_caretaker.AddMemento(m_originator.CreateMemento());;
     }
 
+    public boolean IsTextUncryptable(String p_textToUncrypt)
+    {
+        String text = new WordToNormalize().NormalizeNumber(p_textToUncrypt);
+
+        if( ModuloPositive(text.length(), 2) == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void SetAssociation(String p_language)
     {
         super.SetLanguage(p_language);

@@ -152,8 +152,15 @@ public class CryptoController
                     UncryptingPolybeView uncryptingPolybeView = new UncryptingPolybeView(language);
                     uncryptingPolybeView.SetCryptedTextArea(textToUncrypt);
 
-                    uncryptingPolybeView.GetPolybe().Uncrypting(textToUncrypt);
-                    uncryptingPolybeView.SetUncryptedTextArea(uncryptingPolybeView.GetPolybe().GetReadableString());
+                    if(uncryptingPolybeView.GetPolybe().IsTextUncryptable(textToUncrypt))
+                    {
+                        uncryptingPolybeView.GetPolybe().Uncrypting(textToUncrypt);
+                        uncryptingPolybeView.SetUncryptedTextArea(uncryptingPolybeView.GetPolybe().GetReadableString());
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Incorrect text lenght (odd number)");
+                    }
 
                     m_uncryptingView = uncryptingPolybeView;
                 }

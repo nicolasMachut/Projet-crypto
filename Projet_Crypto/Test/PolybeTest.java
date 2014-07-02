@@ -88,4 +88,20 @@ public class PolybeTest {
 
         assertEquals("2415313154", polybe.GetEncryptedString());
     }
+
+    @Test
+    public void TestUncryptable()
+    {
+        String textToUncrypt = "45231423";
+
+        assertTrue(polybe.IsTextUncryptable(textToUncrypt));
+    }
+
+    @Test
+    public void TestNotUncryptable()
+    {
+        String textToUncrypt = "4523142";
+
+        assertFalse(polybe.IsTextUncryptable(textToUncrypt));
+    }
 }
